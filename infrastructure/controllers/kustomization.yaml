@@ -5,3 +5,5 @@ resources:
   - ingress-nginx.yaml
   - weave-gitops.yaml
   - ./metallb
+configurations:
+  - kustomizeconfig.yaml
