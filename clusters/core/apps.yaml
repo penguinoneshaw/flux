@@ -13,4 +13,10 @@ spec:
   path: ./apps/core
   prune: true
   wait: true
-  timeout: 5m0s
+  timeout:
+    5m0s
+    # Decryption configuration starts here
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
