@@ -2,20 +2,17 @@
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: external-dns
-  namespace: external-dns-system
+  name: kubernetes-dashboard
+  namespace: kubernetes-dashboard
 spec:
   chart:
     spec:
-      chart: external-dns
+      chart: kubernetes-dashboard
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: external-dns
+        name: kubernetes-dashboard
   interval: 1m0s
   valuesFrom:
     - kind: ConfigMap
-      name: external-dns-values
-    - kind: Secret
-      name: pihole-password
-      valuesKey: pihole-password
+      name: kubernetes-dashboard-values

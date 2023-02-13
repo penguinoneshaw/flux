@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../base/podinfo
   - ../base/external-dns
+  - ../base/kubernetes-dashboard
 patchesStrategicMerge:
   - podinfo-values.yaml
 configurations:
