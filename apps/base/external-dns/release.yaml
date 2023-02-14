@@ -16,6 +16,3 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: external-dns-values
-    - kind: Secret
-      name: pihole-password
-      valuesKey: pihole-password
