@@ -173,9 +173,9 @@ ingress:
   # labels:
   #   key: value
 
-  ## Kubernetes Dashboard Ingress annotations
-  # annotations:
-  #   kubernetes.io/ingress.class: nginx
+  # Kubernetes Dashboard Ingress annotations
+  annotations:
+    kubernetes.io/ingress.class: nginx
   #   kubernetes.io/tls-acme: 'true'
 
   ## If you plan to use TLS backend with enableInsecureLogin set to false
@@ -214,8 +214,8 @@ ingress:
   ## Kubernetes Dashboard Ingress hostnames
   ## Must be provided if Ingress is enabled
   ##
-  # hosts:
-  #   - kubernetes-dashboard.domain.com
+  hosts:
+    - kubernetes-dashboard.home.thephysicsflat.xyz
   ## Kubernetes Dashboard Ingress TLS configuration
   ## Secrets must be manually created in the namespace
   ##
