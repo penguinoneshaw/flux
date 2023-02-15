@@ -4,6 +4,7 @@ resources:
   - ../base/podinfo
   - ../base/external-dns
   - ../base/kubernetes-dashboard
+  - ../base/homer
 patchesStrategicMerge:
   - podinfo-values.yaml
 configurations:

@@ -1,0 +1,23 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: homer
+  namespace: homer
+spec:
+  releaseName: homer
+  chart:
+    spec:
+      chart: homer
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: gabe565
+        namespace: flux-system
+  interval: 30m
+  valuesFrom:
+    - kind: ConfigMap
+      name: homer-values
+    - kind: ConfigMap
+      name: homer-values
+      targetPath: configmap.config.data
+      valuesKey: homer-config.yaml

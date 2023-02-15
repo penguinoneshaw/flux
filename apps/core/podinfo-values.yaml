@@ -12,7 +12,7 @@ spec:
   values:
     ingress:
       hosts:
-        - host: podinfo.staging
+        - host: podinfo.home.thephysicsflat.xyz
           paths:
             - path: /
               pathType: ImplementationSpecific
