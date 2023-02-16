@@ -17,7 +17,3 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: homer-values
-    - kind: ConfigMap
-      name: homer-values
-      targetPath: configmap.config.data
-      valuesKey: homer-config.yaml

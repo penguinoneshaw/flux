@@ -9,4 +9,9 @@ configMapGenerator:
     namespace: homer
     files:
       - values.yaml
+  - name: config
+    namespace: homer
+    options:
+      disableNameSuffixHash: true
+    files:
       - homer-config.yaml

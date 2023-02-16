@@ -46,9 +46,7 @@ persistence:
   # @default -- See [values.yaml](./values.yaml)
   config:
     enabled: true
-    mountPath: /www/assets
-
-configmap:
-  config:
-    # -- Store homer configuration as a ConfigMap
-    enabled: false
+    type: ConfigMap
+    mountPath: /www/assets/config.yml
+    subPath: homer-config.yaml
+    name: config
