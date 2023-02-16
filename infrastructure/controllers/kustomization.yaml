@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - cert-manager.yaml
   - ingress-nginx.yaml
-  - weave-gitops.yaml
+  - ./weave
   - ./metallb
 configurations:
   - kustomizeconfig.yaml
