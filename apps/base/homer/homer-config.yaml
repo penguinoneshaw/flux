@@ -74,11 +74,6 @@ services:
         keywords: "self hosted reddit"
         url: "https://www.reddit.com/r/selfhosted/"
         target: "_blank" # optional html a tag target attribute
-      - name: "Another one"
-        logo: "assets/tools/sample2.png"
-        subtitle: "Another application"
-        tag: "app"
-        url: "#"
   - name: "Other group"
     icon: "fas fa-heartbeat"
     items:
@@ -86,7 +81,7 @@ services:
         logo: "assets/tools/sample.png"
         # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
         tag: "other"
-        url: "http://10.1.10.20/admin"
+        url: "http://pi.hole"
         type: "PiHole" # optional, loads a specific component that provides extra features. MUST MATCH a file name (without file extension) available in `src/components/services`
         target: "_blank" # optional html a tag target attribute
         # class: "green" # optional custom CSS class for card, useful with custom stylesheet

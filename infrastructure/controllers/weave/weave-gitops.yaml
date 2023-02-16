@@ -39,6 +39,15 @@ spec:
       readOnlyRootFilesystem: true
       runAsNonRoot: true
       runAsUser: 1000
+    adminUser:
+      create: true
+      username: admin
+      createClusterRole: true
+      createSecret: true
+      # Change password by generating a new hash with:
+      # https://docs.gitops.weave.works/docs/configuration/securing-access-to-the-dashboard/#login-via-a-cluster-user-account
+      # bcrypt hash for password "flux"
+      passwordHash: "$2a$10$dPno1f8bXYdI36oPbreKa.IKpUh690WxM5Clyd6rq6jknNuMn91hm"
     ingress:
       enabled: true
       className: "nginx"
