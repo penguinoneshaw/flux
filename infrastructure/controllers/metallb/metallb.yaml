@@ -33,3 +33,18 @@ spec:
     - kind: ConfigMap
       name: metallb-helm-chart-value-overrides
       valuesKey: values.yaml # This is the default, but best to be explicit for clarity
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: metallb-pool
+  namespace: metallb-system
+spec:
+  addresses:
+    - 10.1.100.0/24
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: l2-advertisement
+  namespace: metallb-system
