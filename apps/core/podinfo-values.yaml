@@ -11,6 +11,12 @@ spec:
     enable: false
   values:
     ingress:
+      annotations:
+        cert-manager.io/cluster-issuer: letsencrypt
+      tls:
+        - name: podinfo-tls
+          hosts:
+            - podinfo.home.thephysicsflat.xyz
       hosts:
         - host: podinfo.home.thephysicsflat.xyz
           paths:

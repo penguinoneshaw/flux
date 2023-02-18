@@ -1,0 +1,26 @@
+apiVersion: v1
+data:
+  key: ENC[AES256_GCM,data:MkGISqLBdMq2hAjMpixHNrwDoCVTUS9k+nwkZD6pumQk2bCvJoIkBFPQk+I5w/ACJTMUEFru+CFFBP25OaTKRfVFdoa5XVv0xor3uKf4gkgNUKNoDKSNgA==,iv:FQ6taBMws/Bv3ffRea9R8ka/jTpkR9naW7ayVtaWuRs=,tag:jETYchFiVhaaai3FzkGtDg==,type:str]
+kind: Secret
+metadata:
+  name: netlify-pat
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBFTVVoVVViV3daMjZhbGJn
+        WktSK1ByK0c4OXRxcjVJZEpFTUhQSkNyR0RFCmxPaHB6UzhXMlo5Q3UzeDk4OGVK
+        dWhkWFdrV2JISjZQNVcvVkVteUlzeUUKLS0tIGxwVFltRWZsVEJXYUgwM2hsdnVG
+        QS8rOGVCVk1XeFJBYWlpU0NtajVjZEkK6sNyVUphaUK2/TmtmQO6nSp3vznLQ+hG
+        MgbNjGfja0WaNHN+RPfFXLF7ncNk+vSbK0weRFf/qQVmHhxEW0d2jg==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2023-02-18T14:31:16Z"
+  mac: ENC[AES256_GCM,data:oJ7iT9P9+bZMI/3i9anpyPmUgSOhKUODd5fPc9SVUnRlHEFThkUegp8XE6Xy4xcgQwNq0hqWU0U6wJ4oYI8lRj/6x1HZJyWTfUsaRltLLjR1oQLew51c1FE4fHnoqkc34GL5eN9VDQvuKLk2EzkK7MHsMJhmfJjV/vgRi4a/cuM=,iv:eSlHaqL34brLOP10FlGE23f9RRgbiOZMWt3OnMngVK8=,tag:B1z2HGQSKV3juroh/bC1Tw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.3

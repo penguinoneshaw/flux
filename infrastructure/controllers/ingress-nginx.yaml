@@ -1,59 +1,9 @@
 apiVersion: v1
-data:
-    tls.crt: ENC[AES256_GCM,data:xRH1vT0Yy8FfM92I22Zx/caKzRGsKmJfwsiOq3e5TusGDJ2BNTezzuwYRnxB6Cbprb6bnY8uhbfM7T22fjHAgue1zY2FNxVq2sfEoa03bHqLl2ZS0ji2JseSfN1I334blwJQPiziRrHcHHBj8sLHwOwgs24vWKcDm5Di05pkCiFIL2VyVMuU0BFqoPHXAhaH1z83n2AhrWHb6q38pLFuVHkeaa7cYn1pcQnNQmwCDNCI28eDL+1nkeVgndN4nsAHtyY6sT/NmbyIGl3/iJWSQQC6eqt0Hmwajyf687pi1wdyY102DPxElIj1IdVsPgZK+jcCjlyLlZ07bjSu/9OWyX0Frak5lZhAA2sNlTs1w8To3mMReyTeLqbJzBNd5tRZqCbESsIc6NtZBXcGkVn3J/0RIfTgmdqESqxGeUGrkcccn6DBHBWyrKgDb9uT26YHBbHTIYYckzBAxlwtY/5wWIf/kEDkbxoERKgLtGLDdNvTEe6pkI4PMIVFzaxA7tmcUvE3MHIG3e12oFJ60UeDCV/SgHM76CLW+SFIwkLFfnF+QGywFplOs+qHGBXonUZDAlj+Y7DqzRUm8tvW5uMQjiMLeVSMzmcOua2n86xkmq6XmDMewLLhndrR/mrZJKrDtEk+HrW2FsNFW//OCBmwNxgvN+djouDec1G5WrAWy2aipZ2c30OdUIr8ygRSP4qk5O3MWZjAMgeojymVa7Kz5H8cPHjBollGs1rTUhggkYiTmRDaLu8Nhjp5T1FmLcO8qgcAqu7BWc663HVtOfEGIslLMZXDe3Jc19ldIE0smH8t7QtF9UePXYHNmtSFlau7MPUv6fEazl1s7sY9Trbk7S1ZjXkPf7zrl9we/Xy2ftjMkU1lv/Km0kqMV4y42n9lgr2cvu99F9r+6WkCQpoSRFxwgNw5dbjZXJ5419ZsQ8DL0iglp6WXiULAmtCrRlAYH0WP0kY4d+ws48Tff8NW2An5+MWNVc5M17/9zzTKHKESgM2tmrV9If8UQpdOqlBEjG4z52Kli99zcf3gVOmb5qSt+GsuUD3aHEkOmX/u5rNE2QOmXbq4QjvtEQNjXE+U1X26z28etb+wyqVbGRYts50mFuyyuJK1kJwH5sDab4wuMiEcJZzNya3Frg5VFSRhoY/VxjxCb1q9xGWN7AW2fTW5/qx/uPRRA9LoVENwTTYlpjVbI2tscap1lmz9d943YOlVIspLzbaLMThfXXCD1A8yFNTGaTwl5U+tPDnifWSNjjV7FW5X6y1jU8a1xhJ4zzusUie4RFu325jUG4vCOkPz9I2ORSpgNsOmpMHwoKld5Y3D4f6e6s2u/BnzIMSVZgFAQC6J9jdiPl9YuCQa3k7iXM+oR5dH25vcBGbgfVKYJPPga/Cm/wG9hjm2kyc+QJwp+fz+m3wp3WA7i3Lozdsrz4MaeLUiDu17xPrLNZhGp9Fi89nyon+bhOJizUmyUUPTYYQGmB2ocG+Bv3GPpJZ+kpPRORFveKb7K7UQz8Q83KMC0/Dwfc0LDa11kvFFi8RfCfIelXWUYORnm/GQ+B/3RcpSG+QvgeHPYENMYhDCJ9HS9k0gfTUCpNWAdBJy6uCXeqaGHJHnsYRBmfN+iWgxeFnBnIRJt5egc5v2n+WE0QJF+h1+J2rGwKpnjmolWDXeadTwcLg+RSLjz6LKiywcQrwGsSQprtkWr/ZOgd56W48V4+Iwn51syoohLIKr4YrdFmCKHvA3vJ2KpVFn00jjWQTzCkTdHowCfw09fbPMAyiRi7N2YK3evYCYZmrlxrdsEmnpqv9ALktnQMKjrriDKLXXJJoxu0h2khIkdhWmSHYkeUKn56nAtcmopLA80HANic1RQMKN3vWOowF5XgLhJ4iyHhjhUkg8Dg1tmTbVquElH0G2QQV2lHmPnBJFxSGIekTorc89HoyUSdOSlLa5FZ5cAFYU4LMv2i1+9Rrlo7nOJZhVmhK6FylOjWxc+pyRCyKq2qGII+XTV48LwaqrM2ANCKiZXj8YdnA3+89EIIccy2XINejlGSzrrlAgBje4yWM2GXppqDsR8XSr5dmvd5ReTeeqxUZZPMQDn0mXrA/xheRofgUwvV1GqPJGFsj6PYHG4zgw572xpnczc/A/FkOSpKJk47LKI/xNK2pKrN41hevniroshB5ddkYiqXcoof6HetpJI8JHCrKJXGxls6R2uD/K16QqbwgDaSDkSfcX1WlFSbNKoX8Pqj7JaIDL2un3L8VvGoIftKNsKh6pfu//2Sddk30IjethD9mdNXHt7h35IXXVLlbgKunupB9UsULXJ2A/jJZpDGosMmE0Xo8XVODOmaEV+x/Zo4gP5cdvj6iFiFlMhClvpDZZLL3Chg+wFyLBu8crRIl7YitjY3phMjUVpSsl3kwQ32bWf1JA2FxLdWhg8zErTPOMl18k3DA/AfO6p9rnBlClcvA5cGaztwOFS/bMNUfDNTz4ljWxDUivOzKAOmQVWoFz8d/nGLlHkMrqTS1KF2jgfSo0npqq/UmO/1a1lsdAaqOulFkOARSCsIIJD+PhYZAKKW5LPQQpSHKkAv43Czm2LWjjFtLEkc/UdJdOVDGmJh4oA0iOJmEa9Uv3llH69bAWZP9fZgGQzQHqREUkD2H2VIu3c0FVWLoeJqXma8FSUziEhYYoApIC/ZZsSIgj1u8d7zA6OKPNYXXmLFPloKLILIeuSeQKGlryCGhSrMFA1la0LrvVLZr1igwcksTecywYNCadZS6wyvnbU366i9qUc7gLBxehl2/umlPYjbkjinkOAPZqXnE/IQ793XEtCFMKKbpNN39UYq0u3/muBrNnWrznaODE1Quw5RT+q6b1S9hE0vpPCp45x10vvZjH+BXoiHpzOjY2PlN6seImkY02M897g7u22K18jUS7GVT2orsOAh67RA5J3DQSiHkRrH/01/R6yXjgTw5AN7j6/sFlyU6dQ+qELiZS7eJMgZ7IbDVg0+fyqaVtkJ6D1hzgS0s06BXmJVYuv94sDq5gskiXtoMqpwut+qMnaZDx+EnitwAY7QnZ2rkeh7C96nzbz1dgjiDiOow/XFmoYrA1P48+EXsEHmicQ76tEwdNKPGuoxqK4JTJopmr3JMccKZ4OjJmZceg9tW+BSO4qU1BUE1Kfu9GsBMlyYq0bOjDg2tgbH8Vo2eyRTtGy/b+kS/91uWxpvxYM/K+3pp1Zf1SRcLr5eLEWhC9QxmnX+alAwG6O8LaznS42sjEMupjNo5cBE3XZYT8kFJhhwrfwl8uRQx3EHFjcfkwT581xq1/LjmMUP+6KpVuuoYoo0ObG9QOe6dL,iv:waH6hchtbmovzkAFULq7MerjPb7XrF8PplYFggMbpIw=,tag:pPWsJKjo2xlVcnYH1ySIog==,type:str]
-    tls.key: ENC[AES256_GCM,data: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,iv:XBQ23X9+AF5RRRPUJSs5A/2FgFx27RPwS99bq27RiMs=,tag:sE3OVkFoJ8PRtJfe063o2w==,type:str]
-kind: Secret
-metadata:
-    name: home-letsencrypt
-    namespace: ingress-nginx
-type: kubernetes.io/tls
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsdzhyVWxmdUxJdk5JRkFB
-            RkJhMndDbWE3YnluK3diK1JXL0x1S0JDMUU0Ck1QdVlUOXk2QS9tQ1Mxc1NrRlly
-            a1JRUExITGljbGtmT09rZUFpcGhpeWsKLS0tIFFqTFltRm9QSk5Yby9YcEVuTXR5
-            bEJUTElvYzhqSG5wb1ZQNzdjbGhNeXMKoHGw3hc6akicZH7kksp6d+HAHGFEU8ud
-            01KDD083oVM2oqQNOvax6sWlcb65//Nuekx3jMdTJnT43keH4uhasw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-02-17T00:41:59Z"
-    mac: ENC[AES256_GCM,data:aZHyFsrmUM5y89lm0rC8KSv6xyY7LxOSHox6QBnO93VXpu5vWeWTUlOdJ5AHuNjU9mwtrpcP0FPVqKSRvAO5LMOCzK23SALuedXIHakUPu9H/8IhZzFuhYVjCgt67augje0luzR5ZAJrdYIJebWba3tGkRVsw/y/1p/rrpJUq6k=,iv:PSRkMo7/jJK70Rwd0r4KLt1YxqL6IRhe3ORHhx6EbOU=,tag:brhmwX+wexuTH3WBIg+mVA==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.7.3
----
-apiVersion: v1
 kind: Namespace
 metadata:
     name: ingress-nginx
     labels:
         toolkit.fluxcd.io/tenant: sre-team
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsdzhyVWxmdUxJdk5JRkFB
-            RkJhMndDbWE3YnluK3diK1JXL0x1S0JDMUU0Ck1QdVlUOXk2QS9tQ1Mxc1NrRlly
-            a1JRUExITGljbGtmT09rZUFpcGhpeWsKLS0tIFFqTFltRm9QSk5Yby9YcEVuTXR5
-            bEJUTElvYzhqSG5wb1ZQNzdjbGhNeXMKoHGw3hc6akicZH7kksp6d+HAHGFEU8ud
-            01KDD083oVM2oqQNOvax6sWlcb65//Nuekx3jMdTJnT43keH4uhasw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-02-17T00:41:59Z"
-    mac: ENC[AES256_GCM,data:aZHyFsrmUM5y89lm0rC8KSv6xyY7LxOSHox6QBnO93VXpu5vWeWTUlOdJ5AHuNjU9mwtrpcP0FPVqKSRvAO5LMOCzK23SALuedXIHakUPu9H/8IhZzFuhYVjCgt67augje0luzR5ZAJrdYIJebWba3tGkRVsw/y/1p/rrpJUq6k=,iv:PSRkMo7/jJK70Rwd0r4KLt1YxqL6IRhe3ORHhx6EbOU=,tag:brhmwX+wexuTH3WBIg+mVA==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.7.3
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
@@ -63,26 +13,6 @@ metadata:
 spec:
     interval: 24h
     url: https://kubernetes.github.io/ingress-nginx
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsdzhyVWxmdUxJdk5JRkFB
-            RkJhMndDbWE3YnluK3diK1JXL0x1S0JDMUU0Ck1QdVlUOXk2QS9tQ1Mxc1NrRlly
-            a1JRUExITGljbGtmT09rZUFpcGhpeWsKLS0tIFFqTFltRm9QSk5Yby9YcEVuTXR5
-            bEJUTElvYzhqSG5wb1ZQNzdjbGhNeXMKoHGw3hc6akicZH7kksp6d+HAHGFEU8ud
-            01KDD083oVM2oqQNOvax6sWlcb65//Nuekx3jMdTJnT43keH4uhasw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-02-17T00:41:59Z"
-    mac: ENC[AES256_GCM,data:aZHyFsrmUM5y89lm0rC8KSv6xyY7LxOSHox6QBnO93VXpu5vWeWTUlOdJ5AHuNjU9mwtrpcP0FPVqKSRvAO5LMOCzK23SALuedXIHakUPu9H/8IhZzFuhYVjCgt67augje0luzR5ZAJrdYIJebWba3tGkRVsw/y/1p/rrpJUq6k=,iv:PSRkMo7/jJK70Rwd0r4KLt1YxqL6IRhe3ORHhx6EbOU=,tag:brhmwX+wexuTH3WBIg+mVA==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.7.3
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
@@ -94,7 +24,7 @@ spec:
     chart:
         spec:
             chart: ingress-nginx
-            version: '*'
+            version: "*"
             sourceRef:
                 kind: HelmRepository
                 name: ingress-nginx
@@ -108,25 +38,3 @@ spec:
             enabled: false
         ingressClassResource:
             default: true
-        extraArgs:
-            default-ssl-certificate: ingress-nginx/home-letsencrypt
-sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBsdzhyVWxmdUxJdk5JRkFB
-            RkJhMndDbWE3YnluK3diK1JXL0x1S0JDMUU0Ck1QdVlUOXk2QS9tQ1Mxc1NrRlly
-            a1JRUExITGljbGtmT09rZUFpcGhpeWsKLS0tIFFqTFltRm9QSk5Yby9YcEVuTXR5
-            bEJUTElvYzhqSG5wb1ZQNzdjbGhNeXMKoHGw3hc6akicZH7kksp6d+HAHGFEU8ud
-            01KDD083oVM2oqQNOvax6sWlcb65//Nuekx3jMdTJnT43keH4uhasw==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2023-02-17T00:41:59Z"
-    mac: ENC[AES256_GCM,data:aZHyFsrmUM5y89lm0rC8KSv6xyY7LxOSHox6QBnO93VXpu5vWeWTUlOdJ5AHuNjU9mwtrpcP0FPVqKSRvAO5LMOCzK23SALuedXIHakUPu9H/8IhZzFuhYVjCgt67augje0luzR5ZAJrdYIJebWba3tGkRVsw/y/1p/rrpJUq6k=,iv:PSRkMo7/jJK70Rwd0r4KLt1YxqL6IRhe3ORHhx6EbOU=,tag:brhmwX+wexuTH3WBIg+mVA==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.7.3

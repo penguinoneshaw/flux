@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: webhook-netlify-dns
+  namespace: cert-manager
+spec:
+  interval: 24h
+  url: https://penguinoneshaw.github.io/webhook-netlify-dns

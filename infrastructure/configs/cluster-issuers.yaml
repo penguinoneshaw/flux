@@ -12,6 +12,11 @@ spec:
     privateKeySecretRef:
       name: letsencrypt-nginx
     solvers:
-      - http01:
-          ingress:
-            class: nginx
+      - dns01:
+          webhook:
+            groupName: netlify.kubernetes.thephysicsflat.xyz
+            solverName: netlify
+            config:
+              apiAccessTokenSecretRef:
+                name: netlify-pat
+                key: key
