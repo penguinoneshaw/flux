@@ -34,7 +34,5 @@ spec:
         controller:
             service:
                 type: LoadBalancer
-        admissionWebhooks:
-            enabled: false
         ingressClassResource:
             default: true

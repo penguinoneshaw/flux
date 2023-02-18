@@ -18,6 +18,7 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+      namespace: default
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -53,3 +54,4 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+      namespace: default
