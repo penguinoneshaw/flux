@@ -1,9 +1,7 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
-  - metallb.yaml
-  - cert-manager.yaml
-  - ingress-nginx.yaml
-  - ./weave
+  - ./oidc-roles
+  - ./metallb
 configurations:
   - kustomizeconfig.yaml

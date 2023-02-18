@@ -14,7 +14,7 @@ spec:
       annotations:
         cert-manager.io/cluster-issuer: letsencrypt
       tls:
-        - name: podinfo-tls
+        - secretName: podinfo-tls
           hosts:
             - podinfo.home.thephysicsflat.xyz
       hosts:

@@ -2,12 +2,35 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
+  name: infra-load-balancer
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/load-balancer
+  prune: true
+  wait: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
   name: infra-controllers
   namespace: flux-system
 spec:
   interval: 1h
   retryInterval: 1m
   timeout: 5m
+  dependsOn:
+    - name: infra-load-balancer
   sourceRef:
     kind: GitRepository
     name: flux-system
@@ -18,7 +41,6 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-      namespace: default
 
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
@@ -54,4 +76,3 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
-      namespace: default

@@ -19,4 +19,5 @@ spec:
             config:
               apiAccessTokenSecretRef:
                 name: netlify-pat
+                namespace: cert-manager
                 key: key
