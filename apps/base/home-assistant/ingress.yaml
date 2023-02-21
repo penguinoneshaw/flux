@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: home-assistant
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  labels:
+    name: home-assistant
+spec:
+  tls:
+    - secretName: home-assistant
+      hosts:
+        - home.thephysicsflat.xyz
+  rules:
+    - host: home.thephysicsflat.xyz
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: home-assistant
+                port:
+                  number: 443

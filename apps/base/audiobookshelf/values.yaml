@@ -42,7 +42,7 @@ ingress:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       cert-manager.io/cluster-issuer: letsencrypt
     hosts:
-      - host: audiobookshelf.kube.thephysicsflat.xyz
+      - host: audiobookshelf.thephysicsflat.xyz
         paths:
           - path: /
             pathType: Prefix
@@ -52,7 +52,7 @@ ingress:
     tls:
       - secretName: audiobookshelf-tls
         hosts:
-          - audiobookshelf.kube.thephysicsflat.xyz
+          - "*.thephysicsflat.xyz"
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml

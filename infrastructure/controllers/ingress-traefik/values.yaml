@@ -190,7 +190,7 @@ providers:
 
   kubernetesIngress:
     enabled: true
-    allowExternalNameServices: false
+    allowExternalNameServices: true
     allowEmptyServices: false
     # ingressClass: traefik-internal
     # labelSelector: environment=production,method=traefik
