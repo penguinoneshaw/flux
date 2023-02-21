@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: audiobookshelf
+  namespace: audiobookshelf
+spec:
+  chart:
+    spec:
+      chart: audiobookshelf
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: geek-cookbook
+        namespace: default
+  interval: 60m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: audiobookshelf-values

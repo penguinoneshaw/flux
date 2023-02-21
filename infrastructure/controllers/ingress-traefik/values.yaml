@@ -42,7 +42,8 @@ deployment:
   # The minimum number of seconds Traefik needs to be up and running before the DaemonSet/Deployment controller considers it available
   minReadySeconds: 0
   # Additional deployment annotations (e.g. for jaeger-operator sidecar injection)
-  annotations: {}
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
   # Additional deployment labels (e.g. for filtering deployment by custom labels)
   labels: {}
   # Additional pod annotations (e.g. for mesh injection or prometheus scraping)
@@ -108,7 +109,7 @@ podDisruptionBudget:
 # Create a default IngressClass for Traefik
 ingressClass:
   enabled: true
-  isDefaultClass: true
+  isDefaultClass: false
 
 # Enable experimental features
 experimental:
@@ -236,10 +237,10 @@ logs:
     # format: json
     # By default, the level is set to ERROR.
     # Alternative logging levels are DEBUG, PANIC, FATAL, ERROR, WARN, and INFO.
-    level: ERROR
+    level: WARN
   access:
     # To enable access logs
-    enabled: false
+    enabled: true
     ## By default, logs are written using the Common Log Format (CLF) on stdout.
     ## To write logs in JSON, use json in the format option.
     ## If the given format is unsupported, the default (CLF) is used instead.
@@ -574,11 +575,11 @@ ports:
     protocol: TCP
     # Use nodeport if set. This is useful if you have configured Traefik in a
     # LoadBalancer.
-    # nodePort: 32080
+    nodePort: 32080
     # Port Redirections
     # Added in 2.2, you can make permanent redirects via entrypoints.
     # https://docs.traefik.io/routing/entrypoints/#redirection
-    redirectTo: websecure
+    # redirectTo: websecure
     #
     # Trust forwarded  headers information (X-Forwarded-*).
     # forwardedHeaders:
@@ -598,7 +599,7 @@ ports:
     exposedPort: 443
     ## The port protocol (TCP/UDP)
     protocol: TCP
-    # nodePort: 32443
+    nodePort: 32443
     #
     ## Enable HTTP/3 on the entrypoint
     ## Enabling it will also enable http3 experimental feature
