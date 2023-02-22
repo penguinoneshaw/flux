@@ -1,0 +1,77 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: vaultwarden/server
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+  # -- image tag
+  tag: 1.27.0-alpine
+
+controller:
+  # -- Set the controller upgrade strategy
+  strategy: RollingUpdate
+
+# -- environment variables. [[ref]](https://github.com/dani-garcia/vaultwarden/blob/main/.env.template)
+# @default -- See [values.yaml](./values.yaml)
+env:
+  # -- Token for the admin interface, preferably use a long random string.
+  #    One option is to use `openssl rand -base64 48`.
+  #    If not set, the admin panel is disabled.
+  ADMIN_TOKEN: ""
+  TZ: Europe/London
+securityContext:
+  runAsUser: 1000
+  runAsGroup: 9003
+service:
+  # -- Configures service settings for the chart. Normally this does not need to be modified.
+  # @default -- See [values.yaml](./values.yaml)
+  main:
+    ports:
+      http:
+        port: 80
+      websocket:
+        port: 3012
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See [values.yaml](./values.yaml)
+  main:
+    enabled: true
+    ingressClassName: "ingress-traefik"
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      cert-manager.io/cluster-issuer: letsencrypt
+    hosts:
+      - host: vaultwarden.thephysicsflat.xyz
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 80
+          - path: /notifications/hub/negotiate
+            pathType: Prefix
+            service:
+              port: 80
+          - path: /notifications/hub
+            pathType: Prefix
+            service:
+              port: 3012
+    tls:
+      - secretName: vaultwarden-tls
+        hosts:
+          - "*.thephysicsflat.xyz"
+persistence:
+  # -- Configure persistence settings for the chart under this key.
+  # @default -- See [values.yaml](./values.yaml)
+  data:
+    enabled: true
+    mountPath: /data
+    type: nfs
+    server: nfs.home.thephysicsflat.xyz
+    path: /srv/media/configs/vaultwarden/data

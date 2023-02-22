@@ -1,0 +1,8 @@
+resources:
+  - namespace.yaml
+  - release.yaml
+configMapGenerator:
+  - name: vaultwarden-values
+    namespace: vaultwarden
+    files:
+      - values.yaml
