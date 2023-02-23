@@ -21,3 +21,22 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: paperless-values
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: redis
+  namespace: paperless
+spec:
+  chart:
+    spec:
+      chart: redis
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: pascaliske
+        namespace: default
+  interval: 1m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: redis-values

@@ -38,11 +38,11 @@ ingressRoute:
   # -- List of [entry points](https://doc.traefik.io/traefik/routing/routers/#entrypoints) on which the ingress route will be available.
   entryPoints: [websecure]
   # -- [Matching rule](https://doc.traefik.io/traefik/routing/routers/#rule) for the underlying router.
-  rule: Host(`papaerless.home.thephysicsflat.xyz`)
+  rule: Host(`paperless.home.thephysicsflat.xyz`)
   # -- List of [middleware objects](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-middleware) for the ingress route.
   middlewares: []
   # -- Use an existing secret containing the TLS certificate.
-  tlsSecretName: "paperless-cert"
+  tlsSecretName:
   # -- Additional annotations for the ingress route object.
   annotations:
     external-dns.alpha.kubernetes.io/target: paperless.home.thephysicsflat.xyz
@@ -56,7 +56,7 @@ certificate:
   dnsNames:
     - paperless.home.thephysicsflat.xyz
   # -- Name of the secret in which the certificate will be stored. Defaults to the first item in dnsNames.
-  secretName: "paperless-cert"
+  secretName: ""
   issuerRef:
     # -- Type of the referenced certificate issuer. Can be "Issuer" or "ClusterIssuer".
     kind: ClusterIssuer

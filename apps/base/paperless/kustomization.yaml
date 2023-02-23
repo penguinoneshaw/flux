@@ -3,5 +3,9 @@ configMapGenerator:
       - values.yaml
     name: paperless-values
     namespace: paperless
+  - files:
+      - values.yaml=redis-values.yaml
+    name: redis-values
+    namespace: paperless
 resources:
   - release.yaml
