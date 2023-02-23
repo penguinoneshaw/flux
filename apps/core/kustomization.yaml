@@ -7,6 +7,7 @@ resources:
   - ../base/kubernetes-dashboard
   - ../base/audiobookshelf
   - ../base/vaultwarden
+  - ../base/paperless
 patchesStrategicMerge:
   - podinfo-values.yaml
 configurations:

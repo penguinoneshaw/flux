@@ -1,0 +1,7 @@
+configMapGenerator:
+  - files:
+      - values.yaml
+    name: paperless-values
+    namespace: paperless
+resources:
+  - release.yaml
