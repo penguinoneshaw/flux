@@ -5,6 +5,7 @@ resources:
   - cert-manager.yaml
   - ingress-nginx.yaml
   - ingress-traefik
+  - nfs-provisioner
   - ./weave
 configurations:
   - kustomizeconfig.yaml

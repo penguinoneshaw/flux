@@ -1,0 +1,8 @@
+configMapGenerator:
+  - name: nfs-provisioner-values
+    namespace: nfs-provisioner-system
+    files:
+      - values.yaml
+resources:
+  - repository.yaml
+  - release.yaml
