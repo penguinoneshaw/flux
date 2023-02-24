@@ -40,3 +40,41 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: redis-values
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: gotenberg
+  namespace: paperless
+spec:
+  chart:
+    spec:
+      chart: gotenberg
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: maikumori
+        namespace: default
+  interval: 1m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: gotenberg-values
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: tika
+  namespace: paperless
+spec:
+  chart:
+    spec:
+      chart: tika
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: tika
+        namespace: default
+  interval: 1m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: tika-values

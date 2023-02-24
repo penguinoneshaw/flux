@@ -73,8 +73,16 @@ env:
     value: Europe/London
   - name: PAPERLESS_REDIS
     value: redis://redis:6379
-  - name: PAPERLESS_URL
+  - name: PAPERLESS_CSRF_TRUSTED_ORIGINS
     value: https://paperless.home.thephysicsflat.xyz
+  - name: PAPERLESS_CORS_ALLOWED_HOSTS
+    value: https://paperless.home.thephysicsflat.xyz
+  - name: PAPERLESS_TIKA_ENABLED
+    value: "true"
+  - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
+    value: http://gotenberg
+  - name: PAPERLESS_TIKA_ENDPOINT
+    value: http://tika:9998
 
 ports:
   http:
