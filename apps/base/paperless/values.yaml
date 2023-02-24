@@ -80,7 +80,7 @@ env:
   - name: PAPERLESS_TIKA_ENABLED
     value: "true"
   - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
-    value: http://gotenberg
+    value: http://gotenberg:3000
   - name: PAPERLESS_TIKA_ENDPOINT
     value: http://tika:9998
 

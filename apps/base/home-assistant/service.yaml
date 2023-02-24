@@ -7,11 +7,7 @@ spec:
   type: ExternalName
   externalName: internal-ca.home.thephysicsflat.xyz
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 8123
+      targetPort: 8123
       protocol: TCP
       name: http
-    - port: 443
-      targetPort: 443
-      protocol: TCP
-      name: https

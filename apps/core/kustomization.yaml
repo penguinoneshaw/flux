@@ -4,6 +4,7 @@ resources:
   - ../base/shared-repositories
   - ../base/podinfo
   - ../base/external-dns
+  - ../base/home-assistant
   - ../base/kubernetes-dashboard
   - ../base/audiobookshelf
   - ../base/vaultwarden

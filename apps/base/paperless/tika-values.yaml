@@ -20,11 +20,13 @@
 replicaCount: 1
 
 image:
-  repository: abhilesh7/apache-tika-arm
+  repository: penguinoneshaw/tika
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
+  tag: "2.7.0"
 
-imagePullSecrets: []
+imagePullSecrets:
+  - name: regcred
 nameOverride: ""
 fullnameOverride: ""
 
