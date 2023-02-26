@@ -178,12 +178,8 @@ ingress:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: letsencrypt
-    ## If you plan to use TLS backend with enableInsecureLogin set to false
-    ## (default), you need to uncomment the below.
-    ## If you use ingress-nginx < 0.21.0
-    #   nginx.ingress.kubernetes.io/secure-backends: "true"
-    ## if you use ingress-nginx >= 0.21.0
-    # nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+    nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.home.thephysicsflat.xyz/oauth2/start?rd=$scheme%3A%2F%2F$host$escaped_request_uri"
+    nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.home.thephysicsflat.xyz/oauth2/auth"
 
   ## Kubernetes Dashboard Ingress Class
   # className: "example-lb"

@@ -1,0 +1,10 @@
+resources:
+  - "namespace.yaml"
+  - "repository.yaml"
+  - "secrets.yaml"
+  - "release.yaml"
+configMapGenerator:
+  - name: oauth2-proxy-values
+    namespace: oauth2-proxy
+    files:
+      - values.yaml

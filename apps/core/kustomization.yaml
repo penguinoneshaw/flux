@@ -9,6 +9,7 @@ resources:
   - ../base/audiobookshelf
   - ../base/vaultwarden
   - ../base/paperless
+  - ../base/oauth2-proxy
 patchesStrategicMerge:
   - podinfo-values.yaml
 configurations:
