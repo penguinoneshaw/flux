@@ -2,7 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../base/shared-repositories
-  - ../base/podinfo
+  #  - ../base/podinfo
   - ../base/external-dns
   - ../base/home-assistant
   - ../base/kubernetes-dashboard
@@ -10,7 +10,7 @@ resources:
   - ../base/vaultwarden
   - ../base/paperless
   - ../base/oauth2-proxy
-patchesStrategicMerge:
-  - podinfo-values.yaml
+patchesStrategicMerge: []
+#  - podinfo-values.yaml
 configurations:
   - kustomizeconfig.yaml

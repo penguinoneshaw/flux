@@ -180,7 +180,15 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.home.thephysicsflat.xyz/oauth2/start?rd=$scheme%3A%2F%2F$host$escaped_request_uri"
     nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.home.thephysicsflat.xyz/oauth2/auth"
+    # header to watch for
+    nginx.ingress.kubernetes.io/auth-response-headers: authorization
 
+    # in the following everything after $upstream_http_ is the header you want to pass along to target app
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      auth_request_set $token $upstream_http_authorization;
+      add_header Authorization $token;
+
+    nginx.ingress.kubernetes.io/proxy-buffer-size: 16k
   ## Kubernetes Dashboard Ingress Class
   # className: "example-lb"
 

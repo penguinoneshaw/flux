@@ -75,3 +75,9 @@ persistence:
     mountPath: /audiobooks
     server: nfs.home.thephysicsflat.xyz
     path: /srv/media/Audiobooks
+  books:
+    enabled: true
+    type: nfs
+    mountPath: /books
+    server: nfs.home.thephysicsflat.xyz
+    path: /srv/media/Books
