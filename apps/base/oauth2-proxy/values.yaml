@@ -35,6 +35,7 @@ config:
     pass_basic_auth = false
     pass_access_token = true
     set_authorization_header = true
+    cookie_expire = "23h"
 
   # Use an existing config map (see configmap.yaml for required fields)
   # Example:
