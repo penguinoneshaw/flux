@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: calibre-web
+  namespace: calibre-web
+spec:
+  chart:
+    spec:
+      chart: calibre-web
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: geek-cookbook
+        namespace: default
+  interval: 60m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: calibre-web-values

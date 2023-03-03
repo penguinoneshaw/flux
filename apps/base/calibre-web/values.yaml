@@ -1,0 +1,75 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/geek-cookbook/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: linuxserver/calibre-web
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+  # -- image tag
+  tag: version-0.6.19
+
+# -- environment variables. See more environment variables in the [calibre-web documentation](https://hub.docker.com/r/advplyr/calibre-web)
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: Europe/London
+  PUID: 1000
+  PGID: 1000
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 8083
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: true
+    ingressClassName: ingress-traefik
+    annotations:
+      traefik.ingress.kubernetes.io/router.entrypoints: websecure
+      cert-manager.io/cluster-issuer: letsencrypt
+    hosts:
+      - host: calibre-web.thephysicsflat.xyz
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: 8083
+
+    tls:
+      - secretName: calibre-web-tls
+        hosts:
+          - "*.thephysicsflat.xyz"
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: true
+    mountPath: /config
+    type: pvc
+    retain: true
+    storageClass: nfs-client
+  books:
+    enabled: true
+    type: nfs
+    mountPath: /books
+    server: nfs.home.thephysicsflat.xyz
+    path: /srv/media/Books

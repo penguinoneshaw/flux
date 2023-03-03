@@ -4,7 +4,7 @@ resources:
   - namespace.yaml
   - release.yaml
 configMapGenerator:
-  - name: audiobookshelf-values
-    namespace: audiobookshelf
+  - name: calibre-web-values
+    namespace: calibre-web
     files:
       - values.yaml
