@@ -1,0 +1,19 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: ihatemoney
+  namespace: ihatemoney
+spec:
+  chart:
+    spec:
+      chart: ihatemoney
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: geek-cookbook
+        namespace: default
+  interval: 60m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: ihatemoney-values
