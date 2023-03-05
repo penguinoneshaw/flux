@@ -37,6 +37,8 @@ ingress:
   main:
     enabled: true
     ingressClassName: "nginx"
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
     hosts:
       - host: homer.home.thephysicsflat.xyz
         paths:
@@ -44,6 +46,11 @@ ingress:
             pathType: Prefix
             service:
               port: 8080
+
+    tls:
+      - secretName: homer-tls
+        hosts:
+          - "*.home.thephysicsflat.xyz"
 
 persistence:
   # -- Configure persistence settings for the chart under this key.

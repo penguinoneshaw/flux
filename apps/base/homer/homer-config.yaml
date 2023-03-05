@@ -1,48 +1,15 @@
-title: "Demo dashboard"
-subtitle: "Homer"
+title: "Local Services"
+subtitle: "Across Kubernetes"
 logo: "logo.png"
 # icon: "fas fa-skull-crossbones" # Optional icon
 
 header: true
 footer: '<p>Created with <span class="has-text-danger">❤️</span> with <a href="https://bulma.io/">bulma</a>, <a href="https://vuejs.org/">vuejs</a> & <a href="https://fontawesome.com/">font awesome</a> // Fork me on <a href="https://github.com/bastienwirtz/homer"><i class="fab fa-github-alt"></i></a></p>' # set false if you want to hide it.
 
+columns: auto
+
 # Optional theme customization
 theme: default
-colors:
-  light:
-    highlight-primary: "#3367d6"
-    highlight-secondary: "#4285f4"
-    highlight-hover: "#5a95f5"
-    background: "#f5f5f5"
-    card-background: "#ffffff"
-    text: "#363636"
-    text-header: "#ffffff"
-    text-title: "#303030"
-    text-subtitle: "#424242"
-    card-shadow: rgba(0, 0, 0, 0.1)
-    link: "#3273dc"
-    link-hover: "#363636"
-  dark:
-    highlight-primary: "#3367d6"
-    highlight-secondary: "#4285f4"
-    highlight-hover: "#5a95f5"
-    background: "#131313"
-    card-background: "#2b2b2b"
-    text: "#eaeaea"
-    text-header: "#ffffff"
-    text-title: "#fafafa"
-    text-subtitle: "#f5f5f5"
-    card-shadow: rgba(0, 0, 0, 0.4)
-    link: "#3273dc"
-    link-hover: "#ffdd57"
-
-# Optional message
-message:
-  #url: https://b4bz.io
-  style: "is-dark" # See https://bulma.io/documentation/components/message/#colors for styling options.
-  title: "Demo !"
-  icon: "fa fa-grin"
-  content: "This is a dummy homepage demo. <br /> Find more information on <a href='https://github.com/bastienwirtz/homer'>github.com/bastienwirtz/homer</a>"
 
 # Optional navbar
 # links: [] # Allows for navbar (dark mode, layout, and search) without any links
@@ -64,25 +31,31 @@ links:
 # First level array represent a group.
 # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
 services:
-  - name: "Applications"
+  - name: "External"
     icon: "fas fa-cloud"
     items:
-      - name: "Awesome app"
-        logo: "assets/tools/sample.png"
-        subtitle: "Bookmark example"
-        tag: "app"
-        keywords: "self hosted reddit"
-        url: "https://www.reddit.com/r/selfhosted/"
-        target: "_blank" # optional html a tag target attribute
-  - name: "Other group"
-    icon: "fas fa-heartbeat"
+      - name: Audiobookshelf
+        url: https://audiobookshelf.thephysicsflat.xyz
+      - name: Home Assistant
+        url: https://home.thephysicsflat.xyz
+      - name: Calibre-Web
+        url: https://calibre-web.thephysicsflat.xyz
+      - name: Vaultwarden
+        url: https://vaultwarden.thephysicsflat.xyz
+  - name: "Internal"
+    icon: "fas fa-network-wired"
     items:
-      - name: "Pi-hole"
-        logo: "assets/tools/sample.png"
-        # subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
-        tag: "other"
-        url: "http://pi.hole"
-        type: "PiHole" # optional, loads a specific component that provides extra features. MUST MATCH a file name (without file extension) available in `src/components/services`
-        target: "_blank" # optional html a tag target attribute
-        # class: "green" # optional custom CSS class for card, useful with custom stylesheet
-        # background: red # optional color for card to set color directly without custom stylesheet
+      - name: ihatemoney
+        url: https://ihatemoney.thephysicsflat.xyz
+      - name: PiHole
+        url: http://10.1.10.20:8001
+        type: PiHole
+      - name: Paperless
+        url: https://paperless.home.thephysicsflat.xyz
+  - name: "System"
+    icon: "fas fa-gear"
+    items:
+      - name: Kubernetes Dashboard
+        url: https://kubernetes-dashboard.home.thephysicsflat.xyz
+      - name: Weave
+        url: https://weave.home.thephysicsflat.xyz

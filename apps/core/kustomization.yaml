@@ -12,6 +12,7 @@ resources:
   - ../base/vaultwarden
   - ../base/paperless
   - ../base/oauth2-proxy
+  - ../base/homer
 patchesStrategicMerge: []
 #  - podinfo-values.yaml
 configurations:
