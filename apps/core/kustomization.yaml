@@ -7,6 +7,7 @@ resources:
   - ../base/home-assistant
   - ../base/kubernetes-dashboard
   - ../base/audiobookshelf
+  - ../base/pihole
   - ../base/ihatemoney
   - ../base/calibre-web
   - ../base/vaultwarden

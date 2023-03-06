@@ -1,0 +1,10 @@
+resources:
+  - "namespace.yaml"
+  - "pihole-password.yaml"
+  - "repository.yaml"
+  - "release.yaml"
+configMapGenerator:
+  - name: pihole-values
+    namespace: pihole
+    files:
+      - values.yaml
