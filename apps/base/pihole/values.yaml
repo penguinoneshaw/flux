@@ -50,7 +50,7 @@ serviceDns:
   externalTrafficPolicy: Local
 
   # -- A fixed `spec.loadBalancerIP` for the DNS Service
-  loadBalancerIP: ""
+  loadBalancerIP: "10.1.90.2"
   # -- A fixed `spec.loadBalancerIP` for the IPv6 DNS Service
   loadBalancerIPv6: ""
 
@@ -77,7 +77,7 @@ serviceDhcp:
   externalTrafficPolicy: Local
 
   # -- A fixed `spec.loadBalancerIP` for the DHCP Service
-  loadBalancerIP: ""
+  loadBalancerIP: "10.1.90.2"
   # -- A fixed `spec.loadBalancerIP` for the IPv6 DHCP Service
   loadBalancerIPv6: ""
 
