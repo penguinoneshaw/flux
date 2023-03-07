@@ -735,29 +735,29 @@ service:
 ## Create HorizontalPodAutoscaler object.
 ##
 autoscaling:
-  enabled: false
-#   minReplicas: 1
-#   maxReplicas: 10
-#   metrics:
-#   - type: Resource
-#     resource:
-#       name: cpu
-#       target:
-#         type: Utilization
-#         averageUtilization: 60
-#   - type: Resource
-#     resource:
-#       name: memory
-#       target:
-#         type: Utilization
-#         averageUtilization: 60
-#   behavior:
-#     scaleDown:
-#       stabilizationWindowSeconds: 300
-#       policies:
-#       - type: Pods
-#         value: 1
-#         periodSeconds: 60
+  enabled: true
+  minReplicas: 1
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 30
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 30
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+        - type: Pods
+          value: 1
+          periodSeconds: 60
 
 # Enable persistence using Persistent Volume Claims
 # ref: http://kubernetes.io/docs/user-guide/persistent-volumes/
@@ -825,13 +825,12 @@ serviceAccount:
 serviceAccountAnnotations: {}
 
 resources:
-  {}
-  # requests:
-  #   cpu: "100m"
-  #   memory: "50Mi"
-  # limits:
-  #   cpu: "300m"
-  #   memory: "150Mi"
+  requests:
+    cpu: "100m"
+    memory: "50Mi"
+  limits:
+    cpu: "300m"
+    memory: "150Mi"
 
 # This example pod anti-affinity forces the scheduler to put traefik pods
 # on nodes where no other traefik pods are scheduled.
