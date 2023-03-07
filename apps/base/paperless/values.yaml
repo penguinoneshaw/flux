@@ -44,8 +44,7 @@ ingressRoute:
   # -- Use an existing secret containing the TLS certificate.
   tlsSecretName:
   # -- Additional annotations for the ingress route object.
-  annotations:
-    external-dns.alpha.kubernetes.io/target: paperless.home.thephysicsflat.xyz
+  annotations: {}
   # -- Additional labels for the ingress route object.
   labels: {}
 

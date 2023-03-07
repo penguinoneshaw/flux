@@ -4,8 +4,8 @@
 image:
   repository: registry.k8s.io/external-dns/external-dns
   # Overrides the image tag whose default is v{{ .Chart.AppVersion }}
-  tag: latest
-  pullPolicy: Always
+  tag: ""
+  pullPolicy: IfNotPresent
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -90,6 +90,7 @@ triggerLoopOnEvent: false
 sources:
   - service
   - ingress
+  - crd
 policy: upsert-only
 registry: noop
 txtOwnerId: ""
@@ -99,3 +100,5 @@ domainFilters: []
 provider: pihole
 extraArgs:
   - "--pihole-server=http://pihole-web.pihole.svc.cluster.local"
+  - "--crd-source-apiversion=externaldns.k8s.io/v1alpha1"
+  - "--crd-source-kind=DNSEndpoint"

@@ -48,7 +48,7 @@ services:
       - name: ihatemoney
         url: https://ihatemoney.thephysicsflat.xyz
       - name: PiHole
-        url: http://10.1.10.20:8001
+        url: https://pihole.home.thephysicsflat.xyz
         type: PiHole
       - name: Paperless
         url: https://paperless.home.thephysicsflat.xyz
