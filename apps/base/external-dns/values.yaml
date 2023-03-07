@@ -98,4 +98,4 @@ txtSuffix: ""
 domainFilters: []
 provider: pihole
 extraArgs:
-  - "--pihole-server=http://10.1.10.20:8001"
+  - "--pihole-server=http://pihole-web.pihole.svc.cluster.local"
