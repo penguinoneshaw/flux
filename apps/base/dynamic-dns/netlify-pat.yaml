@@ -1,0 +1,27 @@
+apiVersion: v1
+data:
+    key: ENC[AES256_GCM,data:Dr4S6kWsz5/x5FNn6cklC5y2okNsf8pkrk1EfLAwDGcJ3wT4BtAdR8OvPJLheaFR8Hzh9xj70fKN8ole,iv:bfQG5wA2JIzT7QVvVDNNqBBA0dbA1inH42sMmuvUNtE=,tag:p5ClAtPrOXBfSJq+z85sHA==,type:str]
+kind: Secret
+metadata:
+    name: netlify-pat
+    namespace: dynamic-dns
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBPcDNOTEl0eUtYQVRUUjU2
+            cXhZUlVpcEt3YnlXRHVBNm5nT3hXWDdybUg4ClVzZkZ6WUtCYU1LV1ZITm1idEtk
+            c3NObjA3WExITDFpc2xCdUNyVXZ0OVEKLS0tIEFPQ3hhM21Zbzd6VUtUS2EzaDg3
+            dnpsQUdFVnZKMFd1VU8rTWJOUGFvSzgKzH6K5kgInKZ/vzXWkipidl4bkjrH60eA
+            nA2lEiNBP9JhgGpqu5F9T88Tw4qGh3uOC8YGLwAD4uCdvKj2g5hvFw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2023-03-11T20:09:31Z"
+    mac: ENC[AES256_GCM,data:l3emUjJmBT9FnodxhWQKWDk18Rl+mAInRRI3a97wjIAKlv1lZHBK1zNDp+RXpbFjZJb//7KjKiehgDVXWkRUFw/YyetCMesq42+y8f0bVApKAgXgh4XQ8/O3F9OsWJ9sRQi4AcV+HX5UYnrxwEY86Kralet8b2qkQw2vzpThki8=,iv:S6vQT0khM2w1MhtJbscE1OF0k7tLnxT+oZmAI4B+/J4=,tag:bOPDWtdWSAAXjQDpawJ4Bw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3

@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ../base/shared-repositories
   #  - ../base/podinfo
+  - ../base/dynamic-dns
   - ../base/external-dns
   - ../base/home-assistant
   - ../base/kubernetes-dashboard
