@@ -179,7 +179,7 @@ ingress:
     kubernetes.io/tls-acme: "true"
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/auth-signin: "https://oauth2-proxy.home.thephysicsflat.xyz/oauth2/start?rd=$scheme%3A%2F%2F$host$escaped_request_uri"
-    nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.home.thephysicsflat.xyz/oauth2/auth"
+    nginx.ingress.kubernetes.io/auth-url: "https://oauth2-proxy.oauth2-proxy.svc.cluster.local/oauth2/auth"
     # header to watch for
     nginx.ingress.kubernetes.io/auth-response-headers: authorization
 

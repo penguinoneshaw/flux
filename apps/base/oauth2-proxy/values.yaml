@@ -136,7 +136,7 @@ serviceAccount:
 
 ingress:
   enabled: true
-  className: nginx
+  className: ingress-traefik
   path: /
   # Only used if API capabilities (networking.k8s.io/v1) allow it
   pathType: Prefix
@@ -163,13 +163,12 @@ ingress:
         - oauth2-proxy.home.thephysicsflat.xyz
 
 resources:
-  {}
-  # limits:
-  #   cpu: 100m
-  #   memory: 300Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 300Mi
+  limits:
+    cpu: 100m
+    memory: 500Mi
+  requests:
+    cpu: 100m
+    memory: 300Mi
 
 extraVolumes:
   []

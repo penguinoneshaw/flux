@@ -95,12 +95,20 @@ ports:
     protocol: TCP
 
 secret:
-  # -- Create a new secret containing the [secret key](https://paperless-ngx.readthedocs.io/en/latest/configuration.html#hosting-security).
+  # -- Create a new secret containing the [secret values](https://docs.paperless-ngx.com/configuration/#hosting-and-security).
   create: true
-  # -- Use an existing secret to store the [secret key](https://paperless-ngx.readthedocs.io/en/latest/configuration.html#hosting-security).
+  # -- Use an existing secret to store the [secret values](https://docs.paperless-ngx.com/configuration/#hosting-and-security). Please note: keys inside the existing secret must match the keys from below!
   existingSecret: ""
-  # -- [Secret key](https://paperless-ngx.readthedocs.io/en/latest/configuration.html#hosting-security) used when not using an existing secret.
-  secretKey: ""
+  # -- Secret values used when not using an existing secret. Helm templates are supported for values.
+  values:
+    # -- Secret key for session tokens.
+    PAPERLESS_SECRET_KEY: "{{ randAlphaNum 42 | b64enc }}"
+    # -- Optional. Initial admin username.
+    # PAPERLESS_ADMIN_USER: ''
+    # -- Optional. Initial admin password.
+    # PAPERLESS_ADMIN_PASSWORD: ''
+    # -- Optional. Initial admin email.
+    # PAPERLESS_ADMIN_MAIL: ''
   # -- Additional annotations for the secret object.
   annotations: {}
   # -- Additional labels for the secret object.
@@ -127,22 +135,46 @@ persistentVolumeClaim:
   labels: {}
 
 consumption:
-  # -- Enable the volume mount of a [consumption directory](https://paperless-ngx.readthedocs.io/en/latest/configuration.html#paths-and-folders).
+  # -- Enable the volume mount of a [consumption directory](https://docs.paperless-ngx.com/configuration/#paths-and-folders).
   enabled: true
+  # -- Type of the target volume for the consumption directory. Possible values are: `hostPath`, `pvc`, `csi`, `nfs`, `emptyDir`.
+  type: nfs
   # -- Mount path of the consumption directory inside the container.
   mountPath: /consumption
-  # -- Host path of the consumption directory outside the container.
-  hostPath: /srv/data/import
+  # -- Host path volume for the consumption directory. Only used if type equals `hostPath`.
+  hostPath: {}
+  # -- PersistentVolumeClaim for the consumption directory. Only used if type equals `pvc`.
+  persistentVolumeClaim: {}
+  # -- CSI storage volume for the consumption directory. Only used if type equals `csi`.
+  csi: {}
+  # -- NFS storage volume for the consumption directory. Only used if type equals `nfs`.
+  nfs:
+    server: nfs.home.thephysicsflat.xyz
+    path: /srv/data/import
+  # -- Temporary emptyDir volume for the consumption directory. Only used if type equals `emptyDir` or is unknown.
+  emptyDir: {}
 
 export:
-  # -- Enable the volume mount of an export directory for [backups](https://paperless-ngx.readthedocs.io/en/latest/administration.html#making-backups) using the [document exporter](https://paperless-ngx.readthedocs.io/en/latest/administration.html#utilities-exporter).
+  # -- Enable the volume mount of an export directory for [backups](https://docs.paperless-ngx.com/administration/#backup) using the [document exporter](https://docs.paperless-ngx.com/administration/#exporter).
   enabled: true
+  # -- Type of the target volume for the export directory. Possible values are: `hostPath`, `pvc`, `csi`, `nfs`, `emptyDir`.
+  type: nfs
   # -- Mount path of the export directory inside the container.
   mountPath: /export
-  # -- Host path of the export directory outside the container.
-  hostPath: /srv/data/export
+  # -- Host path volume for the consumption directory. Only used if type equals `hostPath`.
+  hostPath: {}
+  # -- PersistentVolumeClaim for the consumption directory. Only used if type equals `pvc`.
+  persistentVolumeClaim: {}
+  # -- CSI storage volume for the consumption directory. Only used if type equals `csi`.
+  csi: {}
+  # -- NFS storage volume for the consumption directory. Only used if type equals `nfs`.
+  nfs:
+    server: nfs.home.thephysicsflat.xyz
+    path: /srv/data/export
+  # -- Temporary emptyDir volume for the consumption directory. Only used if type equals `emptyDir` or is unknown.
+  emptyDir: {}
   cronJob:
-    # -- Create a `CronJob` object for [automated exports](https://paperless-ngx.readthedocs.io/en/latest/administration.html#making-backups).
+    # -- Create a `CronJob` object for [automated exports](https://docs.paperless-ngx.com/administration/#backup).
     enabled: false
     # -- Schedule for automated exports.
     schedule: "0 4 * * 1"
@@ -158,12 +190,24 @@ export:
     labels: {}
 
 trash:
-  # -- Enable the volume mount of a [trash directory](https://paperless-ngx.readthedocs.io/en/latest/configuration.html#paths-and-folders).
+  # -- Enable the volume mount of a [trash directory](https://docs.paperless-ngx.com/configuration/#paths-and-folders).
   enabled: true
+  # -- Type of the target volume for the trash directory. Possible values are: `hostPath`, `pvc`, `csi`, `nfs`, `emptyDir`.
+  type: nfs
   # -- Mount path of the trash directory inside the container.
   mountPath: /trash
-  # -- Host path of the trash directory outside the container.
-  hostPath: /srv/data/trash
+  # -- Host path volume for the consumption directory. Only used if type equals `hostPath`.
+  hostPath: {}
+  # -- PersistentVolumeClaim for the consumption directory. Only used if type equals `pvc`.
+  persistentVolumeClaim: {}
+  # -- CSI storage volume for the consumption directory. Only used if type equals `csi`.
+  csi: {}
+  # -- NFS storage volume for the consumption directory. Only used if type equals `nfs`.
+  nfs:
+    server: nfs.home.thephysicsflat.xyz
+    path: /srv/data/trash
+  # -- Temporary emptyDir volume for the consumption directory. Only used if type equals `emptyDir` or is unknown.
+  emptyDir: {}
 
 serviceAccount:
   # -- Specify the service account used for the controller.
@@ -210,10 +254,3 @@ affinity:
   #             operator: In
   #             values:
   #               - my-node-xyz
-
-# -- Pod-level tolerations. More info [here](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#scheduling).
-tolerations:
-  {}
-  # - key: node-role.kubernetes.io/control-plane
-  #   operator: Exists
-  #   effect: NoSchedule

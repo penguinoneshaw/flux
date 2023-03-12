@@ -360,7 +360,7 @@ spec:
             # Mutually exclusive with keda autoscaling
             autoscaling:
                 apiVersion: autoscaling/v2
-                enabled: true
+                enabled: false
                 annotations: {}
                 minReplicas: 1
                 maxReplicas: 5
