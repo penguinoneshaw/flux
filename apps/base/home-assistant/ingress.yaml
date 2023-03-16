@@ -5,9 +5,11 @@ metadata:
   namespace: home-assistant
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+
   labels:
     name: home-assistant
 spec:
+  ingressClassName: traefik
   tls:
     - secretName: home-assistant
       hosts:

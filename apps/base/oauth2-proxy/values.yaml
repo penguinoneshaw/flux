@@ -136,7 +136,7 @@ serviceAccount:
 
 ingress:
   enabled: true
-  className: ingress-traefik
+  className: traefik
   path: /
   # Only used if API capabilities (networking.k8s.io/v1) allow it
   pathType: Prefix
