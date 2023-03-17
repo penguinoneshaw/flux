@@ -9,7 +9,7 @@ metadata:
   labels:
     name: home-assistant
 spec:
-  ingressClassName: traefik
+  ingressClassName: nginx
   tls:
     - secretName: home-assistant
       hosts:
