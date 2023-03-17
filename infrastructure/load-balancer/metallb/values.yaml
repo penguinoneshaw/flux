@@ -141,7 +141,7 @@ prometheus:
   # Prometheus Operator alertmanager alerts
   prometheusRule:
     # enable alertmanager alerts
-    enabled: true
+    enabled: false
 
     # optional additionnal labels for prometheusRules
     additionalLabels: {}

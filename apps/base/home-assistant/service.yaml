@@ -5,7 +5,7 @@ metadata:
   namespace: home-assistant
 spec:
   type: ExternalName
-  externalName: internal-ca.home.thephysicsflat.xyz
+  externalName: james-raspi4
   ports:
     - port: 8123
       targetPort: 8123

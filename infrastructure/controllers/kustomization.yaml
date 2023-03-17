@@ -6,6 +6,6 @@ resources:
   - ingress-nginx.yaml
   - ingress-traefik
   - nfs-provisioner
-  - ./weave
+  #- ./weave
 configurations:
   - kustomizeconfig.yaml

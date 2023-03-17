@@ -18,3 +18,46 @@ spec:
     provider: sops
     secretRef:
       name: sops-age
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: infra-controllers
+  namespace: flux-system
+spec:
+  interval: 1h
+  retryInterval: 1m
+  timeout: 5m
+  dependsOn:
+    - name: infra-load-balancer
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  path: ./infrastructure/controllers
+  prune: true
+  wait: true
+  decryption:
+    provider: sops
+    secretRef:
+      name: sops-age
+  patches:
+    - patch: |
+        - op: replace
+          path: /spec/addresses
+          value:
+            - 10.1.11.0/25
+
+      target:
+        kind: IPAddressPool
+        name: metallb-manual-pool
+        namespace: metallb-system
+    - patch: |
+        - op: replace
+          path: /spec/addresses
+          value:
+            - 10.1.11.128/25
+
+      target:
+        kind: IPAddressPool
+        name: metallb-pool
+        namespace: metallb-system
