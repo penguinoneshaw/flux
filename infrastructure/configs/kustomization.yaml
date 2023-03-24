@@ -4,6 +4,5 @@ resources:
   - ./cert-manager-webhook
   - netlify-pat.yaml
   - cluster-issuers.yaml
-  - network-policies.yaml
 configurations:
   - kustomizeconfig.yaml
