@@ -35,6 +35,6 @@ spec:
     installCRDs: true
     cainjector:
       podAnnotations:
-        linkerd.io/inject: true
+        linkerd.io/inject: "enabled"
     podAnnotations:
-      linkerd.io/inject: true
+      linkerd.io/inject: "enabled"

@@ -104,7 +104,7 @@ podLabels: {}
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 ##
 podAnnotations:
-  linkerd.io/inject: true
+  linkerd.io/inject: "enabled"
 
 ## Node labels for pod assignment
 ## Ref: https://kubernetes.io/docs/user-guide/node-selection/

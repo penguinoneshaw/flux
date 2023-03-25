@@ -6,6 +6,7 @@ resources:
   - ../base/pihole
   - ../base/postgres
   - ../base/paperless
+  - ../base/homer
   - ./paperless.yaml
 patchesStrategicMerge:
   - pihole-values.yaml

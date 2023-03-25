@@ -29,7 +29,7 @@ deploymentAnnotations: {}
 podLabels: {}
 # Annotations to add to the Pod
 podAnnotations:
-  linkerd.io/inject: true
+  linkerd.io/inject: "enabled"
 shareProcessNamespace: false
 podSecurityContext:
   fsGroup: 65534

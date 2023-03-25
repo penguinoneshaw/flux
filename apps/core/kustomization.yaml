@@ -3,15 +3,11 @@ kind: Kustomization
 resources:
   - ../base/shared-repositories
   - ../base/dynamic-dns
-  - ../base/external-dns
   - ../base/home-assistant
-  - ../base/kubernetes-dashboard
   - ../base/audiobookshelf
-  - ../base/pihole
   - ../base/ihatemoney
   - ../base/calibre-web
   - ../base/vaultwarden
-  - ../base/oauth2-proxy
   - ../base/homer
 patchesStrategicMerge: []
 #  - podinfo-values.yaml

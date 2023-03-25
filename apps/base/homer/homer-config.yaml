@@ -48,14 +48,15 @@ services:
       - name: ihatemoney
         url: https://ihatemoney.thephysicsflat.xyz
       - name: PiHole
-        url: https://pihole.home.thephysicsflat.xyz
+        url: https://pihole.x86.thephysicsflat.xyz
         type: PiHole
       - name: Paperless
-        url: https://paperless.home.thephysicsflat.xyz
-  - name: "System"
-    icon: "fas fa-gear"
-    items:
-      - name: Kubernetes Dashboard
-        url: https://kubernetes-dashboard.home.thephysicsflat.xyz
-      - name: Weave
-        url: https://weave.home.thephysicsflat.xyz
+        url: https://paperless.x86.thephysicsflat.xyz
+#   - name: "System"
+#     icon: "fas fa-gear"
+#     items:
+#       - name: Kubernetes Dashboard
+#         url: https://kubernetes-dashboard.home.thephysicsflat.xyz
+#       - name: Weave
+#         url: https://weave.home.thephysicsflat.xyz
+#

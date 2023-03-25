@@ -233,7 +233,7 @@ securityContext:
 
 deploymentAnnotations: {}
 podAnnotations:
-  linkerd.io/inject: true
+  linkerd.io/inject: "enabled"
 
 podLabels: {}
 replicaCount: 1

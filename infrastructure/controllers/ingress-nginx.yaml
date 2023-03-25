@@ -340,7 +340,7 @@ spec:
             # -- Annotations to be added to controller pods
             ##
             podAnnotations:
-                linkerd.io/inject: true
+                linkerd.io/inject: "enabled"
             replicaCount: 1
             # -- Define either 'minAvailable' or 'maxUnavailable', never both.
             minAvailable: 1

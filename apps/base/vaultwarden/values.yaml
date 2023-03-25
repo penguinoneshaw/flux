@@ -77,4 +77,4 @@ persistence:
     path: /srv/media/configs/vaultwarden/data
 
 podAnnotations:
-  linkerd.io/inject: true
+  linkerd.io/inject: "enabled"

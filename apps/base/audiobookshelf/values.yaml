@@ -33,7 +33,7 @@ service:
         port: 80
 
 podAnnotations:
-  linkerd.io/inject: true
+  linkerd.io/inject: "enabled"
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # @default -- See values.yaml

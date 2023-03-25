@@ -14,7 +14,7 @@ image:
   tag: version-0.6.19
 
 podAnnotations:
-  linkerd.io/inject: true
+  linkerd.io/inject: "enabled"
 
 # -- environment variables. See more environment variables in the [calibre-web documentation](https://hub.docker.com/r/advplyr/calibre-web)
 # @default -- See below

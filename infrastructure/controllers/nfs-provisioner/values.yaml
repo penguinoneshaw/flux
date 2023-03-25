@@ -73,7 +73,7 @@ podSecurityPolicy:
 
 # Deployment pod annotations
 podAnnotations:
-  linkerd.io/inject: true
+  linkerd.io/inject: "enabled"
 
 ## Set pod priorityClassName
 # priorityClassName: ""
