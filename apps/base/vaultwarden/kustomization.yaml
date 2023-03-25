@@ -1,4 +1,5 @@
 resources:
+  - admin-password.yaml
   - namespace.yaml
   - release.yaml
 configMapGenerator:

@@ -17,3 +17,7 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: vaultwarden-values
+    - kind: Secret
+      name: admin-password
+      targetPath: env.ADMIN_TOKEN
+      valuesKey: admin_password
