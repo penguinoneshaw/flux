@@ -75,3 +75,6 @@ persistence:
     type: nfs
     server: nfs.home.thephysicsflat.xyz
     path: /srv/media/configs/vaultwarden/data
+
+podAnnotations:
+  linkerd.io/inject: true

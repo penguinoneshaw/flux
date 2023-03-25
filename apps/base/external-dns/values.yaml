@@ -28,7 +28,8 @@ rbac:
 deploymentAnnotations: {}
 podLabels: {}
 # Annotations to add to the Pod
-podAnnotations: {}
+podAnnotations:
+  linkerd.io/inject: true
 shareProcessNamespace: false
 podSecurityContext:
   fsGroup: 65534

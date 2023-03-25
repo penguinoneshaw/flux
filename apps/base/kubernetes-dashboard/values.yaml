@@ -103,7 +103,8 @@ podLabels: {}
 ## @param podAnnotations Annotations for OAuth2 Proxy pods
 ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
 ##
-podAnnotations: {}
+podAnnotations:
+  linkerd.io/inject: true
 
 ## Node labels for pod assignment
 ## Ref: https://kubernetes.io/docs/user-guide/node-selection/

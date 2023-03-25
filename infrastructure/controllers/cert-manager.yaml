@@ -33,3 +33,8 @@ spec:
       interval: 12h
   values:
     installCRDs: true
+    cainjector:
+      podAnnotations:
+        linkerd.io/inject: true
+    podAnnotations:
+      linkerd.io/inject: true

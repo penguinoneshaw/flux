@@ -441,7 +441,7 @@ extraObjects:
 
 # -- Additional annotations for pods
 podAnnotations:
-  {}
+  linkerd.io/inject: true
   # Example below allows Prometheus to scape on metric port (requires pihole-exporter sidecar enabled)
   # prometheus.io/port: '9617'
   # prometheus.io/scrape: 'true'

@@ -232,7 +232,9 @@ securityContext:
   # runAsUser: 2000
 
 deploymentAnnotations: {}
-podAnnotations: {}
+podAnnotations:
+  linkerd.io/inject: true
+
 podLabels: {}
 replicaCount: 1
 

@@ -339,7 +339,8 @@ spec:
             healthCheckHost: ""
             # -- Annotations to be added to controller pods
             ##
-            podAnnotations: {}
+            podAnnotations:
+                linkerd.io/inject: true
             replicaCount: 1
             # -- Define either 'minAvailable' or 'maxUnavailable', never both.
             minAvailable: 1
