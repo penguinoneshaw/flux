@@ -4,6 +4,7 @@ resources:
   - ../base/shared-repositories
   - ../base/external-dns
   - ../base/pihole
+  - ../base/postgres
   - ../base/paperless
   - ./paperless.yaml
 patchesStrategicMerge:
