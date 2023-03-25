@@ -34,37 +34,11 @@ service:
 
 ingressRoute:
   # -- Create an IngressRoute object for exposing this chart.
-  create: true
-  # -- List of [entry points](https://doc.traefik.io/traefik/routing/routers/#entrypoints) on which the ingress route will be available.
-  entryPoints: [websecure]
-  # -- [Matching rule](https://doc.traefik.io/traefik/routing/routers/#rule) for the underlying router.
-  rule: Host(`paperless.home.thephysicsflat.xyz`)
-  # -- List of [middleware objects](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/#kind-middleware) for the ingress route.
-  middlewares: []
-  # -- Use an existing secret containing the TLS certificate.
-  tlsSecretName:
-  # -- Additional annotations for the ingress route object.
-  annotations: {}
-  # -- Additional labels for the ingress route object.
-  labels: {}
+  create: false
 
 certificate:
   # -- Create an Certificate object for the exposed chart.
-  create: true
-  # -- List of subject alternative names for the certificate.
-  dnsNames:
-    - paperless.home.thephysicsflat.xyz
-  # -- Name of the secret in which the certificate will be stored. Defaults to the first item in dnsNames.
-  secretName: ""
-  issuerRef:
-    # -- Type of the referenced certificate issuer. Can be "Issuer" or "ClusterIssuer".
-    kind: ClusterIssuer
-    # -- Name of the referenced certificate issuer.
-    name: letsencrypt
-  # -- Additional annotations for the certificate object.
-  annotations: {}
-  # -- Additional labels for the certificate object.
-  labels: {}
+  create: false
 
 env:
   # -- Timezone for the container.
@@ -73,16 +47,17 @@ env:
   - name: PAPERLESS_REDIS
     value: redis://redis:6379
   - name: PAPERLESS_CSRF_TRUSTED_ORIGINS
-    value: https://paperless.home.thephysicsflat.xyz
+    value: https://paperless.x86.thephysicsflat.xyz
   - name: PAPERLESS_CORS_ALLOWED_HOSTS
-    value: https://paperless.home.thephysicsflat.xyz
+    value: https://paperless.x86.thephysicsflat.xyz
   - name: PAPERLESS_TIKA_ENABLED
     value: "true"
   - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
     value: http://gotenberg:3000
   - name: PAPERLESS_TIKA_ENDPOINT
     value: http://tika:9998
-
+  - name: PAPERLESS_CONSUMER_POLLING
+    value: "60"
 ports:
   http:
     # -- Enable the port inside the `Deployment` and `Service` objects.

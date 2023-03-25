@@ -4,6 +4,8 @@ resources:
   - ../base/shared-repositories
   - ../base/external-dns
   - ../base/pihole
+  - ../base/paperless
+  - ./paperless.yaml
 patchesStrategicMerge:
   - pihole-values.yaml
 configurations:

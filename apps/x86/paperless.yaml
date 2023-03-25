@@ -1,0 +1,27 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless
+  namespace: paperless
+  labels:
+    name: paperless
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: traefik
+  rules:
+    - host: paperless.x86.thephysicsflat.xyz
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: paperless
+                port:
+                  number: 8000
+  tls:
+    - secretName: paperless-tls
+      hosts:
+        - paperless.x86.thephysicsflat.xyz
