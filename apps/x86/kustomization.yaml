@@ -4,7 +4,6 @@ resources:
   - ../base/shared-repositories
   - ../base/external-dns
   - ../base/pihole
-  - ../base/postgres
   - ../base/paperless
   - ../base/homer
   - ./paperless.yaml
