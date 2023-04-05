@@ -16,7 +16,7 @@ controller:
   # -- Type of the workload object.
   kind: StatefulSet
   # -- The number of replicas.
-  replicas: 2
+  replicas: 1
   # -- Additional annotations for the controller object.
   annotations: {}
   # -- Additional labels for the controller object.
@@ -61,7 +61,7 @@ ports:
 
 persistentVolumeClaim:
   # -- Create a new persistent volume claim object.
-  create: true
+  create: false
   # -- Mount path of the persistent volume claim object.
   mountPath: /data
   # -- Access mode of the persistent volume claim object.
