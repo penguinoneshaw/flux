@@ -2,12 +2,18 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../base/shared-repositories
+  - ../base/dynamic-dns
   - ../base/external-dns
   - ../base/pihole
   - ../base/paperless
   - ../base/homer
   - ../base/jellyfin
   - ./paperless.yaml
+  - ../base/home-assistant
+  - ../base/audiobookshelf
+  - ../base/calibre-web
+  - ../base/ihatemoney
+  - ../base/vaultwarden
 patchesStrategicMerge:
   - pihole-values.yaml
 configurations:

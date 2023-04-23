@@ -11,7 +11,7 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: 1.27.0-alpine
+  tag: 1.28.1-alpine
 
 controller:
   # -- Set the controller upgrade strategy
@@ -28,15 +28,18 @@ env:
 securityContext:
   runAsUser: 1000
   runAsGroup: 9003
+  capabilities:
+    add:
+      - NET_BIND_SERVICE
 service:
   # -- Configures service settings for the chart. Normally this does not need to be modified.
   # @default -- See [values.yaml](./values.yaml)
   main:
     ports:
       http:
-        port: 80
+        port: 8080
       websocket:
-        port: 3012
+        port: 30012
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -53,15 +56,15 @@ ingress:
           - path: /
             pathType: Prefix
             service:
-              port: 80
+              port: 8080
           - path: /notifications/hub/negotiate
             pathType: Prefix
             service:
-              port: 80
+              port: 8080
           - path: /notifications/hub
             pathType: Prefix
             service:
-              port: 3012
+              port: 30012
     tls:
       - secretName: vaultwarden-tls
         hosts:
