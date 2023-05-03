@@ -4,10 +4,24 @@ metadata:
   name: home-assistant
   namespace: home-assistant
 spec:
-  type: ExternalName
-  externalName: james-raspi4
+  type: ClusterIP
+  clusterIP: None
+
   ports:
     - port: 8123
       targetPort: 8123
       protocol: TCP
       name: http
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+subsets:
+  - addresses:
+      - ip: 10.1.10.20 # Insert your home-assistant IP here
+    ports:
+      - name: http
+        port: 8123
+        protocol: TCP

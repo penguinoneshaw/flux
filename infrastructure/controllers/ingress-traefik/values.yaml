@@ -1,5 +1,6 @@
 # Default values for Traefik
 image:
+  registry: docker.io
   repository: traefik
   # defaults to appVersion
   tag: ""
@@ -42,13 +43,11 @@ deployment:
   # The minimum number of seconds Traefik needs to be up and running before the DaemonSet/Deployment controller considers it available
   minReadySeconds: 0
   # Additional deployment annotations (e.g. for jaeger-operator sidecar injection)
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
+  annotations: {}
   # Additional deployment labels (e.g. for filtering deployment by custom labels)
   labels: {}
   # Additional pod annotations (e.g. for mesh injection or prometheus scraping)
-  podAnnotations:
-    linkerd.io/inject: "enabled"
+  podAnnotations: {}
   # Additional Pod labels (e.g. for filtering Pod by custom labels)
   podLabels: {}
   # Additional containers (e.g. for metric offloading sidecars)
@@ -71,10 +70,14 @@ deployment:
   initContainers:
     []
     # The "volume-permissions" init container is required if you run into permission issues.
-    # Related issue: https://github.com/traefik/traefik/issues/6825
+    # Related issue: https://github.com/traefik/traefik-helm-chart/issues/396
     # - name: volume-permissions
-    #   image: busybox:1.35
-    #   command: ["sh", "-c", "touch /data/acme.json && chmod -Rv 600 /data/* && chown 65532:65532 /data/acme.json"]
+    #   image: busybox:latest
+    #   command: ["sh", "-c", "touch /data/acme.json; chmod -v 600 /data/acme.json"]
+    #   securityContext:
+    #     runAsNonRoot: true
+    #     runAsGroup: 65532
+    #     runAsUser: 65532
     #   volumeMounts:
     #     - name: data
     #       mountPath: /data
@@ -82,6 +85,17 @@ deployment:
   shareProcessNamespace: false
   # Custom pod DNS policy. Apply if `hostNetwork: true`
   # dnsPolicy: ClusterFirstWithHostNet
+  dnsConfig:
+    {}
+    # nameservers:
+    #   - 192.0.2.1 # this is an example
+    # searches:
+    #   - ns1.svc.cluster-domain.example
+    #   - my.dns.search.suffix
+    # options:
+    #   - name: ndots
+    #     value: "2"
+    #   - name: edns0
   # Additional imagePullSecrets
   imagePullSecrets:
     []
@@ -200,7 +214,7 @@ providers:
       # - "default"
     # IP used for Kubernetes Ingress endpoints
     publishedService:
-      enabled: true
+      enabled: false
       # Published Kubernetes Service to copy status from. Format: namespace/servicename
       # By default this Traefik service
       # pathOverride: ""
@@ -238,10 +252,10 @@ logs:
     # format: json
     # By default, the level is set to ERROR.
     # Alternative logging levels are DEBUG, PANIC, FATAL, ERROR, WARN, and INFO.
-    level: WARN
+    level: ERROR
   access:
     # To enable access logs
-    enabled: true
+    enabled: false
     ## By default, logs are written using the Common Log Format (CLF) on stdout.
     ## To write logs in JSON, use json in the format option.
     ## If the given format is unsupported, the default (CLF) is used instead.
@@ -570,13 +584,16 @@ ports:
     # asDefault: true
     port: 8000
     # hostPort: 8000
+    # containerPort: 8000
     expose: true
     exposedPort: 80
+    ## Different target traefik port on the cluster, useful for IP type LB
+    # targetPort: 80
     # The port protocol (TCP/UDP)
     protocol: TCP
     # Use nodeport if set. This is useful if you have configured Traefik in a
     # LoadBalancer.
-    # nodePort: 22080
+    # nodePort: 32080
     # Port Redirections
     # Added in 2.2, you can make permanent redirects via entrypoints.
     # https://docs.traefik.io/routing/entrypoints/#redirection
@@ -596,11 +613,14 @@ ports:
     # asDefault: true
     port: 8443
     # hostPort: 8443
+    # containerPort: 8443
     expose: true
     exposedPort: 443
+    ## Different target traefik port on the cluster, useful for IP type LB
+    # targetPort: 80
     ## The port protocol (TCP/UDP)
     protocol: TCP
-    # nodePort: 30443
+    # nodePort: 32443
     #
     ## Enable HTTP/3 on the entrypoint
     ## Enabling it will also enable http3 experimental feature
@@ -663,12 +683,15 @@ ports:
 
 # TLS Options are created as TLSOption CRDs
 # https://doc.traefik.io/traefik/https/tls/#tls-options
+# When using `labelSelector`, you'll need to set labels on tlsOption accordingly.
 # Example:
 # tlsOptions:
 #   default:
+#     labels: {}
 #     sniStrict: true
 #     preferServerCipherSuites: true
-#   foobar:
+#   customOptions:
+#     labels: {}
 #     curvePreferences:
 #       - CurveP521
 #       - CurveP384
@@ -867,12 +890,16 @@ securityContext:
   capabilities:
     drop: [ALL]
   readOnlyRootFilesystem: true
+
+podSecurityContext:
+  #  # /!\ When setting fsGroup, Kubernetes will recursively changes ownership and
+  #  # permissions for the contents of each volume to match the fsGroup. This can
+  #  # be an issue when storing sensitive content like TLS Certificates /!\
+  #  fsGroup: 65532
+  fsGroupChangePolicy: "OnRootMismatch"
   runAsGroup: 65532
   runAsNonRoot: true
   runAsUser: 65532
-
-podSecurityContext:
-  fsGroup: 65532
 
 #
 # Extra objects to deploy (value evaluated as a template)
