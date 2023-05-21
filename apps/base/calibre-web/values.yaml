@@ -52,7 +52,7 @@ ingress:
     tls:
       - secretName: calibre-web-tls
         hosts:
-          - "*.thephysicsflat.xyz"
+          - "calibre-web.thephysicsflat.xyz"
 
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml

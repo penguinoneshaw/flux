@@ -95,7 +95,7 @@ ingress:
   tls:
     - secretName: jellyfin-tls
       hosts:
-        - "*.thephysicsflat.xyz"
+        - "jellyfin.thephysicsflat.xyz"
 
 # -- The resource requests and limits of the container
 resources:

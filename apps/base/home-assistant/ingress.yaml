@@ -13,7 +13,7 @@ spec:
   tls:
     - secretName: home-assistant
       hosts:
-        - "*.thephysicsflat.xyz"
+        - "home.thephysicsflat.xyz"
   rules:
     - host: home.thephysicsflat.xyz
       http:
