@@ -44,6 +44,8 @@ env:
   # -- Timezone for the container.
   - name: TZ
     value: Europe/London
+  - name: PAPERLESS_TZ
+    value: Europe/London
   - name: PAPERLESS_REDIS
     value: redis://redis:6379
   - name: PAPERLESS_CSRF_TRUSTED_ORIGINS
