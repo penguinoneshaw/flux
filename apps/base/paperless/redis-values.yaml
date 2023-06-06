@@ -16,7 +16,7 @@ controller:
   # -- Type of the workload object.
   kind: StatefulSet
   # -- The number of replicas.
-  replicas: 1
+  replicas: 3
   # -- Additional annotations for the controller object.
   annotations: {}
   # -- Additional labels for the controller object.
@@ -86,16 +86,15 @@ serviceAccount:
 # -- Pod-level security attributes. More info [here](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#security-context).
 securityContext:
   # fsGroup: 1000
-  runAsNonRoot: false
-  # runAsGroup: 1000
-  # runAsUser: 1000
+  runAsNonRoot: true
+  runAsGroup: 1000
+  runAsUser: 1000
 
 # -- Compute resources used by the container. More info [here](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 resources:
-  {}
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi

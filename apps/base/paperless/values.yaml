@@ -62,6 +62,8 @@ env:
     value: "true"
   - name: PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE
     value: "true"
+  - name: PAPERLESS_TASK_WORKERS
+    value: "4"
 ports:
   http:
     # -- Enable the port inside the `Deployment` and `Service` objects.
@@ -103,7 +105,7 @@ persistentVolumeClaim:
   # -- Volume mode of the persistent volume claim object.
   volumeMode: Filesystem
   # -- Storage request size for the persistent volume claim object.
-  size: 1Gi
+  size: 10Gi
   # -- Storage class name for the persistent volume claim object.
   storageClassName: nfs-client
   # -- Use an existing persistent volume claim object.
@@ -154,7 +156,7 @@ export:
   emptyDir: {}
   cronJob:
     # -- Create a `CronJob` object for [automated exports](https://docs.paperless-ngx.com/administration/#backup).
-    enabled: false
+    enabled: true
     # -- Schedule for automated exports.
     schedule: "0 4 * * 1"
     # -- Enable/disable the cron job schedule quickly.
@@ -208,8 +210,8 @@ securityContext:
       - CHMOD
       - SETFCAP
   # fsGroup: 1000
-  # runAsNonRoot: true
-  # runAsGroup: 1000
+  runAsNonRoot: true
+  runAsGroup: 1000
   runAsUser: 1000
 
 # -- Compute resources used by the container. More info [here](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
