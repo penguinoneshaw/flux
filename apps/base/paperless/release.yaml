@@ -34,7 +34,7 @@ spec:
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: pascaliske
+        name: bitnami
         namespace: default
   interval: 1m0s
   valuesFrom:
