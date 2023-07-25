@@ -77,7 +77,7 @@ persistence:
     mountPath: /data
     type: nfs
     server: nfs.home.thephysicsflat.xyz
-    path: /srv/media/configs/vaultwarden/data
+    path: /srv/config/vaultwarden/data
 
 podAnnotations:
   linkerd.io/inject: "enabled"
