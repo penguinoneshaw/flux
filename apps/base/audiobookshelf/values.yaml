@@ -70,13 +70,13 @@ persistence:
     mountPath: /config
     type: nfs
     server: nfs.home.thephysicsflat.xyz
-    path: /srv/media/configs/audiobookshelf/config
+    path: /srv/config/audiobookshelf/config
   metadata:
     enabled: true
     mountPath: /metadata
     type: nfs
     server: nfs.home.thephysicsflat.xyz
-    path: /srv/media/configs/audiobookshelf/metadata
+    path: /srv/config/audiobookshelf/metadata
   media:
     enabled: true
     type: nfs
