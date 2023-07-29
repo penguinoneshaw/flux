@@ -69,4 +69,4 @@ persistence:
     type: nfs
     mountPath: /books
     server: nfs.home.thephysicsflat.xyz
-    path: /srv/media/Books
+    path: /srv/book/Books
