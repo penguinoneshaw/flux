@@ -7,11 +7,11 @@
 
 image:
   # -- image repository
-  repository: vaultwarden/server
+  repository: ghcr.io/dani-garcia/vaultwarden
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: 1.29.0-alpine
+  tag: 1.29.2-alpine
 
 controller:
   # -- Set the controller upgrade strategy
@@ -21,8 +21,8 @@ controller:
 # @default -- See [values.yaml](./values.yaml)
 env:
   # -- Token for the admin interface, preferably use a long random string.
-  #    One option is to use `openssl rand -base64 48`.
   #    If not set, the admin panel is disabled.
+  #    [[ref]](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page#secure-the-admin_token)
   ADMIN_TOKEN: ""
   TZ: Europe/London
 securityContext:
@@ -39,7 +39,8 @@ service:
       http:
         port: 8080
       websocket:
-        port: 30012
+        enabled: false
+        port: 3012
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
@@ -57,14 +58,7 @@ ingress:
             pathType: Prefix
             service:
               port: 8080
-          - path: /notifications/hub/negotiate
-            pathType: Prefix
-            service:
-              port: 8080
-          - path: /notifications/hub
-            pathType: Prefix
-            service:
-              port: 30012
+
     tls:
       - secretName: vaultwarden-tls
         hosts:

@@ -48,6 +48,7 @@ spec:
 
         controller:
             name: controller
+            enableAnnotationValidations: false
             image:
                 ## Keep false as default for now!
                 chroot: false
@@ -56,9 +57,9 @@ spec:
                 ## for backwards compatibility consider setting the full image url via the repository value below
                 ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
                 ## repository:
-                tag: "v1.7.0"
-                digest: sha256:7612338342a1e7b8090bef78f2a04fffcadd548ccaabe8a47bf7758ff549a5f7
-                digestChroot: sha256:e84ef3b44c8efeefd8b0aa08770a886bfea1f04c53b61b4ba9a7204e9f1a7edc
+                tag: "v1.8.2"
+                digest: sha256:74834d3d25b336b62cabeb8bf7f1d788706e2cf1cfd64022de4137ade8881ff2
+                digestChroot: sha256:1317a563219f755a6094d990057c78e5c4dcea5e31f4ce1db8641e732a7d6133
                 pullPolicy: IfNotPresent
                 # www-data -> uid 101
                 runAsUser: 101
@@ -81,6 +82,8 @@ spec:
             addHeaders: {}
             # -- Optionally customize the pod dnsConfig.
             dnsConfig: {}
+            # -- Optionally customize the pod hostAliases.
+            hostAliases: {}
             # -- Optionally customize the pod hostname.
             hostname: {}
             # -- Optionally change this to ClusterFirstWithHostNet in case you have 'hostNetwork: true'.
@@ -88,7 +91,7 @@ spec:
             # to keep resolving names inside the k8s network, use ClusterFirstWithHostNet.
             dnsPolicy: ClusterFirst
             # -- Bare-metal considerations via the host network https://kubernetes.github.io/ingress-nginx/deploy/baremetal/#via-the-host-network
-            # Ingress status was blank because there is no Service exposing the NGINX Ingress controller in a configuration using the host network, the default --publish-service flag used in standard cloud setups does not apply
+            # Ingress status was blank because there is no Service exposing the Ingress-Nginx Controller in a configuration using the host network, the default --publish-service flag used in standard cloud setups does not apply
             reportNodeInternalIp: false
             # -- Process Ingress objects without ingressClass annotation/ingressClassName field
             # Overrides value for --watch-ingress-without-class flag of the controller binary
@@ -96,7 +99,7 @@ spec:
             watchIngressWithoutClass: false
             # -- Process IngressClass per name (additionally as per spec.controller).
             ingressClassByName: false
-            # -- This configuration enables Topology Aware Routing feature, used together with service annotation service.kubernetes.io/topology-aware-hints="auto"
+            # -- This configuration enables Topology Aware Routing feature, used together with service annotation service.kubernetes.io/topology-mode="auto"
             # Defaults to false
             enableTopologyAwareRouting: false
             # -- This configuration defines if Ingress Controller should allow users to set
@@ -183,7 +186,7 @@ spec:
             # -- Maxmind license key to download GeoLite2 Databases.
             ## https://blog.maxmind.com/2019/12/18/significant-changes-to-accessing-and-using-geolite2-databases
             maxmindLicenseKey: ""
-            # -- Additional command line arguments to pass to nginx-ingress-controller
+            # -- Additional command line arguments to pass to Ingress-Nginx Controller
             # E.g. to specify the default SSL certificate you can use
             extraArgs: {}
             ## extraArgs:
@@ -290,7 +293,7 @@ spec:
             ##
             terminationGracePeriodSeconds: 300
             # -- Node labels for controller pod assignment
-            ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+            ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
             ##
             nodeSelector:
                 kubernetes.io/os: linux
@@ -335,16 +338,17 @@ spec:
             healthCheckPath: "/healthz"
             # -- Address to bind the health check endpoint.
             # It is better to set this option to the internal node address
-            # if the ingress nginx controller is running in the `hostNetwork: true` mode.
+            # if the Ingress-Nginx Controller is running in the `hostNetwork: true` mode.
             healthCheckHost: ""
             # -- Annotations to be added to controller pods
             ##
             podAnnotations:
                 linkerd.io/inject: "enabled"
             replicaCount: 1
-            # -- Define either 'minAvailable' or 'maxUnavailable', never both.
+            # -- Minimum available pods set in PodDisruptionBudget.
+            # Define either 'minAvailable' or 'maxUnavailable', never both.
             minAvailable: 1
-            # -- Define either 'minAvailable' or 'maxUnavailable', never both.
+            # -- Maximum unavalaile pods set in PodDisruptionBudget. If set, 'minAvailable' is ignored.
             # maxUnavailable: 1
 
             ## Define requests resources to avoid probe issues due to CPU utilization in busy nodes
@@ -360,7 +364,6 @@ spec:
                     memory: 90Mi
             # Mutually exclusive with keda autoscaling
             autoscaling:
-                apiVersion: autoscaling/v2
                 enabled: false
                 annotations: {}
                 minReplicas: 1
@@ -402,6 +405,9 @@ spec:
                 maxReplicas: 11
                 pollingInterval: 30
                 cooldownPeriod: 300
+                # fallback:
+                #   failureThreshold: 3
+                #   replicas: 11
                 restoreToOriginalReplicaCount: false
                 scaledObject:
                     annotations: {}
@@ -409,27 +415,26 @@ spec:
                     #  annotations:
                     # key: value
                 triggers: []
-                #     - type: prometheus
-                #       metadata:
-                #         serverAddress: http://<prometheus-host>:9090
-                #         metricName: http_requests_total
-                #         threshold: '100'
-                #         query: sum(rate(http_requests_total{deployment="my-deployment"}[2m]))
+                # - type: prometheus
+                #   metadata:
+                #     serverAddress: http://<prometheus-host>:9090
+                #     metricName: http_requests_total
+                #     threshold: '100'
+                #     query: sum(rate(http_requests_total{deployment="my-deployment"}[2m]))
 
                 behavior: {}
-            #     scaleDown:
-            #       stabilizationWindowSeconds: 300
-            #       policies:
-            #       - type: Pods
-            #         value: 1
-            #         periodSeconds: 180
-            #     scaleUp:
-            #       stabilizationWindowSeconds: 300
-            #       policies:
-            #       - type: Pods
-            #         value: 2
-            #         periodSeconds: 60
-
+                # scaleDown:
+                #   stabilizationWindowSeconds: 300
+                #   policies:
+                #   - type: Pods
+                #     value: 1
+                #     periodSeconds: 180
+                # scaleUp:
+                #   stabilizationWindowSeconds: 300
+                #   policies:
+                #   - type: Pods
+                #     value: 2
+                #     periodSeconds: 60
             # -- Enable mimalloc as a drop-in replacement for malloc.
             ## ref: https://github.com/microsoft/mimalloc
             ##
@@ -447,17 +452,20 @@ spec:
                 # Will be ignored for Kubernetes versions older than 1.20
                 ##
                 appProtocol: true
+                # -- Annotations are mandatory for the load balancer to come up. Varies with the cloud service. Values passed through helm tpl engine.
                 annotations: {}
                 labels: {}
                 # clusterIP: ""
 
                 # -- List of IP addresses at which the controller services are available
-                ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+                ## Ref: https://kubernetes.io/docs/concepts/services-networking/service/#external-ips
                 ##
                 externalIPs: []
                 # -- Used by cloud providers to connect the resulting `LoadBalancer` to a pre-existing static IP according to https://kubernetes.io/docs/concepts/services-networking/service/#loadbalancer
                 loadBalancerIP: ""
                 loadBalancerSourceRanges: []
+                # -- Used by cloud providers to select a load balancer implementation other than the cloud provider default. https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class
+                loadBalancerClass: ""
                 enableHttp: true
                 enableHttps: true
                 ## Set external traffic policy to: "Local" to preserve source IP on providers supporting it.
@@ -506,16 +514,26 @@ spec:
                 internal:
                     # -- Enables an additional internal load balancer (besides the external one).
                     enabled: false
-                    # -- Annotations are mandatory for the load balancer to come up. Varies with the cloud service.
+                    # -- Annotations are mandatory for the load balancer to come up. Varies with the cloud service. Values passed through helm tpl engine.
                     annotations: {}
-                    # loadBalancerIP: ""
-
+                    # -- Used by cloud providers to connect the resulting internal LoadBalancer to a pre-existing static IP. Make sure to add to the service the needed annotation to specify the subnet which the static IP belongs to. For instance, `networking.gke.io/internal-load-balancer-subnet` for GCP and `service.beta.kubernetes.io/aws-load-balancer-subnets` for AWS.
+                    loadBalancerIP: ""
                     # -- Restrict access For LoadBalancer service. Defaults to 0.0.0.0/0.
                     loadBalancerSourceRanges: []
                     ## Set external traffic policy to: "Local" to preserve source IP on
                     ## providers supporting it
                     ## Ref: https://kubernetes.io/docs/tutorials/services/source-ip/#source-ip-for-services-with-typeloadbalancer
                     # externalTrafficPolicy: ""
+
+                    # -- Custom port mapping for internal service
+                    ports: {}
+                    #  http: 80
+                    #  https: 443
+
+                    # -- Custom target port mapping for internal service
+                    targetPorts: {}
+                    #  http: http
+                    #  https: https
             # shareProcessNamespace enables process namespace sharing within the pod.
             # This can be used for example to signal log rotation using `kill -USR1` from a sidecar.
             shareProcessNamespace: false
@@ -572,7 +590,7 @@ spec:
 
             opentelemetry:
                 enabled: false
-                image: registry.k8s.io/ingress-nginx/opentelemetry:v20230312-helm-chart-4.5.2-28-g66a760794@sha256:40f766ac4a9832f36f217bb0e98d44c8d38faeccbfe861fbc1a76af7e9ab257f
+                image: registry.k8s.io/ingress-nginx/opentelemetry:v20230721-3e2062ee5@sha256:13bee3f5223883d3ca62fee7309ad02d22ec00ff0d7033e3e9aca7a9f60fd472
                 containerSecurityContext:
                     allowPrivilegeEscalation: false
             admissionWebhooks:
@@ -634,8 +652,8 @@ spec:
                         ## for backwards compatibility consider setting the full image url via the repository value below
                         ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
                         ## repository:
-                        tag: v20230312-helm-chart-4.5.2-28-g66a760794
-                        digest: sha256:01d181618f270f2a96c04006f33b2699ad3ccb02da48d0f89b22abce084b292f
+                        tag: v20230407
+                        digest: sha256:543c40fd093964bc9ab509d3e791f9989963021f1e9e4c9c7b6700b02bfb227b
                         pullPolicy: IfNotPresent
                     # -- Provide a priority class name to the webhook patching job
                     ##
@@ -677,7 +695,7 @@ spec:
                     # clusterIP: ""
 
                     # -- List of IP addresses at which the stats-exporter service is available
-                    ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+                    ## Ref: https://kubernetes.io/docs/concepts/services-networking/service/#external-ips
                     ##
                     externalIPs: []
                     # loadBalancerIP: ""
@@ -835,7 +853,7 @@ spec:
             #  key: value
 
             # -- Node labels for default backend pod assignment
-            ## Ref: https://kubernetes.io/docs/user-guide/node-selection/
+            ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
             ##
             nodeSelector:
                 kubernetes.io/os: linux
@@ -863,7 +881,6 @@ spec:
             #    emptyDir: {}
 
             autoscaling:
-                apiVersion: autoscaling/v2
                 annotations: {}
                 enabled: false
                 minReplicas: 1
@@ -875,7 +892,7 @@ spec:
                 # clusterIP: ""
 
                 # -- List of IP addresses at which the default backend service is available
-                ## Ref: https://kubernetes.io/docs/user-guide/services/#external-ips
+                ## Ref: https://kubernetes.io/docs/concepts/services-networking/service/#external-ips
                 ##
                 externalIPs: []
                 # loadBalancerIP: ""
