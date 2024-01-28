@@ -1,5 +1,5 @@
 resources:
-  - woodpecker-secret.yaml
+  - woodpecker-configs-gitea.yaml
   - namespace.yaml
   - repository.yaml
   - release.yaml

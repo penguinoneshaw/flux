@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+    name: woodpecker-configs-gitea
+    namespace: woodpecker
+data:
+    WOODPECKER_GITEA_CLIENT: ENC[AES256_GCM,data:8PaJhXqY96lM7jcXsv7JNaczYOZ/n/cDWsa6BzGCnwpwkLp46S4X9VrB/yxFD+22,iv:2pPuPnx+qPLVbFG4BnGKMoS77122FNYBbaWoAv1lXPE=,tag:QDVAh6w4/dH+YmUmIuPcPg==,type:str]
+    WOODPECKER_GITEA_SECRET: ENC[AES256_GCM,data:UAUNM2OpurORGchULGdbGPVsDGk0d3TDvVffHmkVyCRqtJWlFH2VxCC96KVRibShmvm8dMEUeXMCJUe9m8YGoObWdArtZmkRlWyeSQ==,iv:ufHTbgUbzYzXlEgmqOAJbtDAasY7Y5BsowmsLYiXTBQ=,tag:nf16J/xzwl4P3N4V8Rvvyw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBXUC9tekxQZjhPVkNsNG93
+            UGxUM29wZURRQmdPZ2h4RzVROCt5bUNKQVJNCjJFVHlKZ1djSzJDR3RHRmY0Y0Nm
+            VTZvazVVZDNFNnJGVjFSV1U1ZStaVjQKLS0tIDF5WjIvZVpHZmVORGJEWVhTbzhD
+            c0tMbzBiN2ZQT1E1NjlkNVBZdmlJWE0K0B3kpfpnUnaJPpwmpCkFoYlwg5WRB8T7
+            4lJIJmHwZQt4fpchDWRPMKMqoWw80xyzhxCPKaIlwokdLwc7TVvu+g==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-01-28T18:08:10Z"
+    mac: ENC[AES256_GCM,data:5AIcOHzxSfI/Zija8NR5Z00EBLbcQusN7qtI+r4aMrCkBYkO75kOjFnH4fIGvB9xAqZZXU8UoGS94AJBLybCmhf3KrQde2TlzdslIfmdajupfxAGmvGyfj3jf0F+/RUA9wL9zLgbcisMxx80HvMZ+Ma+nh4FV1ZCbQki4fmnZdI=,iv:OUUhKPrLSn/QInxmq7mdOkHpgbW5TJv1KyEVjdSbPx0=,tag:cNcTljW818pfbWQ5RbOXyg==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.7.3
