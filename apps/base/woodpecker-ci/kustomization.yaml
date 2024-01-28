@@ -1,0 +1,10 @@
+resources:
+  - woodpecker-secret.yaml
+  - namespace.yaml
+  - repository.yaml
+  - release.yaml
+configMapGenerator:
+  - name: woodpecker-values
+    namespace: woodpecker
+    files:
+      - values.yaml

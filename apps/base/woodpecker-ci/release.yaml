@@ -1,0 +1,19 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: woodpecker-ci
+  namespace: woodpecker
+spec:
+  releaseName: woodpecker
+  chart:
+    spec:
+      chart: woodpecker
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: woodpecker
+        namespace: woodpecker
+  interval: 30m
+  valuesFrom:
+    - kind: ConfigMap
+      name: woodpecker-values

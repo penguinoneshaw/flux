@@ -14,6 +14,7 @@ resources:
   - ../base/calibre-web
   - ../base/ihatemoney
   - ../base/vaultwarden
+  - ../base/woodpecker-ci
 patchesStrategicMerge:
   - pihole-values.yaml
 configurations:
