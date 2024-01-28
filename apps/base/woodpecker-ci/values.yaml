@@ -29,12 +29,12 @@ agent:
     WOODPECKER_SERVER: "woodpecker-server:9000"
     WOODPECKER_BACKEND: kubernetes
     WOODPECKER_BACKEND_K8S_NAMESPACE: woodpecker
-    WOODPECKER_BACKEND_K8S_STORAGE_CLASS: ""
+    WOODPECKER_BACKEND_K8S_STORAGE_CLASS: "nfs-client"
     WOODPECKER_BACKEND_K8S_VOLUME_SIZE: 10G
     WOODPECKER_BACKEND_K8S_STORAGE_RWX: true
     WOODPECKER_BACKEND_K8S_POD_LABELS: ""
     WOODPECKER_BACKEND_K8S_POD_ANNOTATIONS: ""
-    WOODPECKER_CONNECT_RETRY_COUNT: "1"
+    WOODPECKER_CONNECT_RETRY_COUNT: "3"
 
   # -- Add extra secret that is contains environment variables
   extraSecretNamesForEnvFrom:
@@ -106,17 +106,16 @@ agent:
 
   # -- Specifies the resources for the agent component
   resources:
-    {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
     # resources, such as Minikube. If you do want to specify resources, uncomment the following
     # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-    # limits:
-    #   cpu: 100m
-    #   memory: 128Mi
-    # requests:
-    #   cpu: 100m
-    #   memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 128Mi
 
   # -- Specifies the labels of the nodes that the agent component must be running
   nodeSelector: {}
@@ -173,7 +172,8 @@ server:
 
   # -- Add environment variables for the server component
   env:
-    WOODPECKER_ADMIN: "woodpecker,admin"
+    WOODPECKER_ADMIN: "woodpecker,admin,penguinoneshaw"
+    WOODPECKER_ORGS: "ScoTechWorkers"
     WOODPECKER_HOST: "https://woodpecker.thephysicsflat.xyz"
     WOODPECKER_GITEA: "true"
     WOODPECKER_GITEA_URL: "https://codeberg.org"
@@ -184,6 +184,7 @@ server:
     # - woodpecker-github-client
     # - woodpecker-github-secret
     - woodpecker-secret
+    - woodpecker-configs-gitea
 
   # -- Create a generic secret to store things in, e.g. env values
   secrets:
@@ -216,7 +217,7 @@ server:
     # -- Defines the path where the volume should be mounted
     mountPath: "/var/lib/woodpecker"
     # -- Defines the storageClass of the persistent volume
-    storageClass: ""
+    storageClass: "nfs-client"
 
   # -- The image pull secrets
   imagePullSecrets: []
@@ -272,6 +273,8 @@ server:
       cert-manager.io/cluster-issuer: letsencrypt
     hosts:
       - host: woodpecker.thephysicsflat.xyz
+        paths:
+          - path: /
         backend:
           serviceName: woodpecker-server
           servicePort: *servicePort

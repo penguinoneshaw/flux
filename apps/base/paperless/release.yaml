@@ -78,3 +78,9 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: tika-values
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: redis-master
+  namespace: paperless
