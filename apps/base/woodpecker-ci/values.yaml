@@ -36,9 +36,9 @@ agent:
     WOODPECKER_BACKEND_K8S_POD_ANNOTATIONS: ""
     WOODPECKER_CONNECT_RETRY_COUNT: "3"
 
-  # -- Add extra secret that is contains environment variables
+  # -- Add extra secret that contains environment variables
   extraSecretNamesForEnvFrom:
-    - woodpecker-secret
+    - woodpecker-configs-agents
 
   # -- Additional volumes that can be mounted in containers
   extraVolumes:
@@ -183,12 +183,8 @@ server:
   extraSecretNamesForEnvFrom:
     # - woodpecker-github-client
     # - woodpecker-github-secret
-    - woodpecker-secret
     - woodpecker-configs-gitea
-
-  # -- Create a generic secret to store things in, e.g. env values
-  secrets:
-    - name: woodpecker-secret
+    - woodpecker-configs-agents
 
   # -- Additional volumes that can be mounted in containers
   extraVolumes:

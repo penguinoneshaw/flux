@@ -126,7 +126,7 @@ architecture: standalone
 auth:
   ## @param auth.enabled Enable password authentication
   ##
-  enabled: true
+  enabled: false
   ## @param auth.sentinel Enable password authentication on sentinels too
   ##
   sentinel: true
@@ -510,7 +510,7 @@ master:
   ##
   persistentVolumeClaimRetentionPolicy:
     enabled: true
-    whenScaled: Retain
+    whenScaled: Delete
     whenDeleted: Delete
   ## Redis&reg; master service parameters
   ##
@@ -1283,9 +1283,9 @@ sentinel:
   ## @param sentinel.persistentVolumeClaimRetentionPolicy.whenDeleted Volume retention behavior that applies when the StatefulSet is deleted
   ##
   persistentVolumeClaimRetentionPolicy:
-    enabled: false
-    whenScaled: Retain
-    whenDeleted: Retain
+    enabled: true
+    whenScaled: Delete
+    whenDeleted: Delete
   ## Redis&reg; Sentinel resource requests and limits
   ## ref: https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
   ## @param sentinel.resources.limits The resources limits for the Redis&reg; Sentinel containers
