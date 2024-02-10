@@ -24,3 +24,18 @@ spec:
     - kind: ConfigMap
       name: nfs-provisioner-values
       valuesKey: values.yaml
+---
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: nfs-ephemeral
+  annotations:
+    storageclass.kubernetes.io/is-default-class: "false"
+provisioner: cluster.local/nfs-nfs-subdir-external-provisioner
+allowVolumeExpansion: true
+reclaimPolicy: Delete
+parameters:
+  archiveOnDelete: "false"
+  onDelete: delete
+volumeBindingMode: WaitForFirstConsumer
+mountOptions: []
