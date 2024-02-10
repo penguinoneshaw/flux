@@ -1,0 +1,4 @@
+resources:
+  - token.yaml
+  - provider.yaml
+  - alert.yaml
