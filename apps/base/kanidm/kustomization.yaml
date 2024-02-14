@@ -1,0 +1,9 @@
+configMapGenerator:
+  - name: kanidm
+    namespace: kanidm
+    files:
+      - server.toml=config.toml
+namespace: kanidm
+resources:
+  - namespace.yaml
+  - release.yaml
