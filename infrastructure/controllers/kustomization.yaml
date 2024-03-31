@@ -7,6 +7,7 @@ resources:
   - ingress-traefik
   - nfs-provisioner
   - flux-notifications
+  - amdgpu-labeller.yaml
   #- ./weave
 configurations:
   - kustomizeconfig.yaml
