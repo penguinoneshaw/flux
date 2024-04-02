@@ -47,7 +47,7 @@ env:
   - name: PAPERLESS_TZ
     value: Europe/London
   - name: PAPERLESS_REDIS
-    value: redis://redis-headless:6379
+    value: redis://keydb:6379
   - name: PAPERLESS_CSRF_TRUSTED_ORIGINS
     value: https://paperless.x86.thephysicsflat.xyz
   - name: PAPERLESS_CORS_ALLOWED_HOSTS

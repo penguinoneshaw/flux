@@ -25,16 +25,16 @@ spec:
 apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
-  name: redis
+  name: keydb
   namespace: paperless
 spec:
   chart:
     spec:
-      chart: redis
+      chart: keydb
       reconcileStrategy: ChartVersion
       sourceRef:
         kind: HelmRepository
-        name: bitnami
+        name: gabe565
         namespace: default
   interval: 1m0s
   valuesFrom:
