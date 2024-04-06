@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   name: paperless
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: paperless
@@ -22,7 +22,7 @@ spec:
     - kind: ConfigMap
       name: paperless-values
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: keydb
@@ -41,7 +41,7 @@ spec:
     - kind: ConfigMap
       name: redis-values
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: gotenberg
@@ -60,7 +60,7 @@ spec:
     - kind: ConfigMap
       name: gotenberg-values
 ---
-apiVersion: helm.toolkit.fluxcd.io/v2beta1
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: tika
