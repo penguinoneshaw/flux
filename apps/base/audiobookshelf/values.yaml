@@ -89,3 +89,10 @@ persistence:
     mountPath: /books
     server: nfs.home.thephysicsflat.xyz
     path: /srv/books/Books
+  podcasts:
+    enabled: true
+    type: pvc
+    retain: true
+    storageClass: nfs-client
+    accessMode: ReadWriteOnce
+    size: 16Gi
