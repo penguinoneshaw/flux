@@ -78,9 +78,6 @@ spec:
                 enable-brotli: "true"
                 enable-modsecurity: "true"
                 enable-owasp-modsecurity-crs: "true"
-                http-snippet: |
-                    proxy_cache_path  /tmp/jellyfin-videos levels=1:2 keys_zone=jellyfin-videos:100m inactive=90d max_size=35000m;
-
             # -- Annotations to be added to the controller config configuration configmap.
             configAnnotations: {}
             # -- Will add custom headers before sending traffic to backends according to https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/custom-headers
