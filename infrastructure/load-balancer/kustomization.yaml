@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - ./oidc-roles
   - ./metallb
+  - ./keda
 configurations:
   - kustomizeconfig.yaml

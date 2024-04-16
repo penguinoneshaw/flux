@@ -57,9 +57,9 @@ spec:
                 ## for backwards compatibility consider setting the full image url via the repository value below
                 ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
                 ## repository:
-                tag: "v1.8.2"
-                digest: sha256:74834d3d25b336b62cabeb8bf7f1d788706e2cf1cfd64022de4137ade8881ff2
-                digestChroot: sha256:1317a563219f755a6094d990057c78e5c4dcea5e31f4ce1db8641e732a7d6133
+                tag: "v1.10.0"
+                digest: sha256:42b3f0e5d0846876b1791cd3afeb5f1cbbe4259d6f35651dcc1b5c980925379c
+                digestChroot: sha256:7eb46ff733429e0e46892903c7394aff149ac6d284d92b3946f3baf7ff26a096
                 pullPolicy: IfNotPresent
                 # www-data -> uid 101
                 runAsUser: 101
@@ -73,7 +73,14 @@ spec:
                 http: 80
                 https: 443
             # -- Will add custom configuration options to Nginx https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
-            config: {}
+            config:
+                use-gzip: "true"
+                enable-brotli: "true"
+                enable-modsecurity: "true"
+                enable-owasp-modsecurity-crs: "true"
+                http-snippet: |
+                    proxy_cache_path  /tmp/jellyfin-videos levels=1:2 keys_zone=jellyfin-videos:100m inactive=90d max_size=35000m;
+
             # -- Annotations to be added to the controller config configuration configmap.
             configAnnotations: {}
             # -- Will add custom headers before sending traffic to backends according to https://github.com/kubernetes/ingress-nginx/tree/main/docs/examples/customization/custom-headers
@@ -402,7 +409,7 @@ spec:
                 ## 1.x = keda.k8s.io/v1alpha1
                 enabled: false
                 minReplicas: 1
-                maxReplicas: 11
+                maxReplicas: 3
                 pollingInterval: 30
                 cooldownPeriod: 300
                 # fallback:

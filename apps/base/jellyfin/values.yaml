@@ -84,15 +84,14 @@ ingress:
   # -- Annotations for the ingress
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
-    nginx.org/server-snippets: |
-      # Set in-memory cache-metadata size in keys_zone, size of video caching and how many days a cached object should persist
-      proxy_cache_path  /var/cache/nginx/jellyfin-videos levels=1:2 keys_zone=jellyfin-videos:100m inactive=90d max_size=35000m;
-      map $request_uri $h264Level { ~(h264-level=)(.+?)& $2; }
-      map $request_uri $h264Profile { ~(h264-profile=)(.+?)& $2; }
-
+    nginx.ingress.kubernetes.io/proxy-buffering: "on"
+    nginx.ingress.kubernetes.io/server-snippet: |
       # Set in Server block
       location ~* ^/Videos/(.*)/(?!live)
       {
+        # Set in-memory cache-metadata size in keys_zone, size of video caching and how many days a cached object should persist
+        map $request_uri $h264Level { ~(h264-level=)(.+?)& $2; }
+        map $request_uri $h264Profile { ~(h264-profile=)(.+?)& $2; }
         # Set size of a slice (this amount will be always requested from the backend by nginx)
         # Higher value means more latency, lower more overhead
         # This size is independent of the size clients/browsers can request
