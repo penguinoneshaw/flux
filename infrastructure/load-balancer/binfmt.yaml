@@ -33,7 +33,13 @@ spec:
             privileged: true
       containers:
         - name: pause
-          image: ibmcom/pause:3.0
+          image: alpine:3
+          command:
+            - "/bin/sh"
+          args:
+            - "-c"
+            - "trap : TERM INT; sleep 9999999999d & wait"
+          tty: true
           resources:
             limits:
               cpu: 50m
