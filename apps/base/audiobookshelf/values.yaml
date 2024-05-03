@@ -89,6 +89,7 @@ persistence:
     mountPath: /books
     server: nfs.home.thephysicsflat.xyz
     path: /srv/books/Books
+    readonly: true
   podcasts:
     enabled: true
     type: pvc
