@@ -16,6 +16,7 @@ resources:
   - ../base/vaultwarden
   - ../base/woodpecker-ci
   - ../base/kanidm
+  - ../base/ntfy
 patchesStrategicMerge:
   - pihole-values.yaml
 configurations:
