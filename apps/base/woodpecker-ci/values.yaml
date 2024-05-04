@@ -35,6 +35,22 @@ agent:
     WOODPECKER_BACKEND_K8S_POD_LABELS: ""
     WOODPECKER_BACKEND_K8S_POD_ANNOTATIONS: ""
     WOODPECKER_CONNECT_RETRY_COUNT: "3"
+    TZ: "Europe/London"
+
+  persistence:
+    # -- Enable the creation of the persistent volume
+    enabled: true
+    # -- Defines an existing claim to use
+    existingClaim:
+    # -- Defines the size of the persistent volume
+    size: 2Gi
+    # -- Defines the path where the volume should be mounted
+    mountPath: "/etc/woodpecker"
+    # -- Defines the storageClass of the persistent volume
+    storageClass: "nfs-client"
+    # -- Defines the access mode of the persistent volume
+    accessModes:
+      - ReadWriteOnce
 
   # -- Add extra secret that contains environment variables
   extraSecretNamesForEnvFrom:
@@ -133,13 +149,13 @@ agent:
   # pod for each topology zone, e.g. one per arch for multi-architecture clusters
   # or one for each region for geographically distributed cloud-hosted clusters.
   # Ref: <https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/>
-  topologySpreadConstraints: []
-  # - maxSkew: 1
-  #   topologyKey: "beta.kubernetes.io/arch"
-  #   whenUnsatisfiable: "DoNotSchedule"
-  #   labelSelector:
-  #     matchLabels:
-  #       "app.kubernetes.io/name": woodpecker-agent
+  topologySpreadConstraints:
+    - maxSkew: 1
+      topologyKey: "beta.kubernetes.io/arch"
+      whenUnsatisfiable: "ScheduleAnyway"
+      labelSelector:
+        matchLabels:
+          "app.kubernetes.io/name": "agent"
 
 server:
   # -- Enable the server component
@@ -177,6 +193,8 @@ server:
     WOODPECKER_HOST: "https://woodpecker.thephysicsflat.xyz"
     WOODPECKER_GITEA: "true"
     WOODPECKER_GITEA_URL: "https://codeberg.org"
+    TZ: "Europe/London"
+
     # WOODPECKER_GITHUB: "true"
 
   # -- Add extra environment variables from the secrets list
@@ -209,7 +227,7 @@ server:
     # -- Enable the creation of the persistent volume
     enabled: true
     # -- Defines the size of the persistent volume
-    size: 10Gi
+    size: 2Gi
     # -- Defines the path where the volume should be mounted
     mountPath: "/var/lib/woodpecker"
     # -- Defines the storageClass of the persistent volume

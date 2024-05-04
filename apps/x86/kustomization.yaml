@@ -17,7 +17,8 @@ resources:
   - ../base/woodpecker-ci
   - ../base/kanidm
   - ../base/ntfy
-patchesStrategicMerge:
-  - pihole-values.yaml
+patches:
+  - path: pihole-values.yaml
+
 configurations:
   - kustomizeconfig.yaml

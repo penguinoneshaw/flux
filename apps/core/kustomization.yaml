@@ -3,7 +3,7 @@ kind: Kustomization
 resources:
   - ../base/shared-repositories
 
-patchesStrategicMerge: []
+patches: []
 #  - podinfo-values.yaml
 configurations:
   - kustomizeconfig.yaml
