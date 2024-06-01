@@ -8,7 +8,7 @@ resources:
   - nfs-provisioner
   - flux-notifications
   - amdgpu-labeller.yaml
-  - tailscale
+  # - tailscale
   #- ./weave
 configurations:
   - kustomizeconfig.yaml
