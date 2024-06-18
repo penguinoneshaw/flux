@@ -14,7 +14,7 @@ spec:
   prune: true
   wait: true
   timeout:
-    5m0s
+    30m
     # Decryption configuration starts here
   decryption:
     provider: sops

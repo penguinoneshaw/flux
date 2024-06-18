@@ -1,0 +1,11 @@
+resources:
+  - namespace.yaml
+  - repository.yaml
+  - pvc.yaml
+  - release.yaml
+  - oauth-secret.yaml
+configMapGenerator:
+  - name: immich-values
+    namespace: immich
+    files:
+      - values.yaml
