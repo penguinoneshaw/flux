@@ -41,9 +41,11 @@ spec:
               mountPath: /tls
           resources:
             limits:
-              memory: 600Mi
+              memory: 1Gi
+              cpu: 500m
             requests:
               memory: 300Mi
+
           ports:
             - name: web
               containerPort: 8443
