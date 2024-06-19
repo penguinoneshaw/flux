@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
         - name: kanidm
-          image: docker.io/kanidm/server:1.1.0-rc.16
+          image: docker.io/kanidm/server:1.2.2
           args: ["kanidmd", "server", "-c", "/config/server.toml"]
 
           volumeMounts:
@@ -78,7 +78,7 @@ metadata:
   labels:
     app: kanidm
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: kanidm
   ports:
