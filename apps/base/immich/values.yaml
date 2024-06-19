@@ -32,12 +32,12 @@ immich:
   #
   configuration:
     ffmpeg:
-      accel: "enabled"
+      accel: "vaapi"
+      accelDecode: true
       acceptedVideoCodecs:
         - h264
-        - libx265
-      targetVideoCodec: libx265
-      crf: 28
+        - hevc
+        - vp9
     trash:
       enabled: true
       days: 30
