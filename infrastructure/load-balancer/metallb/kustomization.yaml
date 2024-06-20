@@ -7,6 +7,3 @@ configMapGenerator:
       - values.yaml
 resources:
   - metallb.yaml
-labels:
-  - pairs:
-      toolkit.fluxcd.io/tenant: sre-team
