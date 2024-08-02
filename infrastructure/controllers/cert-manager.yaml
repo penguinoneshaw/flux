@@ -32,9 +32,6 @@ spec:
         namespace: cert-manager
       interval: 12h
   values:
-    installCRDs: true
-    cainjector:
-      podAnnotations:
-        linkerd.io/inject: "enabled"
-    podAnnotations:
-      linkerd.io/inject: "enabled"
+    crds:
+      enabled: true
+      keep: true
