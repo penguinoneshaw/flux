@@ -39,6 +39,7 @@ immich:
     ffmpeg:
       accel: "vaapi"
       accelDecode: true
+      preset: "medium"
       acceptedVideoCodecs:
         - h264
         - hevc
