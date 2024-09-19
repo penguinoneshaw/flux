@@ -157,14 +157,6 @@ persistence:
         server: nfs.home.thephysicsflat.xyz
         path: /srv/media
 
-  books:
-    enabled: true
-    type: nfs
-    mountPath: /books
-    server: nfs.home.thephysicsflat.xyz
-    path: /srv/books/Books
-    readonly: true
-
 # -- Non-sensitive environment variables to be set in the pods. See the [application docs](https://docs.linuxserver.io/images/docker-jellyfin)
 env:
   PUID: "1000"
@@ -181,10 +173,17 @@ dnsConfig: {}
 dnsPolicy: ClusterFirst
 
 # -- Arbitrary extra volume definitions for the pod
-extraVolumes: []
+extraVolumes:
+  - name: books
+    nfs:
+      server: nfs.home.thephysicsflat.xyz
+      path: /srv/books/Books
+      readonly: true
 
 # -- Arbitrary extra volume mounts for the pod
-extraVolumeMounts: {}
+extraVolumeMounts:
+  - name: books
+    mountPath: /data/books
 
 # -- Pod liveness probe
 livenessProbe: {}
