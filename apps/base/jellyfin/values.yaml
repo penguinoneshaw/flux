@@ -85,6 +85,7 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
     nginx.ingress.kubernetes.io/proxy-buffering: "on"
+
   # -- Ingress hosts configuration
   # @default -- see [values.yaml](values.yaml)
   hosts:

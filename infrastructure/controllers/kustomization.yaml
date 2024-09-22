@@ -8,6 +8,7 @@ resources:
   - nfs-provisioner
   - flux-notifications
   - amdgpu-labeller.yaml
+  - generic-device-plugin
   # - tailscale
   #- ./weave
 configurations:
