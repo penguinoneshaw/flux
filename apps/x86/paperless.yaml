@@ -25,3 +25,21 @@ spec:
     - secretName: paperless-tls
       hosts:
         - paperless.x86.thephysicsflat.xyz
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: paperless-tailscale
+  namespace: paperless
+  labels:
+    name: paperless
+spec:
+  ingressClassName: tailscale
+  defaultBackend:
+    service:
+      name: paperless
+      port:
+        number: 8000
+  tls:
+    - hosts:
+        - paperless
