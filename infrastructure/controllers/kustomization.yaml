@@ -9,7 +9,7 @@ resources:
   - flux-notifications
   - amdgpu-labeller.yaml
   - generic-device-plugin
-  # - tailscale
+  - tailscale
   #- ./weave
 configurations:
   - kustomizeconfig.yaml
