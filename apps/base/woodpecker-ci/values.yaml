@@ -188,8 +188,9 @@ server:
 
   # -- Add environment variables for the server component
   env:
-    WOODPECKER_ADMIN: "woodpecker,admin,penguinoneshaw"
+    WOODPECKER_ADMIN: "penguinoneshaw"
     WOODPECKER_ORGS: "ScoTechWorkers"
+    WOODPECKER_REPO_OWNERS: "penguinoneshaw"
     WOODPECKER_HOST: "https://woodpecker.thephysicsflat.xyz"
     WOODPECKER_GITEA: "true"
     WOODPECKER_GITEA_URL: "https://codeberg.org"
