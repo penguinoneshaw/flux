@@ -10,6 +10,7 @@ resources:
   - amdgpu-labeller.yaml
   - generic-device-plugin
   - tailscale
+  - prometheus
   #- ./weave
 configurations:
   - kustomizeconfig.yaml

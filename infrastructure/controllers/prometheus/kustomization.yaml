@@ -1,0 +1,9 @@
+configMapGenerator:
+  - name: prometheus-values
+    namespace: prometheus
+    files:
+      - values.yaml
+
+resources:
+  - repository.yaml
+  - release.yaml
