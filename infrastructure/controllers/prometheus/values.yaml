@@ -1267,7 +1267,7 @@ kubelet:
     ## Attach metadata to discovered targets. Requires Prometheus v2.45 for endpoints created by the operator.
     ##
     attachMetadata:
-      node: false
+      node: true
 
     ## Scrape interval. If not set, the Prometheus default scrape interval is used.
     ##
@@ -3266,11 +3266,11 @@ prometheus:
   #     someoneelse:$apr1$DMZX2Z4q$6SbQIfyuLQd.xmo/P0m2c.
 
   ingress:
-    enabled: false
+    enabled: true
 
     # For Kubernetes >= 1.18 you should specify the ingress-controller via the field ingressClassName
     # See https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/#specifying-the-class-of-an-ingress
-    # ingressClassName: nginx
+    ingressClassName: tailscale
 
     annotations: {}
     labels: {}
@@ -3283,7 +3283,8 @@ prometheus:
     ##
     # hosts:
     #   - prometheus.domain.com
-    hosts: []
+    hosts:
+      - prometheus
 
     ## Paths to use for ingress rules - one path should match the prometheusSpec.routePrefix
     ##
@@ -3298,10 +3299,9 @@ prometheus:
     ## Secret must be manually created in the namespace
     ##
     tls:
-      []
-      # - secretName: prometheus-general-tls
-      #   hosts:
-      #     - prometheus.example.com
+      - secretName: prometheus-general-tls
+        hosts:
+          - prometheus
 
   ## Configuration for creating an Ingress that will map to each Prometheus replica service
   ## prometheus.servicePerReplica must be enabled
