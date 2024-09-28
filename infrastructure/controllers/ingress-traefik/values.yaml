@@ -401,7 +401,7 @@ metrics:
     disableAPICheck:
     serviceMonitor:
       # -- Enable optional CR for Prometheus Operator. See EXAMPLES.md for more details.
-      enabled: false
+      enabled: true
       metricRelabelings:
       relabelings:
       jobLabel:
@@ -469,7 +469,7 @@ metrics:
   #    # addServicesLabels: false
   otlp:
     # -- Set to true in order to enable the OpenTelemetry metrics
-    enabled: false
+    enabled: true
     # -- Enable metrics on entry points. Default: true
     addEntryPointsLabels:
     # -- Enable metrics on routers. Default: false

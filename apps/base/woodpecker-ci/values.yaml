@@ -252,8 +252,7 @@ server:
 
   # -- Add pod annotations
   podAnnotations:
-    {}
-    # prometheus.io/scrape: "true"
+    prometheus.io/scrape: "true"
 
   # -- Add pod security context
   podSecurityContext:
