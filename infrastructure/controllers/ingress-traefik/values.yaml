@@ -394,7 +394,7 @@ metrics:
     # manualRouting: true
     service:
       # -- Create a dedicated metrics service to use with ServiceMonitor
-      enabled:
+      enabled: true
       labels:
       annotations:
     # -- When set to true, it won't check if Prometheus Operator CRDs are deployed
@@ -810,12 +810,6 @@ autoscaling:
     - type: Resource
       resource:
         name: cpu
-        target:
-          type: Utilization
-          averageUtilization: 40
-    - type: Resource
-      resource:
-        name: memory
         target:
           type: Utilization
           averageUtilization: 40
