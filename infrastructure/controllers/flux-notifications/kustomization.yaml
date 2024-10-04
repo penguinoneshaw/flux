@@ -2,3 +2,5 @@ resources:
   - token.yaml
   - provider.yaml
   - alert.yaml
+  - receiver.yaml
+  - webhook-token.yaml
