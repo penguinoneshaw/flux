@@ -3641,8 +3641,8 @@ prometheus:
     ## If null, exclude the field from the prometheusSpec (keeping downward compatibility with older versions of CRD)
     ##
     serviceMonitorSelector:
-      matchLabels:
-        release: "{{ $.Release.Name }}"
+      {}
+      # release: "{{ $.Release.Name }}"
     ## Example which selects ServiceMonitors with label "prometheus" set to "somelabel"
     # serviceMonitorSelector:
     #   matchLabels:
