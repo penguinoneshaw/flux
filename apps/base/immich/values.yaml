@@ -4,6 +4,7 @@
 ## Refer there for more detail about the supported values
 
 # These entries are shared between all the Immich components
+
 env:
   REDIS_HOSTNAME: '{{ printf "%s-redis-master" .Release.Name }}'
   DB_HOSTNAME: "{{ .Release.Name }}-postgresql"
@@ -14,7 +15,7 @@ env:
   IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
 image:
-  tag: v1.112.0
+  tag: v1.117.0
 
 immich:
   metrics:
@@ -71,6 +72,8 @@ postgresql:
         database: immich
         password: immich
   primary:
+    containerSecurityContext:
+      readOnlyRootFilesystem: false
     initdb:
       scripts:
         create-extensions.sql: |
