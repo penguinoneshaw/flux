@@ -49,9 +49,9 @@ env:
   - name: PAPERLESS_REDIS
     value: redis://keydb:6379
   - name: PAPERLESS_CSRF_TRUSTED_ORIGINS
-    value: https://paperless.x86.thephysicsflat.xyz
+    value: https://paperless.x86.thephysicsflat.xyz,https://*.ts.net,https://paperless
   - name: PAPERLESS_CORS_ALLOWED_HOSTS
-    value: https://paperless.x86.thephysicsflat.xyz
+    value: https://paperless.x86.thephysicsflat.xyz,https://*.ts.net,https://paperless
   - name: PAPERLESS_TIKA_ENABLED
     value: "true"
   - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
