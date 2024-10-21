@@ -66,6 +66,14 @@ env:
     value: "true"
   - name: PAPERLESS_TASK_WORKERS
     value: "4"
+  - name: PAPERLESS_APPS
+    value: "allauth.socialaccount.providers.openid_connect"
+  - name: PAPERLESS_SOCIALACCOUNT_PROVIDERS
+    valueFrom:
+      secretKeyRef:
+        name: paperless-auth-config
+        key: social_providers
+
 ports:
   http:
     # -- Enable the port inside the `Deployment` and `Service` objects.

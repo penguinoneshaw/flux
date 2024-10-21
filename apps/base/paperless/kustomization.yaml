@@ -16,5 +16,6 @@ configMapGenerator:
     name: tika-values
     namespace: paperless
 resources:
+  - paperless-auth-config.yaml
   - regcred.yaml
   - release.yaml

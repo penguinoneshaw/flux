@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: paperless-auth-config
+    namespace: paperless
+type: Opaque
+data:
+    social_providers: ENC[AES256_GCM,data:gfzVgELa5U3S6bSZhAzbvRZvdI4IWyDtJkxRCFl4bpKOdQQRmaZ7soDaCC/FD1cri1TBgw+htDETpHnmEtGErdFlbDQVtXLVovLV1ZIGXaypoqTmWhp273FSLv9EbWiMkSqvYoiF4yIhNidvPw/QJGKc43TkBNdSCIx8vo/SmMItlRdhUssAQdgrjoF3BhaUFaM2K+CtBpJWlymI1FrOBMPhkyixoXdXq4P615n1SxZz0KQuAAwOl9BW2ZpA5q6WtYvE6SjbEqQHafTZIpO1mnf9628vE72bAhYeNwZpmy70yyg6wzn+2jC5BqbF482/Yq+9FfAY4UOPma1cQvES8bP22NIbFU8185e8ygBM4vTNlXI4GmL0i9J6mYa/ewh5qSI/POmNsGiJoZ8mxOoMefAh0DHBpwSZD/S5x6pORf75stBa6S0gbx3qYJ/dL6d/zKw7piC6+sW+Ti+BIU8rPZbtD6CbpLmwWWL42qntzxbNc15T+a00jEHd6kG57iFjT/oKYEklUI7OQgTpIvuKsqFnoJ5qxrzRS5zxPGyOAvjp2AzD0wsF/brgbRqtRQHUAPxaCXXXhEDUy7qbYzCT2A42USMpTiPFpibvAeqHhvKKEBQdXc+x4kZ0NxtsHrLdhSLFYA==,iv:O1q79ebpoFgb+UzB0wab15WxFXu0RhugVRLKAHLokjw=,tag:xGWrCvmadM3THmVAXbKtfw==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwVEtFeHFzM0JReUZVU3NN
+            OHhJQkkyTjVJbjlXTGlkczBtb0JXai9oYVFvCmw1N3EvRW5sS2FlcXcxYUdTSDho
+            NmRNR3RSWHQ5eUduUVVVdnQxSEUya3cKLS0tIERpTDIyRFFxUUpMcm9hYUY4TFFk
+            TjlkOWpDWjBwc2ljNTYrcllxdjJBWGsKilCJhM647t5+ZVU0tfG7fP2Nw+ZAjuor
+            0ZZar8PHst9RikopgCDZXZ9PyAfyZVdbnd9a0rESItsmlu6rAR9i8w==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2024-10-21T23:11:48Z"
+    mac: ENC[AES256_GCM,data:G+RJhKZQ51bHSoZP3lysTEp5ZE1qx1eDHt71gBqUjqb4XNPmJFci+8bX/gN94EWA7Cu1fWQpgqnwEBIXCTlQE4uSRXdqs4ba/ot7+L7aRsOv++89QOA8SzkOMcuuVNqNE5TQS+LaApQdN2ShqFQhkm8AazkUuBXYXPOHQTMwmqE=,iv:Ma4YkbsbYYlEFAgKl0EB39XPJq1KnrFUtq/+ocY/Lik=,tag:qbnByX8DnEl9k08ncwn2mw==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.8.1
