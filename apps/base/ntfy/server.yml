@@ -129,7 +129,7 @@ attachment-cache-dir: "/var/cache/ntfy/attachments"
 # - smtp-sender-user/smtp-sender-pass are the username and password of the SMTP user (leave blank for no auth)
 #
 # smtp-sender-addr:
-# smtp-sender-from:
+smtp-sender-addr: smtppro.zoho.eu
 # smtp-sender-user:
 # smtp-sender-pass:
 
