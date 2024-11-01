@@ -15,6 +15,7 @@ spec:
         name: immich
         namespace: immich
   interval: 30m
+  timeout: 1h
   valuesFrom:
     - kind: ConfigMap
       name: immich-values

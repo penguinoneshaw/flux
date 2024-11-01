@@ -17,6 +17,13 @@ spec:
         kind: HelmRepository
         name: pascaliske
         namespace: default
+  dependsOn:
+    - name: keydb
+      namespace: paperless
+    - name: tika
+      namespace: paperless
+    - name: gotenberg
+      namespace: paperless
   interval: 1m0s
   valuesFrom:
     - kind: ConfigMap
@@ -56,6 +63,7 @@ spec:
         name: maikumori
         namespace: default
   interval: 1m0s
+  timeout: 3h
   valuesFrom:
     - kind: ConfigMap
       name: gotenberg-values

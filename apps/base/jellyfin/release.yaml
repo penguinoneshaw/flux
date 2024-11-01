@@ -13,6 +13,7 @@ spec:
         kind: HelmRepository
         name: utkuozdemir
         namespace: jellyfin
+  targetNamespace: jellyfin
   interval: 60m0s
   valuesFrom:
     - kind: ConfigMap
