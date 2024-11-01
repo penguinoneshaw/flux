@@ -9,6 +9,7 @@ resources:
   - ../base/homer
   - ../base/jellyfin
   - ./paperless.yaml
+  - ../base/emqx
   - ../base/home-assistant
   - ../base/audiobookshelf
   - ../base/calibre-web

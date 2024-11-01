@@ -1,0 +1,9 @@
+resources:
+  - namespace.yaml
+  - repository.yaml
+  - release.yaml
+configMapGenerator:
+  - name: emqx-operator-values
+    namespace: emqx-operator
+    files:
+      - values.yaml

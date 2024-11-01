@@ -1,0 +1,20 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: emqx-operator
+  namespace: emqx-operator
+spec:
+  releaseName: emqx-operator
+  chart:
+    spec:
+      chart: emqx-operator
+      version: "2.2.25"
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: emqx
+        namespace: emqx-operator
+  interval: 30m
+  valuesFrom:
+    - kind: ConfigMap
+      name: emqx-operator-values
