@@ -17,12 +17,6 @@ env:
 image:
   tag: v1.119.1
 
-global:
-  resources:
-    limits:
-      cpu: 200m
-      memory: 2Gi
-
 immich:
   metrics:
     # Enabling this will create the service monitors needed to monitor immich with the prometheus operator
@@ -35,12 +29,10 @@ immich:
       existingClaim: immich-data
   resources:
     limits:
-      cpu: 100m
-      memory: 2Gi
+      cpu: 4
+      memory: 4Gi
     requests:
       memory: 500Mi
-  nodeSelector:
-    kubernetes.io/arch: amd64
   # configuration is immich-config.json converted to yaml
   # ref: https://immich.app/docs/install/config-file/
   #
@@ -79,6 +71,8 @@ postgresql:
         username: immich
         database: immich
         password: immich
+  nodeSelector:
+    kubernetes.io/arch: amd64
   primary:
     containerSecurityContext:
       readOnlyRootFilesystem: false
@@ -104,6 +98,8 @@ server:
     pullPolicy: IfNotPresent
   resources:
     amd.com/gpu: 1
+  nodeSelector:
+    kubernetes.io/arch: amd64
   ingress:
     main:
       enabled: true
@@ -129,6 +125,8 @@ machine-learning:
     pullPolicy: IfNotPresent
   env:
     TRANSFORMERS_CACHE: /cache
+  nodeSelector:
+    kubernetes.io/arch: amd64
   persistence:
     cache:
       enabled: true

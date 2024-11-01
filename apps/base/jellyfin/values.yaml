@@ -100,10 +100,14 @@ ingress:
 
 # -- The resource requests and limits of the container
 resources:
-  amd.com/gpu: 1
+  requests:
+    amd.com/gpu: 1
+  limits:
+    amd.com/gpu: 1
 
 # -- The node selector for the deployment
-nodeSelector: {}
+nodeSelector:
+  kubernetes.io/arch: amd64
 
 # -- Tolerations for the pod assignment
 tolerations: []
