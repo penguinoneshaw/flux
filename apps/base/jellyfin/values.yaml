@@ -54,8 +54,7 @@ serviceAccount:
   name: ""
 
 # -- Annotations for the pods
-podAnnotations:
-  linkerd.io/inject: enabled
+podAnnotations: {}
 
 # -- Security context for the pods
 podSecurityContext: {}
