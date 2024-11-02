@@ -1,0 +1,23 @@
+apiVersion: apps.emqx.io/v2beta1
+kind: EMQX
+metadata:
+  name: emqx
+  namespace: home-assistant
+spec:
+  image: emqx:5
+  listenersServiceTemplate:
+    enabled: true
+    spec:
+      type: LoadBalancer
+      loadBalancerIP: "10.1.11.3"
+    metadata:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: home-assistant
+  dashboardServiceTemplate:
+    enabled: true
+    spec:
+      type: LoadBalancer
+      loadBalancerIP: "10.1.11.3"
+    metadata:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: home-assistant
