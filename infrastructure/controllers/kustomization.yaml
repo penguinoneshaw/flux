@@ -11,6 +11,7 @@ resources:
   - generic-device-plugin
   - tailscale
   - prometheus
+  - secret-reflector.yaml
   #- ./weave
 configurations:
   - kustomizeconfig.yaml
