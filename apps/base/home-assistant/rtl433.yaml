@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtl433
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: rtl433
+  template:
+    metadata:
+      labels:
+        app: rtl433
+    spec:
+      containers:
+        - name: rtl433
+          image: ghcr.io/hertzg/rtl_433_docker
+          imagePullPolicy: Always
+          envFrom:
+            - secretRef:
+                name: rtl433-config
+              prefix: RTL_433_
+          args:
+            - "-F"
+            - "mqtt://emqx-listeners.home-assistant.svc.cluster.local:1883,user=rtl433,pass=$(RTL_433_PASSWORD),retain=1"
+            - "-Y"
+            - "squelch"
+            - "-Y"
+            - "autolevel"
+            - "-C"
+            - "si"
+            - "-M"
+            - "time:unix:usec:utc"
+            - "-F"
+            - log
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+              squat.ai/dvb-t: "1"
