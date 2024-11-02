@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - metallb.yaml
   - cert-manager.yaml
+  - emqx
   - ingress-nginx.yaml
   - ingress-traefik
   - nfs-provisioner
