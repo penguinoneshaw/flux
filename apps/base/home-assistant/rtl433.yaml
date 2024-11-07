@@ -23,7 +23,7 @@ spec:
               prefix: RTL_433_
           args:
             - "-F"
-            - "mqtt://$(EMQX_LISTENERS_SERVICE_HOST):$(EMQX_LISTENERS_SERVICE_PORT),user=rtl433,pass=$(RTL_433_PASSWORD),retain=1"
+            - "mqtts://$(EMQX_LISTENERS_SERVICE_HOST):$(EMQX_LISTENERS_SERVICE_PORT),user=rtl433,pass=$(RTL_433_PASSWORD),retain=1"
             - "-Y"
             - "squelch"
             - "-Y"
