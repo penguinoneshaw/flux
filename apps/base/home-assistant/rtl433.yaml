@@ -23,7 +23,7 @@ spec:
               prefix: RTL_433_
           args:
             - "-F"
-            - "mqtt://emqx-listeners.home-assistant.svc.cluster.local:1883,user=rtl433,pass=$(RTL_433_PASSWORD),retain=1"
+            - "mqtt://$(EMQX_LISTENERS_SERVICE_HOST):$(EMQX_LISTENERS_SERVICE_PORT),user=rtl433,pass=$(RTL_433_PASSWORD),retain=1"
             - "-Y"
             - "squelch"
             - "-Y"
