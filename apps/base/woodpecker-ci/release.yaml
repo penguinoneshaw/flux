@@ -21,3 +21,21 @@ spec:
   upgrade:
     force: true
     crds: CreateReplace
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: woodpecker
+  namespace: woodpecker
+spec:
+  endpoints:
+    - interval: 30s
+      port: http
+      scheme: http
+      bearerTokenSecret:
+        key: password
+        name: woodpecker-prometheus-token
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: woodpecker
+      app.kubernetes.io/name: server

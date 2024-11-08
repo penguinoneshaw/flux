@@ -195,6 +195,7 @@ server:
     WOODPECKER_GITEA: "true"
     WOODPECKER_GITEA_URL: "https://codeberg.org"
     TZ: "Europe/London"
+    WOODPECKER_PROMETHEUS_AUTH_TOKEN_FILE: "/run/secrets/prometheus-config/password"
 
     # WOODPECKER_GITHUB: "true"
 
@@ -207,7 +208,9 @@ server:
 
   # -- Additional volumes that can be mounted in containers
   extraVolumes:
-    []
+    - name: prometheus-config
+      secret:
+        secretName: woodpecker-prometheus-token
     # - name: docker-config
     #   configMap:
     #     name: docker-config
@@ -217,7 +220,9 @@ server:
 
   # -- Additional volumes that will be attached to the agent container
   extraVolumeMounts:
-    []
+    - name: prometheus-config
+      mountPath: "/run/secrets/prometheus-config"
+
     # - name: ca-certs
     #   mountPath: /etc/ssl/certs/ca-certificates.crt
 
@@ -252,7 +257,7 @@ server:
 
   # -- Add pod annotations
   podAnnotations:
-    prometheus.io/scrape: "true"
+  #   prometheus.io/scrape: "true"
 
   # -- Add pod security context
   podSecurityContext:
