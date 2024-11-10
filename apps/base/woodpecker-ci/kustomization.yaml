@@ -1,7 +1,6 @@
 resources:
   - woodpecker-configs-gitea.yaml
   - woodpecker-configs-agents.yaml
-  - woodpecker-config-prometheus.yaml
   - namespace.yaml
   - repository.yaml
   - release.yaml

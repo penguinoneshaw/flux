@@ -328,3 +328,15 @@ server:
 
   # -- Overrides the default DNS configuration
   dnsConfig: {}
+
+  prometheus:
+    podmonitor:
+      enabled: true
+    rules:
+      # -- deploy prometheus-rules
+      enabled: false
+  metrics:
+    enabled: true
+
+  grafana:
+    enabled: true

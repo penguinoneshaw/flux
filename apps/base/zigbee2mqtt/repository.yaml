@@ -1,0 +1,7 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: andrenarchy
+spec:
+  interval: 60m
+  url: https://andrenarchy.github.io/helm-charts/

@@ -1,0 +1,10 @@
+resources:
+  - "namespace.yaml"
+  - "repository.yaml"
+  - "release.yaml"
+configMapGenerator:
+  - name: zigbee2mqtt-values
+    namespace: zigbee2mqtt
+    files:
+      - values.yaml
+namespace: zigbee2mqtt
