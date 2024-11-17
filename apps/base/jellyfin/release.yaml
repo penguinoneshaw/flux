@@ -85,3 +85,99 @@ spec:
     requests:
       storage: 64Gi
   volumeName: jellyfin-books
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subgen
+  namespace: jellyfin
+spec:
+  selector:
+    matchLabels:
+      app: subgen
+  template:
+    metadata:
+      labels:
+        app: subgen
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+      containers:
+        - name: subgen
+          image: mccloud/subgen
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "8Gi"
+              cpu: "2"
+          ports:
+            - containerPort: 9000
+              name: webhook
+          env:
+            - name: "WHISPER_MODEL"
+              value: "medium"
+            - name: "WHISPER_THREADS"
+              value: "4"
+            - name: "PROCADDEDMEDIA"
+              value: "True"
+            - name: "PROCMEDIAONPLAY"
+              value: "True"
+            - name: "NAMESUBLANG"
+              value: "aa"
+            - name: "SKIPIFINTERNALSUBLANG"
+              value: "eng"
+            - name: "JELLYFINTOKEN"
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: jellyfin-token
+                  optional: true
+            - name: "JELLYFINSERVER"
+              value: "http://jellyfin-jellyfin.jellyfin:8096"
+            - name: "WEBHOOKPORT"
+              value: "9000"
+            - name: "CONCURRENT_TRANSCRIPTIONS"
+              value: "2"
+            - name: "WORD_LEVEL_HIGHLIGHT"
+              value: "False"
+            - name: "TRANSCRIBE_DEVICE"
+              value: "cpu"
+            - name: "CLEAR_VRAM_ON_COMPLETE"
+              value: "True"
+            - name: "MODEL_PATH"
+              value: "./models"
+            - name: "UPDATE"
+              value: "False"
+            - name: "APPEND"
+              value: "False"
+            - name: "USE_MODEL_PROMPT"
+              value: "False"
+            - name: "CUSTOM_MODEL_PROMPT"
+              value: ""
+            - name: "LRC_FOR_AUDIO_FILES"
+              value: "True"
+            - name: "CUSTOM_REGROUP"
+              value: "cm_sl=84_sl=42++++++1"
+          volumeMounts:
+            - mountPath: /media/media
+              name: media
+            - mountPath: /subgen/models
+              name: models
+      volumes:
+        - name: models
+          emptyDir: {}
+        - name: media
+          persistentVolumeClaim:
+            claimName: jellyfin-media
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: subgen
+  namespace: jellyfin
+spec:
+  selector:
+    app: subgen
+  ports:
+    - port: 9000
+      targetPort: webhook
