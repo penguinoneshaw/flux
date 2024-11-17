@@ -1,218 +1,228 @@
-# -- Number of replicas to run. Chart is not designed to scale horizontally, use at your own risk
-replicaCount: 1
+# yaml-language-server: $schema=https://raw.githubusercontent.com/djjudas21/charts/refs/heads/main/charts/jellyfin/values.schema.json
 
-# -- Use host network
-hostNetwork: false
+# Default values for jellyfin
+global:
+  # -- Labels to apply to all resources.
+  commonLabels: {}
+  # -- Enable global debug mode
+  debug: false
+  # -- Reference to one or more secrets to be used when pulling images
+  #    (https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)
+  imagePullSecrets: []
+  # -- Global Docker image registry
+  imageRegistry: ""
 
-port: 8096
-hostPort:
-  # -- Use host port for the application
-  enabled: false
-  # -- Host port to bind to
-  port: 8096
-
-# -- Additional port definitions for the pod
-additionalPorts:
-  []
-  # - name: tcp-8920
-  #   containerPort: 8920
-  #   protocol: TCP
-  #   hostPort: 8920
-  # - name: udp-1900
-  #   containerPort: 1900
-  #   protocol: UDP
-  #   hostPort: 1900
-  # - name: udp-7359
-  #   containerPort: 7359
-  #   protocol: UDP
-  #   hostPort: 7359
-
-# -- Additional port definitions for the service
-additionalServicePorts: []
-
-image:
-  # -- Image repository
-  repository: docker.io/linuxserver/jellyfin
-  # -- Image pull policy
-  pullPolicy: IfNotPresent
-  # -- Image tag (if not specified, defaults to the chart's appVersion)
-  tag: "10.10.2"
-
-# -- Image pull secrets
-imagePullSecrets: []
-# -- String to partially override fullname template with a string (will prepend the release name)
+# -- String to partially override `common.names.fullname` template (will maintain the release name)
 nameOverride: ""
-# -- String to fully override fullname template with a string
+# -- String to fully override `common.names.fullname` template
 fullnameOverride: ""
 
-serviceAccount:
-  # -- Specifies whether a service account should be created
-  create: true
-  # -- Annotations to add to the service account
-  annotations: {}
-  # -- The name of the service account to use. If not set and create is true, a name is generated using the fullname template
-  name: ""
+images:
+  jellyfin:
+    # -- jellyfin image registry (optional)
+    registry: ""
+    # -- jellyfin image repository
+    repository: jellyfin/jellyfin
+    # -- jellyfin image tag (immutable tags are recommended)
+    tag: ""
+    # -- jellyfin image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
+    digest: ""
+    # -- jellyfin image pull policy
+    pullPolicy: IfNotPresent
 
-# -- Annotations for the pods
+# -- Additional annotations to apply to the pod.
 podAnnotations: {}
 
-# -- Security context for the pods
-podSecurityContext: {}
+# -- Additional labels to be added to pods.
+podLabels: {}
 
-# -- Security context for the container. NET_ADMIN capability is required for the VPN to work properly.
-securityContext:
-  capabilities:
-    add:
-      - NET_ADMIN
+# -- Number of pods. (_**It's not recommended to add more instance of jellyfin**_)
+#    NOTE: replicaCount are "disabled" because Jellyfin currently not handle HA
+# replicaCount: 1
 
-# -- Deployment strategy
-strategy:
-  type: Recreate
+# -- Set up update strategy for jellyfin installation. Set to `Recreate` if you use persistent volume
+#    that cannot be mounted by more than one pods to make sure the pods is destroyed first.
+#    (https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy)
+strategy: {}
+# example:
+#   strategy:
+#     type: RollingUpdate
+#     rollingUpdate:
+#       maxSurge: 25%
+#       maxUnavailable: 25%
 
-service:
-  # -- Type of the service
-  type: ClusterIP
-  # -- Port for the service to use
-  port: 8096
-
-ingress:
-  # -- Expose the app using an ingress
-  enabled: true
-  # -- Ingress class name
-  className: nginx
-  # -- Annotations for the ingress
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-    nginx.ingress.kubernetes.io/proxy-buffering: "on"
-
-  # -- Ingress hosts configuration
-  # @default -- see [values.yaml](values.yaml)
-  hosts:
-    - host: jellyfin.thephysicsflat.xyz
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  # -- The TLS configuration for the Ingress
-  tls:
-    - secretName: jellyfin-tls
-      hosts:
-        - "jellyfin.thephysicsflat.xyz"
-
-# -- The resource requests and limits of the container
-resources:
-  requests:
-    amd.com/gpu: 1
-  limits:
-    amd.com/gpu: 1
-
-# -- The node selector for the deployment
+# -- Node labels for pod assignment
 nodeSelector:
+  kubernetes.io/os: linux
   kubernetes.io/arch: amd64
 
-# -- Tolerations for the pod assignment
-tolerations: []
-
-# -- Affinity for the pod assignment
+# expects input structure as per specification
+# -- Affinity for pod assignment (https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#affinity-v1-core)
 affinity: {}
+# example:
+#   affinity:
+#     nodeAffinity:
+#      requiredDuringSchedulingIgnoredDuringExecution:
+#        nodeSelectorTerms:
+#        - matchExpressions:
+#          - key: foo.bar.com/role
+#            operator: In
+#            values:
+#            - master
+
+# -- Tolerations for pod assignment (https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#toleration-v1-core)
+tolerations: []
+# example:
+#   tolerations:
+#   - key: foo.bar.com/role
+#     operator: Equal
+#     value: master
+#     effect: NoSchedule
+
+# -- Topology Spread Constraints for pod assignment
+#    (https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.24/#topologyspreadconstraint-v1-core)
+topologySpreadConstraints: []
+# example:
+#   topologySpreadConstraints:
+#   - maxSkew: 2
+#     topologyKey: topology.kubernetes.io/zone
+#     whenUnsatisfiable: ScheduleAnyway
+#     labelSelector:
+#       matchLabels:
+#         app.kubernetes.io/instance: jellyfin
+#         app.kubernetes.io/component: dashboard
+
+resources:
+  jellyfin:
+    # -- The requested resources for the container
+    requests:
+      cpu: 500m
+      memory: 512Mi
+    # -- The resources limits for the container
+    limits:
+      cpu: "2"
+      memory: 6Gi
+      amd.com/gpu: 1
+
+# -- Security context for the pod (https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
+podSecurityContext:
+  runAsGroup: 1000
+  runAsNonRoot: true
+  runAsUser: 1000
+  fsGroup: 1000
+  seccompProfile:
+    type: RuntimeDefault
+
+# -- Security context for the jellyfin container
+#    (https://kubernetes.io/docs/tasks/configure-pod-container/security-context/)
+containerSecurityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+      - ALL
+  readOnlyRootFilesystem: true
+  runAsGroup: 1000
+  runAsNonRoot: true
+  runAsUser: 1000
 
 persistence:
   config:
-    # -- Config: Enable persistence
+    # -- Enable configuration persistence using `PVC`. If false, use emptyDir
     enabled: true
-    # -- Config: Persistence type is pvc. When `false`, data volume definition is read from `persistence.config.customVolume`
-    isPvc: true
-    # -- Config: Name of the existing claim to be used for config
-    existingClaim: ""
-    # -- Config: Storage class for the volume
-    storageClass: "nfs-client"
-    # -- Config: Annotations for the claim
-    annotations:
-      helm.sh/resource-policy: keep
-    # -- Config: Access modes for the claim
-    accessModes:
-      - ReadWriteOnce
-    # -- Config: Size for the claim
-    size: 2Gi
-    # -- Config: Alternative data volume definition (e.g. nfs, hostPath). Used when `persistence.config.isPvc` is `false`
-    customVolume:
-      {}
-      # hostPath:
-      #   path: /path/on/host
-  data:
-    # -- Data: Enable persistence
+    # -- Claims that pods are allowed to reference (see
+    #    https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolumeclaim-v1-core
+    #    for structural reference)
+    volumeClaimSpec:
+      storageClass: nfs-client
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
+  cache:
+    # -- Enable cache persistence using `PVC`. If false, use emptyDir
     enabled: true
-    # -- Data: Persistence type is pvc. When `false`, data volume definition is read from `persistence.data.customVolume`
-    isPvc: false
-    # -- Data: Name of the existing claim to be used
-    existingClaim: ""
-    # -- Data: Storage class for the data volume
-    storageClass: ""
-    # -- Data: Annotations for the claim
-    annotations: {}
-    # helm.sh/resource-policy: keep
-    # -- Data: Access modes for the claim
-    accessModes:
-      - ReadWriteOnce
-    # -- Data: Size for the claim
-    size: 64Gi
-    # -- Data: Alternative data volume definition (e.g. nfs, hostPath). Used when `persistence.data.isPvc` is `false`
-    customVolume:
-      nfs:
-        server: nfs.home.thephysicsflat.xyz
-        path: /srv/media
+    # -- Claims that pods are allowed to reference (see
+    #    https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolumeclaim-v1-core
+    #    for structural reference)
+    volumeClaimSpec:
+      storageClass: nfs-ephemeral
+      accessModes:
+        - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
 
-# -- Non-sensitive environment variables to be set in the pods. See the [application docs](https://docs.linuxserver.io/images/docker-jellyfin)
-env:
-  PUID: "1000"
-  PGID: "1000"
-  TZ: "Europe/London"
-  JELLYFIN_PublishedServerUrl: "https://jellyfin.thephysicsflat.xyz"
-# -- Sensitive environment variables to be set in the pods. See the [application docs](https://docs.linuxserver.io/images/docker-jellyfin)
-secretEnv: {}
+service:
+  # -- Service type
+  type: ClusterIP
+  # -- Service Cluster IP
+  clusterIP: ""
+  # -- LoadBalancer IP if service type is `LoadBalancer` (optional, cloud specific)
+  loadBalancerIP: ""
+  # -- Addresses that are allowed when service is `LoadBalancer`
+  loadBalancerSourceRanges: []
+  # -- Enable client source IP preservation
+  externalTrafficPolicy: Cluster
+  # -- Additional annotations for the Service
+  annotations: {}
 
-# -- DNS configuration for the pod
-dnsConfig: {}
+  web:
+    # -- `web` service port
+    port: 8096
+    # -- Specify the nodePort value for the `LoadBalancer` and `NodePort` service types
+    nodePort: 0
 
-# -- DNS policy for the pod
-dnsPolicy: ClusterFirst
+ingress:
+  # -- Enable ingress resource
+  enabled: true
+  # -- IngressClass that will be used to implement the Ingress
+  ingressClassName: "nginx"
+  # -- Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  # -- Default host for the ingress resource
+  hostname: jellyfin.thephysicsflat.xyz
+  # -- The Path to jellyfin. You may need to set this to '/*' in order to use this with ALB ingress controllers.
+  path: /
+  # -- Ingress path type
+  pathType: ImplementationSpecific
+  # -- Enable TLS configuration for the hostname defined at apiIngress.hostname parameter
+  tls: true
+  # -- The list of additional hostnames to be covered with this ingress record.
+  extraHosts: []
+  # -- Any additional paths that may need to be added to the ingress under the main host
+  extraPaths: []
+  # -- The tls configuration for additional hostnames to be covered with this ingress record.
+  extraTls: []
+  # -- Additional rules to be covered with this ingress record
+  extraRules: []
 
-# -- Arbitrary extra volume definitions for the pod
-extraVolumes:
-  - name: books
-    nfs:
-      server: nfs.home.thephysicsflat.xyz
-      path: /srv/books/Books
-      readonly: true
+networkPolicy:
+  # -- Enable the default NetworkPolicy policy
+  enabled: false
+  # -- Don't require client label for connections
+  allowExternal: true
+  # -- Whether to allow all outbound traffic by default.
+  allowAllOutbound: true
+  # -- Sets ingress policy block. See NetworkPolicies documentation (https://kubernetes.io/docs/concepts/services-networking/network-policies/).
+  ingress: []
+  # -- Sets egress policy block. See NetworkPolicies documentation (https://kubernetes.io/docs/concepts/services-networking/network-policies/).
+  egress: []
 
-# -- Arbitrary extra volume mounts for the pod
-extraVolumeMounts:
-  - name: books
-    mountPath: /data/books
+jellyfin:
+  # -- Additional device like GPU to mount
+  extraDevices: []
+  # - /dev/dri/renderD128
 
-# -- Pod liveness probe
-livenessProbe: {}
+  # -- The list of volumes that will be mounted inside jellyfin pod, to `/media`.
+  mediaVolumes:
+    - name: media
+      readOnly: false
+      existingClaim: "jellyfin-media" # use an existing PVC
+    - name: books
+      readOnly: true
+      existingClaim: "jellyfin-books" # use an existing PVC
 
-# -- Pod readiness probe
-readinessProbe:
-  httpGet:
-    port: http
-
-# -- Init containers
-initContainers:
-  []
-  # - name: init
-  #   image: busybox:stable-musl
-  #   command:
-  #     - sh
-  #     - -c
-  #     - echo "initializing..."
-
-# -- Sidecar containers
-sidecarContainers:
-  []
-  # - name: sidecar
-  #   image: busybox:stable-musl
-  #   command:
-  #     - tail
-  #     - -f
-  #     - /dev/null
+  # -- Keep all transcoded files persistent.
+  persistentTranscodes: false
