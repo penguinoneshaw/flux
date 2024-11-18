@@ -115,7 +115,7 @@ spec:
               name: webhook
           env:
             - name: "WHISPER_MODEL"
-              value: "medium"
+              value: "base"
             - name: "WHISPER_THREADS"
               value: "4"
             - name: "PROCADDEDMEDIA"
@@ -137,7 +137,7 @@ spec:
             - name: "WEBHOOKPORT"
               value: "9000"
             - name: "CONCURRENT_TRANSCRIPTIONS"
-              value: "2"
+              value: "1"
             - name: "WORD_LEVEL_HIGHLIGHT"
               value: "False"
             - name: "TRANSCRIBE_DEVICE"
@@ -158,6 +158,8 @@ spec:
               value: "True"
             - name: "CUSTOM_REGROUP"
               value: ""
+            - name: "TRANSCRIBE_FOLDERS"
+              value: "/media/media/music|/media/media/TV"
           volumeMounts:
             - mountPath: /media/media
               name: media
