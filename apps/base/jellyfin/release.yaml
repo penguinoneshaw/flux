@@ -157,7 +157,7 @@ spec:
             - name: "LRC_FOR_AUDIO_FILES"
               value: "True"
             - name: "CUSTOM_REGROUP"
-              value: "cm_sl=84_sl=42++++++1"
+              value: ""
           volumeMounts:
             - mountPath: /media/media
               name: media
