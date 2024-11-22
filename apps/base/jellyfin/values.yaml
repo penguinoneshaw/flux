@@ -134,7 +134,7 @@ persistence:
     #    https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolumeclaim-v1-core
     #    for structural reference)
     volumeClaimSpec:
-      storageClass: nfs-client
+      storageClassName: nfs-client
       accessModes:
         - ReadWriteOnce
       resources:
@@ -147,7 +147,7 @@ persistence:
     #    https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolumeclaim-v1-core
     #    for structural reference)
     volumeClaimSpec:
-      storageClass: nfs-ephemeral
+      storageClassName: nfs-ephemeral
       accessModes:
         - ReadWriteOnce
       resources:

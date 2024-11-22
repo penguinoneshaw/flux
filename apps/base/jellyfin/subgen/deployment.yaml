@@ -1,0 +1,105 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subgen
+  namespace: jellyfin
+spec:
+  selector:
+    matchLabels:
+      app: subgen
+  template:
+    metadata:
+      labels:
+        app: subgen
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: subgen
+          image: mccloud/subgen:cpu
+          imagePullPolicy: Always
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop:
+                - NET_RAW
+          livenessProbe:
+            httpGet:
+              port: webhook
+              path: /
+            successThreshold: 1
+            periodSeconds: 60
+          readinessProbe:
+            httpGet:
+              port: webhook
+              path: /
+            successThreshold: 0
+          resources:
+            limits:
+              memory: "8Gi"
+              cpu: "2"
+            requests:
+              memory: "1Gi"
+              cpu: "500m"
+          ports:
+            - containerPort: 9000
+              name: webhook
+          env:
+            - name: "WHISPER_MODEL"
+              value: "medium"
+            - name: "WHISPER_THREADS"
+              value: "4"
+            - name: "PROCADDEDMEDIA"
+              value: "True"
+            - name: "PROCMEDIAONPLAY"
+              value: "True"
+            - name: "NAMESUBLANG"
+              value: "aa"
+            - name: "SKIPIFINTERNALSUBLANG"
+              value: "eng"
+            - name: "JELLYFINTOKEN"
+              valueFrom:
+                secretKeyRef:
+                  key: token
+                  name: jellyfin-token
+                  optional: true
+            - name: "JELLYFINSERVER"
+              value: "http://jellyfin-jellyfin.jellyfin:8096"
+            - name: "WEBHOOKPORT"
+              value: "9000"
+            - name: "CONCURRENT_TRANSCRIPTIONS"
+              value: "1"
+            - name: "WORD_LEVEL_HIGHLIGHT"
+              value: "False"
+            - name: "TRANSCRIBE_DEVICE"
+              value: "cpu"
+            - name: "CLEAR_VRAM_ON_COMPLETE"
+              value: "True"
+            - name: "MODEL_PATH"
+              value: "./models"
+            - name: "UPDATE"
+              value: "True"
+            - name: "APPEND"
+              value: "False"
+            - name: "USE_MODEL_PROMPT"
+              value: "False"
+            - name: "CUSTOM_MODEL_PROMPT"
+              value: ""
+            - name: "LRC_FOR_AUDIO_FILES"
+              value: "True"
+            - name: "CUSTOM_REGROUP"
+              value: ""
+          volumeMounts:
+            - mountPath: /media/media
+              name: media
+            - mountPath: /subgen/models
+              name: models
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: subgen-models
+        - name: media
+          persistentVolumeClaim:
+            claimName: jellyfin-media
