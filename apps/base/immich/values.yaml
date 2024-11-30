@@ -15,7 +15,7 @@ env:
   IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
 image:
-  tag: v1.119.1
+  tag: v1.121.0
 
 immich:
   metrics:
@@ -58,13 +58,17 @@ immich:
       issuerUrl: https://idm.thephysicsflat.xyz/oauth2/openid/immich
       mobileOverrideEnabled: true
       mobileRedirectUri: "https://immich.thephysicsflat.xyz/api/oauth/mobile-redirect"
+    server:
+      externalDomain: "https://immich.thephysicsflat.xyz"
+    passwordLogin:
+      enabled: false
 # Dependencies
 
 postgresql:
   enabled: true
   image:
     repository: tensorchord/pgvecto-rs
-    tag: pg14-v0.2.0
+    tag: pg14-v0.3.0
   global:
     postgresql:
       auth:
