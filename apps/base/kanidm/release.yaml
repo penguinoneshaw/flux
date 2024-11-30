@@ -15,6 +15,9 @@ kind: Deployment
 metadata:
   name: kanidm
   namespace: kanidm
+  labels:
+    app.kubernetes.io/name: kanidm
+    app.kubernetes.io/instance: kanidm-deployment
 spec:
   selector:
     matchLabels:
@@ -30,7 +33,20 @@ spec:
         - name: kanidm
           image: docker.io/kanidm/server:1.4.3
           args: ["kanidmd", "server", "-c", "/config/server.toml"]
-
+          securityContext:
+            allowPrivilegeEscalation: false
+          imagePullPolicy: Always
+          livenessProbe:
+            initialDelaySeconds: 60
+            httpGet:
+              port: web
+              path: /status
+              scheme: HTTPS
+          readinessProbe:
+            httpGet:
+              port: web
+              path: /status
+              scheme: HTTPS
           volumeMounts:
             - name: config
               mountPath: /config
@@ -45,7 +61,7 @@ spec:
               cpu: 500m
             requests:
               memory: 300Mi
-
+              cpu: 250m
           ports:
             - name: web
               containerPort: 8443
@@ -64,11 +80,14 @@ spec:
             claimName: kanidm-data
 
       securityContext:
+        seccompProfile:
+          type: RuntimeDefault
         runAsNonRoot: true
         runAsUser: 1100
         runAsGroup: 1100
         fsGroup: 1000
         fsGroupChangePolicy: "OnRootMismatch"
+        readOnlyRootFilesystem: true
 
 ---
 apiVersion: v1
