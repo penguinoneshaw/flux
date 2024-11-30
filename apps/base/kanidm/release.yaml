@@ -72,9 +72,11 @@ spec:
         - name: config
           configMap:
             name: kanidm
+            defaultMode: 0660
         - name: tls
           secret:
             secretName: kanidm-ingress-tls
+            defaultMode: 0660
         - name: data
           persistentVolumeClaim:
             claimName: kanidm-data
@@ -85,7 +87,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 1100
         runAsGroup: 1100
-        fsGroup: 1000
+        fsGroup: 1100
         fsGroupChangePolicy: "OnRootMismatch"
         readOnlyRootFilesystem: true
 
