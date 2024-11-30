@@ -85,3 +85,17 @@ spec:
     requests:
       storage: 64Gi
   volumeName: jellyfin-books
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: jellyfin
+  namespace: jellyfin
+spec:
+  podMetricsEndpoints:
+    - port: web
+      path: "/metrics"
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: "jellyfin"
+      app.kubernetes.io/instance: "jellyfin-jellyfin"

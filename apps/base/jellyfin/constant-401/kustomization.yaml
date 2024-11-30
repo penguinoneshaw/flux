@@ -1,0 +1,10 @@
+configMapGenerator:
+  - name: constant-401-caddyfile
+    namespace: jellyfin
+    files:
+      - Caddyfile
+metadata:
+  name: constant-401
+  namespace: jellyfin
+resources:
+  - deployment.yaml
