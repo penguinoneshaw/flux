@@ -56,8 +56,8 @@ serviceDns:
 
   # -- Annotations for the DNS service
   annotations:
-    # metallb.universe.tf/address-pool: network-services
-    metallb.universe.tf/allow-shared-ip: pihole-svc
+    # metallb.io/address-pool: network-services
+    metallb.io/allow-shared-ip: pihole-svc
 
 # -- Configuration for the DHCP service on port 67
 serviceDhcp:
@@ -83,8 +83,8 @@ serviceDhcp:
 
   # -- Annotations for the DHCP service
   annotations:
-    # metallb.universe.tf/address-pool: network-services
-    metallb.universe.tf/allow-shared-ip: pihole-svc
+    # metallb.io/address-pool: network-services
+    metallb.io/allow-shared-ip: pihole-svc
 
 # -- Configuration for the web interface service
 serviceWeb:
@@ -123,8 +123,8 @@ serviceWeb:
 
   # -- Annotations for the DHCP service
   annotations:
-    # metallb.universe.tf/address-pool: network-services
-    metallb.universe.tf/allow-shared-ip: pihole-svc
+    # metallb.io/address-pool: network-services
+    metallb.io/allow-shared-ip: pihole-svc
 
 virtualHost: pihole.home.thephysicsflat.xyz
 

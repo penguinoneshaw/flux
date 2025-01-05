@@ -12,7 +12,7 @@ spec:
       loadBalancerIP: "10.1.11.3"
     metadata:
       annotations:
-        metallb.universe.tf/allow-shared-ip: home-assistant
+        metallb.io/allow-shared-ip: home-assistant
   dashboardServiceTemplate:
     enabled: true
     spec:
@@ -20,4 +20,4 @@ spec:
       loadBalancerIP: "10.1.11.3"
     metadata:
       annotations:
-        metallb.universe.tf/allow-shared-ip: home-assistant
+        metallb.io/allow-shared-ip: home-assistant
