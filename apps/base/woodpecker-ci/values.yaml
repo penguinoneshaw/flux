@@ -206,7 +206,7 @@ server:
 
   # -- Additional volumes that can be mounted in containers
   extraVolumes:
-    {}
+    []
     # - name: docker-config
     #   configMap:
     #     name: docker-config
@@ -216,8 +216,7 @@ server:
 
   # -- Additional volumes that will be attached to the agent container
   extraVolumeMounts:
-    {}
-
+    []
     # - name: ca-certs
     #   mountPath: /etc/ssl/certs/ca-certificates.crt
 
@@ -228,7 +227,7 @@ server:
     # -- Enable the creation of the persistent volume
     enabled: true
     # -- Defines the size of the persistent volume
-    size: 2Gi
+    size: 10Gi
     # -- Defines the path where the volume should be mounted
     mountPath: "/var/lib/woodpecker"
     # -- Defines the storageClass of the persistent volume
@@ -252,7 +251,8 @@ server:
 
   # -- Add pod annotations
   podAnnotations:
-  #   prometheus.io/scrape: "true"
+    {}
+    # prometheus.io/scrape: "true"
 
   # -- Add pod security context
   podSecurityContext:
