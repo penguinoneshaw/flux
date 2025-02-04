@@ -3,11 +3,15 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
+global:
+  # -- Global image pull secrets.
+  imagePullSecrets: []
+
 image:
   # -- Image repository for the `external-dns` container.
   repository: registry.k8s.io/external-dns/external-dns
   # -- (string) Image tag for the `external-dns` container, this will default to `.Chart.AppVersion` if not set.
-  tag: "v0.15.1"
+  tag:
   # -- Image pull policy for the `external-dns` container.
   pullPolicy: IfNotPresent
 
@@ -28,7 +32,7 @@ serviceAccount:
   create: true
   # -- Labels to add to the service account.
   labels: {}
-  # -- Annotations to add to the service account.
+  # -- Annotations to add to the service account. Templates are allowed in both the key and the value. Example: `example.com/annotation/{{ .Values.nameOverride }}: {{ .Values.nameOverride }}`
   annotations: {}
   # -- (string) If this is set and `serviceAccount.create` is `true` this will be used for the created `ServiceAccount` name, if set and `serviceAccount.create` is `false` then this will define an existing `ServiceAccount` to use.
   name:
@@ -226,11 +230,17 @@ txtPrefix:
 # Mutually exclusive with `txtPrefix`.
 txtSuffix:
 
-## - Limit possible target zones by domain suffixes.
+# -- Limit possible target zones by domain suffixes.
 domainFilters: []
 
-## -- Intentionally exclude domains from being managed.
+# -- Intentionally exclude domains from being managed.
 excludeDomains: []
+
+# -- (string) Filter resources queried for endpoints by label selector
+labelFilter:
+
+# -- Record types to manage (default: A, AAAA, CNAME)
+managedRecordTypes: []
 
 provider:
   # -- _ExternalDNS_ provider name; for the available providers and how to configure them see [README](https://github.com/kubernetes-sigs/external-dns/blob/master/charts/external-dns/README.md#providers).

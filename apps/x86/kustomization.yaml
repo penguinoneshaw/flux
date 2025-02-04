@@ -6,7 +6,7 @@ resources:
   - ../base/external-dns
   - ../base/pihole
   - ../base/paperless
-  - ../base/homer
+  # - ../base/homer
   - ../base/jellyfin
   - ./paperless.yaml
   - ../base/home-assistant
