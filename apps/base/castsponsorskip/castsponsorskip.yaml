@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: castsponsorskip
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: castsponsorskip
+spec:
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app: castsponsorskip
+  template:
+    metadata:
+      labels:
+        app: castsponsorskip
+    spec:
+      hostNetwork: true
+      dnsPolicy: ClusterFirstWithHostNet
+      restartPolicy: Always
+      securityContext:
+        runAsNonRoot: true
+      containers:
+        - name: castsponsorskip
+          image: ghcr.io/gabe565/castsponsorskip:latest
+          env:
+            - name: TZ
+              value: "Europe/London"
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          securityContext:
+            readOnlyRootFilesystem: true

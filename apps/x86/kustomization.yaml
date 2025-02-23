@@ -12,6 +12,7 @@ resources:
   - ../base/home-assistant
   - ../base/audiobookshelf
   - ../base/calibre-web
+  - ../base/castsponsorskip
   # - ../base/ihatemoney
   - ../base/vaultwarden
   - ../base/woodpecker-ci
