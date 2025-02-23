@@ -4,5 +4,6 @@ resources:
   - ingress.yaml
   - mqtt.yaml
   - rtl433.yaml
+  - rtl433-sd.yaml
   - rtl_433_secrets.yaml
 namespace: home-assistant

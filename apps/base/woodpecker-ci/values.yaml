@@ -195,6 +195,8 @@ server:
     WOODPECKER_GITEA: "true"
     WOODPECKER_GITEA_URL: "https://codeberg.org"
     TZ: "Europe/London"
+    WOODPECKER_PLUGINS_PRIVILEGED: "woodpeckerci/plugin-docker-buildx"
+
     # WOODPECKER_GITHUB: "true"
 
   # -- Add extra environment variables from the secrets list

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rtl433-sd
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: rtl433-sd
+  template:
+    metadata:
+      labels:
+        app: rtl433-sd
+    spec:
+      containers:
+        - name: rtl433-sd
+          image: codeberg.org/penguinoneshaw/rtl433-service-discovery:latest
+          imagePullPolicy: Always
+          args:
+            - bridge
+            - --disable-tls-check
+          env:
+            - name: RTL_TOPIC
+              value: rtl_433/+/events
+            - name: MQTT_USER
+              value: rtl433-sd
+            - name: MQTT_HOST
+              value: $(EMQX_LISTENERS_SERVICE_HOST)
+            - name: MQTT_PORT
+              value: $(EMQX_LISTENERS_SERVICE_PORT)
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
