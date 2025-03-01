@@ -11,7 +11,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: external-dns
-  interval: 1m0s
+  interval: 60m0s
   valuesFrom:
     - kind: ConfigMap
       name: external-dns-values

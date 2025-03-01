@@ -24,7 +24,7 @@ spec:
       namespace: paperless
     - name: gotenberg
       namespace: paperless
-  interval: 1m0s
+  interval: 60m0s
   valuesFrom:
     - kind: ConfigMap
       name: paperless-values
@@ -43,7 +43,7 @@ spec:
         kind: HelmRepository
         name: gabe565
         namespace: default
-  interval: 1m0s
+  interval: 60m0s
   valuesFrom:
     - kind: ConfigMap
       name: redis-values
@@ -62,7 +62,7 @@ spec:
         kind: HelmRepository
         name: maikumori
         namespace: default
-  interval: 1m0s
+  interval: 60m0s
   timeout: 3h
   valuesFrom:
     - kind: ConfigMap
@@ -82,7 +82,7 @@ spec:
         kind: HelmRepository
         name: tika
         namespace: default
-  interval: 1m0s
+  interval: 60m0s
   valuesFrom:
     - kind: ConfigMap
       name: tika-values

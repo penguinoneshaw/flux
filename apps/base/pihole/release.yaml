@@ -12,7 +12,7 @@ spec:
         kind: HelmRepository
         name: mojo2600
         namespace: pihole
-  interval: 1m0s
+  interval: 60m0s
   valuesFrom:
     - kind: ConfigMap
       name: pihole-values

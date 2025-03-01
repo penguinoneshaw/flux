@@ -12,7 +12,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: kubernetes-dashboard
-  interval: 1m0s
+  interval: 60m0s
   valuesFrom:
     - kind: ConfigMap
       name: kubernetes-dashboard-values
