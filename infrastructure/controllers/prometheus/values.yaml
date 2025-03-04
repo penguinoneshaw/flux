@@ -1043,7 +1043,8 @@ grafana:
 
     ## Labels to be added to the Ingress
     ##
-    labels: {}
+    labels:
+      tailscale.com/proxy-class: default
 
     ## Hostnames.
     ## Must be provided if Ingress is enable.

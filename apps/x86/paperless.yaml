@@ -33,6 +33,7 @@ metadata:
   namespace: paperless
   labels:
     name: paperless
+    tailscale.com/proxy-class: default
 spec:
   ingressClassName: tailscale
   defaultBackend:
