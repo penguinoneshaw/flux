@@ -31,7 +31,7 @@ spec:
     spec:
       containers:
         - name: kanidm
-          image: docker.io/kanidm/server:1.4.3
+          image: docker.io/kanidm/server:1.6.3
           args: ["kanidmd", "server", "-c", "/config/server.toml"]
           securityContext:
             allowPrivilegeEscalation: false
