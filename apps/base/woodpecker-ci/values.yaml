@@ -155,7 +155,7 @@ agent:
       whenUnsatisfiable: "ScheduleAnyway"
       labelSelector:
         matchLabels:
-          "app.kubernetes.io/name": "agent"
+          "app.kubernetes.io/name": woodpecker-agent
 
 server:
   # -- Enable the server component
@@ -201,10 +201,18 @@ server:
 
   # -- Add extra environment variables from the secrets list
   extraSecretNamesForEnvFrom:
-    # - woodpecker-github-client
-    # - woodpecker-github-secret
     - woodpecker-configs-gitea
     - woodpecker-configs-agents
+
+  # whether to create the default WOODPECKER_AGENT_SECRET in woodpecker-default-agent-secret
+  createAgentSecret: false
+  mapAgentSecret: false
+
+  # -- Create a generic secret to store things in, e.g. env values
+  secrets: []
+  # - name: secret
+  #   data:
+  #     key: value
 
   # -- Additional volumes that can be mounted in containers
   extraVolumes:
@@ -244,7 +252,7 @@ server:
 
   serviceAccount:
     # -- Specifies whether a service account should be created
-    create: false
+    create: true
     # -- Annotations to add to the service account
     annotations: {}
     # -- The name of the service account to use.
@@ -326,12 +334,36 @@ server:
   # -- Overrides the default DNS configuration
   dnsConfig: {}
 
+  # -- Configure probe options for container health checking
+  probes:
+    # -- Configure liveness probe options
+    liveness:
+      # -- Number of seconds after which the probe times out (default: 10)
+      timeoutSeconds: 10
+      # -- How often (in seconds) to perform the probe (default: 10)
+      periodSeconds: 10
+      # -- Minimum consecutive successes for the probe to be considered successful after having failed (default: 1)
+      successThreshold: 1
+      # -- When a probe fails, Kubernetes will try failureThreshold times before giving up (default: 3)
+      failureThreshold: 3
+    # -- Configure readiness probe options
+    readiness:
+      # -- Number of seconds after which the probe times out (default: 10)
+      timeoutSeconds: 10
+      # -- How often (in seconds) to perform the probe (default: 10)
+      periodSeconds: 10
+      # -- Minimum consecutive successes for the probe to be considered successful after having failed (default: 1)
+      successThreshold: 1
+      # -- When a probe fails, Kubernetes will try failureThreshold times before giving up (default: 3)
+      failureThreshold: 3
+
   prometheus:
     podmonitor:
       enabled: true
     rules:
       # -- deploy prometheus-rules
       enabled: false
+
   metrics:
     enabled: true
 
