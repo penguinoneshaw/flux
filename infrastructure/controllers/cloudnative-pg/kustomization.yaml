@@ -1,0 +1,9 @@
+resources:
+  - namespace.yaml
+  - repository.yaml
+  - release.yaml
+configMapGenerator:
+  - name: cloudnative-pg-operator-values
+    namespace: cnpg-system
+    files:
+      - values.yaml
