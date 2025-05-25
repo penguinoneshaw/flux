@@ -4,8 +4,11 @@ resources:
   - pvc.yaml
   - release.yaml
   - oauth-secret.yaml
+  - database.yaml
+  - database-secret.yaml
 configMapGenerator:
   - name: immich-values
     namespace: immich
     files:
       - values.yaml
+namespace: immich
