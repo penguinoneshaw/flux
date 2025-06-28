@@ -14,8 +14,8 @@ spec:
         name: traefik
         namespace: traefik-ingress
       interval: 12h
-      install:
-        crds: CreateReplace
+  upgrade:
+    crds: CreateReplace
   valuesFrom:
     - kind: ConfigMap
       name: traefik-values
