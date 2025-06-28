@@ -25,7 +25,7 @@ spec:
   chart:
     spec:
       chart: cert-manager
-      version: "1.15.3"
+      version: "1.18.1"
       sourceRef:
         kind: HelmRepository
         name: cert-manager
@@ -49,13 +49,15 @@ spec:
   chart:
     spec:
       chart: trust-manager
-      version: "0.12.0"
+      version: "0.18.0"
       sourceRef:
         kind: HelmRepository
         name: cert-manager
         namespace: cert-manager
       interval: 12h
   values:
+    # +docs:section=CRDs
+
     crds:
       # This option decides if the CRDs should be installed
       # as part of the Helm installation.
@@ -112,7 +114,7 @@ spec:
 
       # Kubernetes imagePullPolicy on Deployment.
       pullPolicy: IfNotPresent
-
+      tag: v0.18.0
     defaultPackage:
       # Whether to load the default trust package during pod initialization, and include it in main container args. This container enables the 'useDefaultCAs' source on Bundles.
       enabled: true
@@ -136,11 +138,11 @@ spec:
       # registry: quay.io
 
       # The repository for the default package image. This image enables the 'useDefaultCAs' source on Bundles.
-      repository: quay.io/jetstack/cert-manager-package-debian
+      repository: quay.io/jetstack/trust-pkg-debian-bookworm
       # Override the image tag of the default package image.
       # If no value is set, the chart's appVersion is used.
       # +docs:property
-
+      tag: "20230311.0"
       # Target image digest. Override any tag, if set.
       # For example:
       #   digest: sha256:0e072dddd1f7f8fc8909a2ca6f65e76c5f0d2fcfb8be47935ae3457e8bbceb20
@@ -149,6 +151,24 @@ spec:
 
       # imagePullPolicy for the default package image.
       pullPolicy: IfNotPresent
+    # Automounting API credentials for the trust-manager pod.
+    # +docs:property
+    automountServiceAccountToken: true
+    serviceAccount:
+      # Specifies whether a service account should be created.
+      create: true
+      # The name of the service account to use.
+      # If not set and create is true, a name is generated using the fullname template.
+      # +docs:property
+      # name: ""
+
+      # Automount API credentials for a Service Account.
+      # +docs:property
+      automountServiceAccountToken: true
+    # Additional volumes to add to the trust-manager pod.
+    volumes: []
+    # Additional volume mounts to add to the trust-manager container.
+    volumeMounts: []
     secretTargets:
       # If set to true, enable writing trust bundles to Kubernetes Secrets as a target.
       # trust-manager can only write to secrets which are explicitly allowed via either authorizedSecrets or authorizedSecretsAll.
@@ -206,18 +226,23 @@ spec:
     #     whenUnsatisfiable: ScheduleAnyway
     #     labelSelector:
     #       matchLabels:
-    #         app.kubernetes.io/instance: cert-manager
-    #         app.kubernetes.io/component: controller
+    #         app.kubernetes.io/name: trust-manager
     topologySpreadConstraints: []
     filterExpiredCertificates:
       # Whether to filter expired certificates from the trust bundle.
-      enabled: true
+      enabled: false
     app:
+      # Minimum TLS version supported. If omitted, the default Go minimum version will be used.
+      minTLSVersion: ""
+      # Comma-separated list of cipher suites for the server. If omitted, the default Go cipher suites will be used.
+      cipherSuites: ""
       # The format of trust-manager logging. Accepted values are text or json.
       logFormat: text
       # The verbosity of trust-manager logging. This takes a value from 1-5, with the higher value being more verbose.
       logLevel: 1
       leaderElection:
+        # Whether to enable leader election for trust-manager.
+        enabled: true
         # The duration that non-leader candidates will wait to force acquire leadership.
         # The default should be sufficient in a healthy cluster but can be slightly increased to prevent trust-manager from restart-looping when the API server is overloaded.
         leaseDuration: 15s
@@ -272,6 +297,15 @@ spec:
             certManagerNamespace: "cert-manager"
             # The name of cert-manager's Service Account. Only used if `app.webhook.tls.approverPolicy.enabled` is true.
             certManagerServiceAccount: "cert-manager"
+          # Add labels/annotations to secrets created by Certificate resources when using cert-manager provisioned TLS certificate.
+          certificate:
+            secretTemplate: {}
+            # For example:
+            #   annotations:
+            #     my-secret-annotation-1: "foo"
+            #     my-secret-annotation-2: "bar"
+            #   labels:
+            #     my-secret-label: foo
         # This value specifies if the app should be started in hostNetwork mode. It is required for use in some managed Kubernetes clusters (such as AWS EKS) with custom CNI.
         hostNetwork: false
       # +docs:section=Metrics
@@ -291,7 +325,7 @@ spec:
           # The ServiceMonitor resource for this Service.
           servicemonitor:
             # Create a Prometheus ServiceMonitor for trust-manager.
-            enabled: true
+            enabled: false
             # Sets the value of the "prometheus" label on the ServiceMonitor.
             # This is used so that separate Prometheus instances can select different ServiceMonitors using labels.
             prometheusInstance: default
@@ -324,3 +358,22 @@ spec:
       # maxUnavailable: 1
     # Labels to apply to all resources
     commonLabels: {}
+    # Annotations to apply to all resources
+    # NOTE: These annotations won't be added to the CRDs.
+    commonAnnotations: {}
+    # Extra manifests to be deployed. This is useful for deploying additional resources that are not part of the chart.
+    # For example:
+    # extraObjects:
+    #  - apiVersion: cilium.io/v2
+    #    kind: CiliumNetworkPolicy
+    #    metadata:
+    #      name: trust-manager
+    #      namespace: trust-manager
+    #    spec:
+    #      endpointSelector:
+    #        matchLabels:
+    #          io.cilium.k8s.policy.serviceaccount: trust-manager
+    #      egress:
+    #        - toEntities:
+    #            - kube-apiserver
+    extraObjects: []
