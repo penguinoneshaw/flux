@@ -21,11 +21,13 @@ spec:
   chart:
     spec:
       chart: metallb
-      version: 0.14.9
+      version: 0.15.2
       sourceRef:
         kind: HelmRepository
         name: metallb
         namespace: metallb-system
+      install:
+        crds: CreateReplace
   interval: 15m
   timeout: 5m
   releaseName: metallb

@@ -31,6 +31,9 @@ spec:
               value: "Europe/London"
           imagePullPolicy: Always
           resources:
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
             limits:
               memory: "128Mi"
               cpu: "500m"

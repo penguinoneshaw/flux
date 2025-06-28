@@ -8,12 +8,14 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: "30.0.2"
+      version: "36.2.0"
       sourceRef:
         kind: HelmRepository
         name: traefik
         namespace: traefik-ingress
       interval: 12h
+      install:
+        crds: CreateReplace
   valuesFrom:
     - kind: ConfigMap
       name: traefik-values

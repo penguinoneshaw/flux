@@ -9,7 +9,7 @@ spec:
     spec:
       chart: woodpecker
       reconcileStrategy: ChartVersion
-      version: 3.1.1
+      version: 3.2.0
       sourceRef:
         kind: HelmRepository
         name: woodpecker
