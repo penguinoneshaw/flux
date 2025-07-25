@@ -38,6 +38,8 @@ agent:
     WOODPECKER_CONNECT_RETRY_COUNT: "3"
     WOODPECKER_MAX_WORKFLOWS: "4"
     TZ: "Europe/London"
+    LANG: "en_GB.UTF-8"
+    WOODPECKER_ENVIRONMENT: "LANG:en_GB.UTF-8"
 
   persistence:
     # -- Enable the creation of the persistent volume
