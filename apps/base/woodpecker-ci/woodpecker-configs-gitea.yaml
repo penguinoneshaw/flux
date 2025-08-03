@@ -5,13 +5,9 @@ metadata:
     name: woodpecker-configs-gitea
     namespace: woodpecker
 data:
-    WOODPECKER_GITEA_CLIENT: ENC[AES256_GCM,data:8PaJhXqY96lM7jcXsv7JNaczYOZ/n/cDWsa6BzGCnwpwkLp46S4X9VrB/yxFD+22,iv:2pPuPnx+qPLVbFG4BnGKMoS77122FNYBbaWoAv1lXPE=,tag:QDVAh6w4/dH+YmUmIuPcPg==,type:str]
-    WOODPECKER_GITEA_SECRET: ENC[AES256_GCM,data:UAUNM2OpurORGchULGdbGPVsDGk0d3TDvVffHmkVyCRqtJWlFH2VxCC96KVRibShmvm8dMEUeXMCJUe9m8YGoObWdArtZmkRlWyeSQ==,iv:ufHTbgUbzYzXlEgmqOAJbtDAasY7Y5BsowmsLYiXTBQ=,tag:nf16J/xzwl4P3N4V8Rvvyw==,type:str]
+    WOODPECKER_FORGEJO_CLIENT: ENC[AES256_GCM,data:bTfPz32x+nF/YYZDr8TDwzStCz0D6fu75kNDfQW6nnKfoILiVzZGWUl6n3HlEYiW,iv:8KsUYnqUMFkpIgdS5PsO5lRlGjsSwbAMc6mRVKbEzPM=,tag:ahMnLsfzB6w0lYpRVRLH2A==,type:str]
+    WOODPECKER_FORGEJO_SECRET: ENC[AES256_GCM,data:YgqDUS7ciHBdWxs8fC+Bk0B/kosgFv9KH3KOBd5jFWpt89x8TizW3402qcXe/iAydPmujq/CspJ103MfCswhWakBd3VIEebGsw5fjg==,iv:WMGbBfwaIbX7dQYHSpplNNxKwrWAFv9WFwPNIdwC3l0=,tag:UwOhCt2krR23UTyHGdPFiw==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
     age:
         - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
           enc: |
@@ -22,8 +18,7 @@ sops:
             c0tMbzBiN2ZQT1E1NjlkNVBZdmlJWE0K0B3kpfpnUnaJPpwmpCkFoYlwg5WRB8T7
             4lJIJmHwZQt4fpchDWRPMKMqoWw80xyzhxCPKaIlwokdLwc7TVvu+g==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-01-28T18:08:10Z"
-    mac: ENC[AES256_GCM,data:5AIcOHzxSfI/Zija8NR5Z00EBLbcQusN7qtI+r4aMrCkBYkO75kOjFnH4fIGvB9xAqZZXU8UoGS94AJBLybCmhf3KrQde2TlzdslIfmdajupfxAGmvGyfj3jf0F+/RUA9wL9zLgbcisMxx80HvMZ+Ma+nh4FV1ZCbQki4fmnZdI=,iv:OUUhKPrLSn/QInxmq7mdOkHpgbW5TJv1KyEVjdSbPx0=,tag:cNcTljW818pfbWQ5RbOXyg==,type:str]
-    pgp: []
+    lastmodified: "2025-08-03T13:07:44Z"
+    mac: ENC[AES256_GCM,data:A8IDvbqd2R3InKCKcTRuYMiWASt4OvIReJtwIiwsMTfI+UqAZOUhqec0YLz6l95ogmLfDGqQFmHQP/KLRFssfW6xfUDJyL5SHK7auDTz8IUlqpJEOuhue16v/21qqOUTljOk8V4Egp+/ZCZ690YoZtkVCqcj60fQs9E+APaxDvI=,iv:+ZejHYX+GnCZWsSRaTsyyEos3lxPSmp9UanmfifYK5I=,tag:s/dUnOvbh+i0x9Id+8WR0Q==,type:str]
     encrypted_regex: ^(data|stringData)$
-    version: 3.7.3
+    version: 3.10.2
