@@ -4,7 +4,7 @@ metadata:
   name: kanidm-data
 spec:
   accessModes: ["ReadWriteOnce"]
-  storageClassName: "nfs-client"
+  storageCla`ssName: "nfs-client"
   resources:
     requests:
       storage: 1Gi
@@ -167,8 +167,16 @@ spec:
           ports:
             - containerPort: 1812
               protocol: TCP
+              name: authentication-tcp
             - containerPort: 1812
               protocol: UDP
+              name: authentication-udp
+            - containerPort: 1813
+              protocol: TCP
+              name: accounting-tcp
+            - containerPort: 1813
+              protocol: UDP
+              name: accounting-udp
 
           volumeMounts:
             - name: radiusd-server-tls
@@ -219,3 +227,9 @@ spec:
     - port: 1812
       protocol: UDP
       name: radius-udp
+    - port: 1813
+      protocol: TCP
+      name: accounting-tcp
+    - port: 1813
+      protocol: UDP
+      name: accounting-udp
