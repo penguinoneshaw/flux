@@ -1,0 +1,56 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: radiusd-ca-issuer
+  namespace: kanidm
+spec:
+  selfSigned: {}
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: radiusd-ca
+  namespace: kanidm
+spec:
+  isCA: true
+  commonName: radiusd-ca
+  secretName: radiusd-ca
+  duration: 87600h # 10 years
+  privateKey:
+    algorithm: RSA
+    size: 4096
+  issuerRef:
+    name: radiusd-ca-issuer
+    kind: Issuer
+
+---
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: radiusd-server-issuer
+  namespace: kanidm
+spec:
+  ca:
+    secretName: radiusd-ca
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: radiusd-server
+  namespace: kanidm
+spec:
+  secretName: radiusd-server-tls
+  duration: 8760h # 1 year
+  commonName: radiusd-server
+  dnsNames:
+    - radiusd.kanidm.svc
+    - radiusd
+  privateKey:
+    algorithm: RSA
+    size: 4096
+  issuerRef:
+    name: radiusd-server-issuer
+    kind: Issuer
