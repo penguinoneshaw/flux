@@ -172,11 +172,11 @@ spec:
 
           volumeMounts:
             - name: radiusd-server-tls
-              mountPath: /etc/raddb/certs/cert.pem
+              mountPath: /data/cert.pem
               subPath: tls.crt
               readOnly: true
             - name: radiusd-server-tls
-              mountPath: /etc/raddb/certs/key.pem
+              mountPath: /data/key.pem
               subPath: tls.key
               readOnly: true
             - name: radiusd-ca
@@ -184,7 +184,7 @@ spec:
               subPath: tls.crt
               readOnly: true
             - name: radiusd-config
-              mountPath: /data/radiusd.toml
+              mountPath: /data/radius.toml
               subPath: radiusd.toml
               readOnly: true
       volumes:
@@ -205,16 +205,17 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: kanidm
+  name: radiusd
 spec:
   selector:
-    app: kanidm
+    app: radiusd
   type: LoadBalancer
-  loadBalancerIP: 10.1.9.3
+  loadBalancerIP: 10.1.11.4
+  externalTrafficPolicy: Local
   ports:
     - port: 1812
-      targetPort: 1812
       protocol: TCP
+      name: radius-tcp
     - port: 1812
-      targetPort: 1812
       protocol: UDP
+      name: radius-udp
