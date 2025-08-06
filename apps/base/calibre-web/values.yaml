@@ -41,7 +41,7 @@ ingress:
     annotations:
       traefik.ingress.kubernetes.io/router.entrypoints: websecure
       cert-manager.io/cluster-issuer: letsencrypt
-      nginx.ingress.kubernetes.io/proxy-body-size: 256m
+      nginx.ingress.kubernetes.io/proxy-body-size: "1G"
     hosts:
       - host: calibre-web.thephysicsflat.xyz
         paths:
