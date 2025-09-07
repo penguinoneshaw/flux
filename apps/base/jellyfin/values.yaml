@@ -164,7 +164,7 @@ service:
   # -- Addresses that are allowed when service is `LoadBalancer`
   loadBalancerSourceRanges: []
   # -- Enable client source IP preservation
-  externalTrafficPolicy: Cluster
+  externalTrafficPolicy: Local
   # -- Additional annotations for the Service
   annotations: {}
 
