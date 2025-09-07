@@ -7,22 +7,20 @@
 
 image:
   # -- image repository
-  repository: linuxserver/calibre-web
+  repository: crocodilestick/calibre-web-automated
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: "0.6.25"
+  tag: "latest"
 
-podAnnotations:
-  linkerd.io/inject: "enabled"
-
-# -- environment variables. See more environment variables in the [calibre-web documentation](https://hub.docker.com/r/advplyr/calibre-web)
+# -- environment variables.
 # @default -- See below
 env:
   # -- Set the container timezone
   TZ: Europe/London
   PUID: 1000
   PGID: 1000
+  NETWORK_SHARE_MODE: false
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
@@ -67,6 +65,12 @@ persistence:
   books:
     enabled: true
     type: nfs
-    mountPath: /books
+    mountPath: /calibre-library
     server: nfs.home.thephysicsflat.xyz
     path: /srv/books/Books
+  ingest:
+    enabled: true
+    type: nfs
+    mountPath: /cwa-book-ingest
+    server: nfs.home.thephysicsflat.xyz
+    path: /srv/books/Ingest
