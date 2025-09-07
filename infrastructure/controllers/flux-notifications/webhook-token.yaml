@@ -4,13 +4,9 @@ metadata:
     name: webhook-token
     namespace: flux-system
 type: Opaque
-data:
-    token: ENC[AES256_GCM,data:MMG/3etQMHClnzEaPk0uoy/zAY8AuO0nURcdNqM7DvL9oOixFe1x/eXFfve7N7A72wUGwkClpQQ=,iv:V8A6G4LzzQRhFeWJpZSsFg1DIJBC3QC/fXakm1HpPPc=,tag:ttFm1xliYINtURTbf1iKCw==,type:str]
+stringData:
+    token: ENC[AES256_GCM,data:+72Ntjii8aiMqm3wbtoMHZ9UoMdkyGtBP//OFSmRnhT5fHo8zRQ4Nw==,iv:jBwk873myYd1kaddDrRgt1oNIqCrnPu5c4ydKMjwETw=,tag:L8o0eceycTjqVoS8tkCXwg==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
     age:
         - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
           enc: |
@@ -21,8 +17,7 @@ sops:
             UEJxUG5FOGppZDhpQkZyYU0yRnRIUmcKDE0DBnlEO2dz+aoZz6E45/bqnRCw+3fW
             Ls4GM3efSDS7+zJlXHF4OUpSa91jFrg/xYENDyV+tE2nxZ4FQQ8BvA==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-10-04T21:42:41Z"
-    mac: ENC[AES256_GCM,data:EfqJhRhyC1FLvmCBrc1cB+r5qP8tbJYeEJJOYG5nV2kHQdYHhC4/A1WhOt3CG7m4E/Cl6e+Ks58Lj9uq+E8Rw/dkv0CHBN4/TwZWyDXSnjNlRoa3W1kwgIS8LnvZXuK9itHsLNS/oCx531KsjptLczavFKsmIfI7Rw09VLzAcLk=,iv:7STSFw4wV+G4zbX2s3rE+ItbrBdC/tcCygFyWtEGiUc=,tag:LwxtaoE64cP5v8uepqubSQ==,type:str]
-    pgp: []
+    lastmodified: "2025-09-07T18:30:34Z"
+    mac: ENC[AES256_GCM,data:2lpJsWbMKj1O7MKwW9cah2VgEqSRvFpFZ/WX45cyGKzsPIJDzaC+fRDbGbxr770VAtZxeMvNa1x8/F0M2qVXapZyzKLsdALCZ/pzqaVpNEwXkUNPWHCr5keRvC9oKYUR6DnFvSQtqhrEdBYEx7G5sJaMATZDORMv3TziQgL4I4g=,iv:Riep1pJky1IC10lWNlmeLVr8+dTOkFBzUTezbCjDxZ0=,tag:zB2cnucEIETCfAn5N5D76Q==,type:str]
     encrypted_regex: ^(data|stringData)$
-    version: 3.8.1
+    version: 3.10.2
