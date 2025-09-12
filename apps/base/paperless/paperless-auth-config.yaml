@@ -4,13 +4,9 @@ metadata:
     name: paperless-auth-config
     namespace: paperless
 type: Opaque
-data:
-    social_providers: ENC[AES256_GCM,data:ahNb+CQQskaLQGcvQjOgttrOU6a5kR5D4vrUvuTyxGcO4/fBCRlmitUEX5OZA/rB6EX/d2GfoWpk+rqZkjeiCnjXN0y/flYJqxgbDH0XA3VQ/700B2IGwDSmVBlpPoAzRYODNux1gIUJln70ZvxrZ8ds6I3QY6ZsUENh7eXlWiszdCYqdA1htLgxpHCPxEgzM7k0xaJWWFUYLmc3i+av/4MtFSfe0QAlg4TcFLLR0yc3tFqtzzqdojV0onaOzxwAyAy2uUmqBOJfNeGVRbPvAwgxLNNUZvJ3NYxokKTqKELcoqdKV9UxjvuNuKxNo0iQexXQlMwVNg1U20+Y77/xj6WOBU3V8kxbxC9Xt/x3UIhsUaaNLY8gEjn7ah/eVyfnUod1dyDgFuPu6ubtLBZxY8Tz2jqu+vQAobnIT0mw9pNnGaY1fyWszBb6zEXFNB4C9mpk8Z6EgV+GnIZ5MQwUtxGVDzs+gQ9P0ocvaZUUW97UDnw1ia4+5yQcrElL2oBIPZA1o86PpyaIwyJ1e7NDyUdHbecVAQSOMmys1LspeI6YMqv+Ombux3QYyOG8p3io4NOVGQChRQ5UkM6z1G3WnrUV+KywoVeRa6hB1OnNQYEX61uuihEYnFzoXFVMWs4rsvrEzy8Kspr0swfwQqJWzZz7YV9WjwO28ta8HWw/OYY=,iv:8hS8BwPwgroSxBgNyCjxp5KacDbbqxFHJo56U+6Sg+w=,tag:m0gIr2ZRhZpp9p/xQsk0ag==,type:str]
+stringData:
+    social_providers: ENC[AES256_GCM,data:KRTkeohT35V52cImXPDwcyKSz6uW1zaSUXdXsrXiXdLBIJEHdMbMKY+tubghoTTUKIaLw+bTGLdWk943iWmgAftGUL9VEbkUwqkAc9ORzLYM2WlQiantOzpGwtcjM+zT4JOKG4iidFGunalc18Tv5rT8VG08qpX8PWGuXVbekzssiHbaZ4Yi0eK5WpFadvWJ6Q9j9iOquW9/w3oPyP08dekhi88IMs9dik37Xdcpd1M8Eer6/BE/2e/ovRtadlDFJQ70ztkXChlnmXJ3SQRO+NuvV7yrRWBdx0xXH28gnWZSR+zA+WBYPPnTo+01ynrEqmAqDLeO9ZGhNzZnmVAqBKRDl1b/tjqqDHfZ0sENhlSGq/mWXxOHJo5GeESdYs+pOPVY/ZDhexuwvqtdO0XCHUoyVubvARqyaI6uM460JqERunwuglkiIEKuuWVg4iMlDqSbrnnvqw9wFKCqL5IULeX3+miyAUZqTBmIHo3KuHm5giZDNv8T1szXcBYkomx/uN/Qs3LlOS0UKMeTfImZowO1y51X0VqxP1bVqZyEIeFceGFQ4KQiZ0HDqQ==,iv:Y3+39Clla6ke4Q/2wUDpkQwDyVFYQi480nGqToFaIuE=,tag:wd9PbEAG8tm05l1IABcwWg==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
     age:
         - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
           enc: |
@@ -21,8 +17,7 @@ sops:
             TjlkOWpDWjBwc2ljNTYrcllxdjJBWGsKilCJhM647t5+ZVU0tfG7fP2Nw+ZAjuor
             0ZZar8PHst9RikopgCDZXZ9PyAfyZVdbnd9a0rESItsmlu6rAR9i8w==
             -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2024-11-30T11:53:14Z"
-    mac: ENC[AES256_GCM,data:zuY9YgwvJdSs9GJe0o+6e5iZZoeBicYIUBIZmFCSQ5Pc+MXfNkwUtwuzP9ZQfJlZIR1NIFBDd60lzxJWc/lgIw8/wq+8sFBvjCsedFUCvIrDbjBx+6dDoaNo+apFfhmgBvTziqdqEgaHB+VM3paBzUSBMv/ouWqPdiyJF8S9lrg=,iv:vX6mGQQadr16hh8y3q+BBcHZJ8c2JjmQfavDFR6Cy+U=,tag:UF4/6Ty9lzuyt/T/IcfPTA==,type:str]
-    pgp: []
+    lastmodified: "2025-09-12T16:40:36Z"
+    mac: ENC[AES256_GCM,data:/o2ZaWVHeP03g3rmlkxQx+gS+v5Zy2BfaDi3ZIczPDqDECpwyNMyxFfupXAQjMjflFSnFHrbjm67vWPWESR38JfwYF7tE1Ij4L/iAQRWfzVBarNuB+b8WyhI8LHB4vLFHbz46NsfoYdXrxQ/9Uk875qDba7x66VtInsEAbGzNvw=,iv:wHrZosq7cyQBRQWNmbO4DO8Hyv7Lw8t/FpvSLKqIhZc=,tag:sBx8XxzBnONzlY2MoaqdFg==,type:str]
     encrypted_regex: ^(data|stringData)$
-    version: 3.8.1
+    version: 3.10.2
