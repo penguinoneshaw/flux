@@ -5,6 +5,16 @@ metadata:
   namespace: home-assistant
 spec:
   image: emqx:5
+  coreTemplate:
+    spec:
+      volumeClaimTemplates:
+        storageClassName: nfs-ephemeral
+        resources:
+          requests:
+            storage: 20Mi
+        accessModes:
+          - ReadWriteOnce
+      replicas: 3
   listenersServiceTemplate:
     enabled: true
     spec:
