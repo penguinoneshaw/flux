@@ -5,5 +5,5 @@ metadata:
   namespace: woodpecker
 spec:
   interval: 60m
-  url: oci://ghcr.io/woodpecker-ci/helm/woodpecker
+  url: oci://ghcr.io/woodpecker-ci/helm
   type: oci
