@@ -39,3 +39,7 @@ spec:
               memory: "128Mi"
               cpu: "500m"
               squat.ai/dvb-t: "1"
+            requests:
+              memory: "128Mi"
+              cpu: "500m"
+              squat.ai/dvb-t: "1"
