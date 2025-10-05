@@ -17,8 +17,8 @@ resources:
   - ../base/kanidm
   - ../base/ntfy
   - ../base/immich
-patches:
-  - path: pihole-values.yaml
+patchesStrategicMerge:
+  - pihole-values.yaml
 
 configurations:
   - kustomizeconfig.yaml

@@ -41,7 +41,7 @@ serviceDns:
   mixedService: true
 
   # -- `spec.type` for the DNS Service
-  type: NodePort
+  type: LoadBalancer
 
   # -- The port of the DNS service
   port: 53
@@ -60,9 +60,9 @@ serviceDns:
   loadBalancerClass: ""
 
   # -- Annotations for the DNS service
-  annotations: {}
+  annotations:
     # metallb.universe.tf/address-pool: network-services
-    # metallb.universe.tf/allow-shared-ip: pihole-svc
+    metallb.io/allow-shared-ip: pihole-svc
 
   # -- Labels for the DNS service
   extraLabels: {}
@@ -85,16 +85,17 @@ serviceDhcp:
   externalTrafficPolicy: Local
 
   # -- A fixed `spec.loadBalancerIP` for the DHCP Service
-  loadBalancerIP: ""
+  loadBalancerIP: "10.1.9.2"
   # -- A fixed `spec.loadBalancerIP` for the IPv6 DHCP Service
   loadBalancerIPv6: ""
   # -- `spec.loadBalancerClass` for the DHCP Service. Only used if type is LoadBalancer.
   loadBalancerClass: ""
 
   # -- Annotations for the DHCP service
-  annotations: {}
+  annotations:
     # metallb.universe.tf/address-pool: network-services
-    # metallb.universe.tf/allow-shared-ip: pihole-svc
+    metallb.io/allow-shared-ip: pihole-svc
+
   # -- Labels for the DHCP service
   extraLabels: {}
 
@@ -312,61 +313,6 @@ antiaff:
   # -- Here you can pass namespaces to be part of those inclueded in anti-affinity
   namespaces: []
 
-doh:
-  # -- set to true to enabled DNS over HTTPs via cloudflared
-  enabled: false
-  # -- name
-  name: "cloudflared"
-  # -- repository
-  repository: "crazymax/cloudflared"
-  tag: latest
-  # -- Pull policy
-  pullPolicy: IfNotPresent
-  # -- Here you can pass environment variables to the DoH container, for example:
-  envVars: {}
-    # TUNNEL_DNS_UPSTREAM: "https://1.1.1.2/dns-query,https://1.0.0.2/dns-query"
-  # -- Custom command to the DoH container
-  command: []
-  # -- Probes configuration
-  probes:
-    # -- Configure the healthcheck for the doh container
-    liveness:
-      # -- set to true to enable liveness probe
-      enabled: true
-      # -- customize the liveness probe
-      probe:
-        exec:
-          command:
-            - nslookup
-            - -po=5053
-            - cloudflare.com
-            - "127.0.0.1"
-      # -- defines the initial delay for the liveness probe
-      initialDelaySeconds: 60
-      # -- defines the failure threshold for the liveness probe
-      failureThreshold: 10
-      # -- defines the timeout in secondes for the liveness probe
-      timeoutSeconds: 5
-    readiness:
-      # -- set to true to enable readiness probe
-      enabled: true
-      # -- customize the readiness probe
-      probe:
-        exec:
-          command:
-            - nslookup
-            - -po=5053
-            - cloudflare.com
-            - "127.0.0.1"
-      # -- defines the initial delay for the readiness probe
-      initialDelaySeconds: 60
-      # -- defines the failure threshold for the readiness probe
-      failureThreshold: 10
-      # -- defines the timeout in secondes for the readiness probe
-      timeoutSeconds: 5
-  monitoring:
-    podMonitor:
-      enabled: false
 # -- DNS MASQ settings
 dnsmasq:
   # -- Load custom user configuration files from /etc/dnsmasq.d
@@ -630,7 +576,7 @@ regex:
 # -- values that should be added to pihole-FTL.conf
 ftl:
   # Add values for pihole-FTL.conf
-  MAXDBDAYS: 14
+  database_maxDBDays: 14
   # Project a variable
   # LOCAL_IPV4:
   #   valueFrom:

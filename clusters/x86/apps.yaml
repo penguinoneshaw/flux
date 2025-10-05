@@ -5,6 +5,7 @@ metadata:
   namespace: flux-system
 spec:
   interval: 10m0s
+
   dependsOn:
     - name: infra-configs
   sourceRef:
@@ -13,6 +14,7 @@ spec:
   path: ./apps/x86
   prune: true
   wait: true
+
   timeout:
     30m
     # Decryption configuration starts here
