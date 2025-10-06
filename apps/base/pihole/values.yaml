@@ -732,8 +732,8 @@ podDisruptionBudget:
 
 capabilities:
   add:
-    - CAP_SYS_NICE
-    - CAP_SYS_TIME
-    - CAP_NET_BIND_SERVICE
-    - CAP_CHOWN
-    - CAP_NET_RAW
+    - SYS_NICE
+    - SYS_TIME
+    - NET_BIND_SERVICE
+    - CHOWN
+    - NET_RAW
