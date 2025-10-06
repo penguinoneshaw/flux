@@ -77,13 +77,6 @@ spec:
                 chroot: false
                 registry: registry.k8s.io
                 image: ingress-nginx/controller
-                ## for backwards compatibility consider setting the full image url via the repository value below
-                ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
-                ## repository:
-                ## repository:
-                tag: "v1.13.3"
-                digest: sha256:1b044f6dcac3afbb59e05d98463f1dec6f3d3fb99940bc12ca5d80270358e3bd
-                digestChroot: sha256:27de15aea4ec7639f7cec6ae96bff11ce57bb1171040351a0b0eedf66655d0dd
                 pullPolicy: IfNotPresent
                 runAsNonRoot: true
                 # www-data -> uid 101
@@ -768,8 +761,6 @@ spec:
                     ## for backwards compatibility consider setting the full image url via the repository value below
                     ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
                     ## repository:
-                    tag: v20240813-b933310d
-                    digest: sha256:f7604ac0547ed64d79b98d92133234e66c2c8aade3c1f4809fed5eec1fb7f922
                     distroless: true
                 containerSecurityContext:
                     runAsNonRoot: true
@@ -862,8 +853,6 @@ spec:
                         ## for backwards compatibility consider setting the full image url via the repository value below
                         ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
                         ## repository:
-                        tag: v1.4.3
-                        digest: sha256:a320a50cc91bd15fd2d6fa6de58bd98c1bd64b9a6f926ce23a600d87043455a3
                         pullPolicy: IfNotPresent
                     # -- Provide a priority class name to the webhook patching job
                     ##
@@ -1011,12 +1000,6 @@ spec:
             enabled: false
             name: defaultbackend
             image:
-                registry: registry.k8s.io
-                image: defaultbackend-amd64
-                ## for backwards compatibility consider setting the full image url via the repository value below
-                ## use *either* current default registry/image or repository format or installing chart by providing the values.yaml will fail
-                ## repository:
-                tag: "1.5"
                 pullPolicy: IfNotPresent
                 runAsNonRoot: true
                 # nobody user -> uid 65534
