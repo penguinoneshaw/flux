@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://github.com/metallb/metallb/raw/refs/heads/main/charts/metallb/values.schema.json
 # Default values for metallb.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -289,7 +290,12 @@ speaker:
     # true, a name is generated using the fullname template
     name: ""
     annotations: {}
-  securityContext: {}
+  securityContext:
+    capabilities:
+      add:
+        - NET_RAW
+        - NET_ADMIN
+        - SYS_ADMIN
   ## Defines a secret name for the controller to generate a memberlist encryption secret
   ## By default secretName: {{ "metallb.fullname" }}-memberlist
   ##
