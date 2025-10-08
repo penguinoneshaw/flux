@@ -293,6 +293,7 @@ speaker:
     annotations: {}
   securityContext:
     allowPrivilegeEscalation: true
+    privileged: true
     capabilities:
       add:
         - NET_RAW
