@@ -253,3 +253,4 @@ extraArgs:
   pihole-server: http://pihole-web.pihole.svc.cluster.local
   crd-source-apiversion: externaldns.k8s.io/v1alpha1
   crd-source-kind: DNSEndpoint
+  pihole-api-version: 6
