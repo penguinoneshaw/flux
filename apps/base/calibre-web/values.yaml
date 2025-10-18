@@ -9,7 +9,7 @@ image:
   # -- image repository
   repository: crocodilestick/calibre-web-automated
   # -- image pull policy
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # -- image tag
   tag: "latest"
 
