@@ -104,6 +104,8 @@ server:
     amd.com/gpu: 1
   nodeSelector:
     kubernetes.io/arch: amd64
+  annotations:
+    reloader.stakater.com/auto: "true"
   ingress:
     main:
       enabled: true

@@ -667,8 +667,8 @@ extraObjects: []
   #       }
 
 # -- Additional annotations for the deployment
-deploymentAnnotations: {}
-  # reloader.stakater.com/auto: "true"
+deploymentAnnotations:
+  reloader.stakater.com/auto: "true"
 
 # -- Additional annotations for pods
 podAnnotations: {}
