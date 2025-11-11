@@ -15,7 +15,7 @@ env:
   IMMICH_MACHINE_LEARNING_URL: '{{ printf "http://%s-machine-learning:3003" .Release.Name }}'
 
 image:
-  tag: v1.140.1
+  tag: v2.2.3
 
 immich:
   metrics:
@@ -64,30 +64,7 @@ immich:
       enabled: false
 # Dependencies
 
-postgresql:
-  enabled: false
-  image:
-    repository: tensorchord/pgvecto-rs
-    tag: pg14-v0.3.0
-  global:
-    postgresql:
-      auth:
-        username: immich
-        database: immich
-        password: immich
-  nodeSelector:
-    kubernetes.io/arch: amd64
-  primary:
-    containerSecurityContext:
-      readOnlyRootFilesystem: false
-    initdb:
-      scripts:
-        create-extensions.sql: |
-          CREATE EXTENSION cube;
-          CREATE EXTENSION earthdistance;
-          CREATE EXTENSION vectors;
-
-redis:
+valkey:
   enabled: true
   architecture: standalone
   auth:
@@ -138,6 +115,6 @@ machine-learning:
       enabled: true
       size: 10Gi
       # Optional: Set this to pvc to avoid downloading the ML models every start.
-      type: pvc
+      type: persistentVolumeClaim
       accessMode: ReadWriteMany
       storageClass: nfs-client

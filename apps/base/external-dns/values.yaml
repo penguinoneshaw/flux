@@ -124,7 +124,7 @@ env:
     valueFrom:
       secretKeyRef:
         name: pihole-password
-        key: password
+        key: pihole-password
 
 # -- [Liveness probe](https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/) configuration for the `external-dns` container.
 # @default -- See _values.yaml_
