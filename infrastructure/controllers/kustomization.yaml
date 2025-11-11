@@ -14,6 +14,7 @@ resources:
   - tailscale
   - prometheus
   - secret-reflector.yaml
+  - stakater-reloader
   #- ./weave
 configurations:
   - kustomizeconfig.yaml

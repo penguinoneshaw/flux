@@ -1,0 +1,10 @@
+configMapGenerator:
+  - name: reloader-values
+    namespace: reloader
+    files:
+      - values.yaml
+
+resources:
+  - repository.yaml
+  - release.yaml
+namespace: reloader
