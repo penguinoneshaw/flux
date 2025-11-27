@@ -149,7 +149,7 @@ ingress:
   enabled: true
 
   # -- Specify an ingressClassName
-  ingressClassName: nginx
+  ingressClassName: traefik
 
   # -- Annotations for the ingress
   annotations:
