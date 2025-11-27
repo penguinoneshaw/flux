@@ -178,10 +178,12 @@ ingress:
   # -- Enable ingress resource
   enabled: true
   # -- IngressClass that will be used to implement the Ingress
-  ingressClassName: "nginx"
+  ingressClassName: "traefik"
   # -- Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+    traefik.ingress.kubernetes.io/router.middlewares: "jellyfin-block-metrics@kubernetescrd"
   # -- Default host for the ingress resource
   hostname: jellyfin.thephysicsflat.xyz
   # -- The Path to jellyfin. You may need to set this to '/*' in order to use this with ALB ingress controllers.
@@ -193,14 +195,6 @@ ingress:
   # -- The list of additional hostnames to be covered with this ingress record.
   extraHosts: []
   # -- Any additional paths that may need to be added to the ingress under the main host
-  extraPaths:
-    - path: "/metrics"
-      pathType: ImplementationSpecific
-      backend:
-        service:
-          name: error-caddy
-          port:
-            name: web
   # -- The tls configuration for additional hostnames to be covered with this ingress record.
   extraTls: []
   # -- Additional rules to be covered with this ingress record

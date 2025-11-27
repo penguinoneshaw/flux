@@ -5,7 +5,6 @@ resources:
   - repository.yaml
   - release.yaml
   - subgen
-  - constant-401
 configMapGenerator:
   - name: jellyfin-values
     namespace: jellyfin

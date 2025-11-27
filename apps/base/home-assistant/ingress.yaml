@@ -1,31 +1,3 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: home-assistant
-  namespace: home-assistant
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-
-  labels:
-    name: home-assistant
-spec:
-  ingressClassName: nginx
-  tls:
-    - secretName: home-assistant
-      hosts:
-        - "home.thephysicsflat.xyz"
-  rules:
-    - host: home.thephysicsflat.xyz
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: home-assistant
-                port:
-                  name: http
----
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -38,7 +10,7 @@ spec:
       name: traefik-gateway
       namespace: traefik-ingress
   hostnames:
-    - "home-gateway.thephysicsflat.xyz"
+    - "home.thephysicsflat.xyz"
   rules:
     - matches:
         - path:

@@ -1,4 +1,5 @@
 resources:
+  - "cors-middleware.yaml"
   - "namespace.yaml"
   - "pihole-password.yaml"
   - "repository.yaml"
