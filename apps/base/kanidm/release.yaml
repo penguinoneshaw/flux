@@ -41,12 +41,12 @@ spec:
           livenessProbe:
             initialDelaySeconds: 60
             httpGet:
-              port: web
+              port: https
               path: /status
               scheme: HTTPS
           readinessProbe:
             httpGet:
-              port: web
+              port: https
               path: /status
               scheme: HTTPS
           volumeMounts:
@@ -65,7 +65,7 @@ spec:
               memory: 300Mi
               cpu: 250m
           ports:
-            - name: web
+            - name: https
               containerPort: 8443
             - name: ldap
               containerPort: 3636
@@ -100,14 +100,16 @@ metadata:
   name: kanidm
   labels:
     app: kanidm
+  annotations:
+    traefik.ingress.kubernetes.io/service.serversscheme: https
 spec:
   type: ClusterIP
   selector:
     app: kanidm
   ports:
-    - name: web
+    - name: https
       port: 8443
-      targetPort: web
+      targetPort: https
     - name: ldaps
       port: 3636
       targetPort: ldap
@@ -138,7 +140,7 @@ spec:
               service:
                 name: kanidm
                 port:
-                  name: web
+                  name: https
 ---
 apiVersion: apps/v1
 kind: Deployment

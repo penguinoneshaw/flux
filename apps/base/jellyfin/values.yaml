@@ -183,7 +183,7 @@ ingress:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt
     traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.middlewares: "jellyfin-block-metrics@kubernetescrd"
+    traefik.ingress.kubernetes.io/router.middlewares: "jellyfin-block-metrics@kubernetescrd,jellyfin-jellyfin-mw@kubernetescrd"
   # -- Default host for the ingress resource
   hostname: jellyfin.thephysicsflat.xyz
   # -- The Path to jellyfin. You may need to set this to '/*' in order to use this with ALB ingress controllers.
