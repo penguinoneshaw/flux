@@ -1,48 +1,28 @@
-apiVersion: v1
-kind: ConfigMap
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: kubitodev
+  namespace: dynamic-dns
+spec:
+  interval: 60m
+  url: https://charts.kubito.dev
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
 metadata:
   name: dynamic-dns
   namespace: dynamic-dns
-data:
-  ZONE: "thephysicsflat.xyz"
-  RECORD: "home"
-  IPv6_ENABLED: "false"
----
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  name: update-external-dns
-  namespace: dynamic-dns
 spec:
-  schedule: "@midnight"
-  concurrencyPolicy: Forbid
-  jobTemplate:
+  chart:
     spec:
-      template:
-        spec:
-          restartPolicy: OnFailure
-          securityContext:
-            runAsNonRoot: true
-            runAsUser: 1000
-            runAsGroup: 1000
-          containers:
-            - name: update-external-dns
-              image: ghcr.io/penguinoneshaw/netlify-dynamic-dns
-              envFrom:
-                - configMapRef:
-                    name: dynamic-dns
-                  prefix: "NDDNS_"
-              env:
-                - name: "NDDNS_ACCESS_TOKEN"
-                  valueFrom:
-                    secretKeyRef:
-                      name: netlify-pat
-                      key: key
-              args:
-                - "--interval=0"
-              imagePullPolicy: IfNotPresent
-
-              resources:
-                limits:
-                  memory: "128Mi"
-                  cpu: "500m"
+      chart: kubernetes-cloudflare-ddns
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: kubitodev
+        namespace: dynamic-dns
+  targetNamespace: dynamic-dns
+  interval: 60m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: dynamic-dns

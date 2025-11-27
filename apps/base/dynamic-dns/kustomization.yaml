@@ -1,4 +1,9 @@
 resources:
   - "namespace.yaml"
-  - "netlify-pat.yaml"
+  - "cloudflare-details.yaml"
   - "deployment.yaml"
+configMapGenerator:
+  - name: dynamic-dns
+    namespace: dynamic-dns
+    files:
+      - values.yaml

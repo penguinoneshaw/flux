@@ -1,0 +1,30 @@
+apiVersion: v1
+stringData:
+    AUTH_KEY: ENC[AES256_GCM,data:6jVYaNrTT7O1TRKYinoi1hQlMrNqDtbORl+IIbyMXNO563efjZgApg==,iv:ubHEv3IJ0EAAUPKbePTvAGh+C2NDPf4wPy+T6Hk3IaQ=,tag:ZiXH/NO0vC6psd29CsafQg==,type:str]
+    NAME: ENC[AES256_GCM,data:wm9zGQ==,iv:EgqORlfgZUYag/ub5avqXnxHrLNRXDD6/vWWSNhwF1s=,tag:fcATKfUSOTfsLEVrW/eLbA==,type:str]
+    RECORD_ID: ENC[AES256_GCM,data:atYKC90PoOBmJaFKoIPMZPZGI4ZJS7w97uQOrL0FJ0A=,iv:veQGuYTvRRMJqQCqC8PNeA6gOLW7+RSfeGMgOpPG/Ew=,tag:GhfDK8ShiHUqT2KRVitIDQ==,type:str]
+    ZONE_ID: ENC[AES256_GCM,data:y+Sa5+pwIbmPS2seUamrthFNnWBMEEsxypWz768Hs/Q=,iv:UqrtdpUNLD1me+UaJBI+M4lysg87hdIwSWyByz0pKmQ=,tag:MeompqvpbQ1UU/LqaXpscQ==,type:str]
+kind: Secret
+metadata:
+    name: cloudflare-details
+    namespace: dynamic-dns
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBPcDNOTEl0eUtYQVRUUjU2
+            cXhZUlVpcEt3YnlXRHVBNm5nT3hXWDdybUg4ClVzZkZ6WUtCYU1LV1ZITm1idEtk
+            c3NObjA3WExITDFpc2xCdUNyVXZ0OVEKLS0tIEFPQ3hhM21Zbzd6VUtUS2EzaDg3
+            dnpsQUdFVnZKMFd1VU8rTWJOUGFvSzgKzH6K5kgInKZ/vzXWkipidl4bkjrH60eA
+            nA2lEiNBP9JhgGpqu5F9T88Tw4qGh3uOC8YGLwAD4uCdvKj2g5hvFw==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-27T20:22:51Z"
+    mac: ENC[AES256_GCM,data:McPk35kii94u25x7ruH89FbAbiVOya18dGCUwWnE4R6DCVpG9NoMmaBRFtKoMiLiWgyuy8Iel6V6Ju71tvBAtwTto3UqD5ZVK457plQVVchau20GEwoqU0Z9F+Odhe3/wEWDQDcRa5RawTzEIYNaMy7pjlkJtNZpmFHbF2QWLE8=,iv:OgrD5D8v7O3J5Bk83nZYPI7egFr+Z4azM03Ybm3sTQQ=,tag:I32pjat62+/yfILz+mDB+g==,type:str]
+    pgp: []
+    encrypted_regex: ^(data|stringData)$
+    version: 3.10.2
