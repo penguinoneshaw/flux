@@ -13,14 +13,10 @@ spec:
       name: letsencrypt-nginx
     solvers:
       - dns01:
-          webhook:
-            groupName: netlify.kubernetes.thephysicsflat.xyz
-            solverName: netlify
-            config:
-              apiAccessTokenSecretRef:
-                name: netlify-pat
-                namespace: cert-manager
-                key: key
+          cloudflare:
+            apiTokenSecretRef:
+              name: cloudflare-api-token-secret
+              key: api-token
 ---
 apiVersion: trust.cert-manager.io/v1alpha1
 kind: Bundle
