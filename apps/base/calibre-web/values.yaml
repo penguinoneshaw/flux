@@ -7,7 +7,7 @@
 
 image:
   # -- image repository
-  repository: crocodilestick/calibre-web-automated
+  repository: ghcr.io/crocodilestick/calibre-web-automated
   # -- image pull policy
   pullPolicy: Always
   # -- image tag
