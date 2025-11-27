@@ -13,6 +13,8 @@ spec:
         kind: HelmRepository
         name: external-dns
   interval: 60m0s
+  upgrade:
+    crds: CreateReplace
   valuesFrom:
     - kind: ConfigMap
       name: external-dns-values

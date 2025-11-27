@@ -217,6 +217,9 @@ sources:
   - service
   - ingress
   - crd
+  - gateway-httproute
+  - gateway-tlsroute
+  - gateway-tcproute
 
 # -- How DNS records are synchronized between sources and providers; available values are `sync` & `upsert-only`.
 policy: upsert-only # @schema enum:[sync, upsert-only]; type:string; default: "upsert-only"
