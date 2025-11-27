@@ -41,7 +41,7 @@ ingress:
   # @default -- See values.yaml
   main:
     enabled: true
-    ingressClassName: "nginx"
+    ingressClassName: traefik
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt
     hosts:
