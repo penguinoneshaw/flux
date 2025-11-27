@@ -186,6 +186,8 @@ gateway:
           namespace: "traefik-ingress"
       #   # -- TLS behavior for the TLS session initiated by the client. See [TLSModeType](https://gateway-api.sigs.k8s.io/reference/spec/#gateway.networking.k8s.io/v1.TLSModeType).
       mode: Terminate
+      namespacePolicy:
+        from: All
 
 gatewayClass: # @schema additionalProperties: false
   # -- When providers.kubernetesGateway.enabled and gateway.enabled, deploy a default gatewayClass

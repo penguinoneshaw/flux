@@ -25,3 +25,27 @@ spec:
                 name: home-assistant
                 port:
                   name: http
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+spec:
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: traefik-gateway
+      namespace: traefik-ingress
+  hostnames:
+    - "home-gateway.thephysicsflat.xyz"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - kind: Service
+          name: home-assistant
+          weight: 1
+          port: 8123
