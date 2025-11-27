@@ -8,7 +8,18 @@ spec:
   resources:
     requests:
       storage: 1Gi
-
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: kanidm-ingress-tls
+  namespace: kanidm
+spec:
+  secretName: kanidm-ingress-tls
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: idm.thephysicsflat.xyz
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -114,33 +125,24 @@ spec:
       port: 3636
       targetPort: ldap
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
 metadata:
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt
-    traefik.ingress.kubernetes.io/router.entrypoints: websecure
-    traefik.ingress.kubernetes.io/router.tls: "true"
   name: kanidm
-  labels:
-    name: kanidm
+  namespace: kanidm
 spec:
-  ingressClassName: traefik
   tls:
-    - hosts:
-        - idm.thephysicsflat.xyz
-      secretName: kanidm-ingress-tls
-  rules:
-    - host: idm.thephysicsflat.xyz
-      http:
-        paths:
-          - pathType: Prefix
-            path: "/"
-            backend:
-              service:
-                name: kanidm
-                port:
-                  name: https
+    passthrough: true
+    domains:
+      - main: "idm.thephysicsflat.xyz"
+    secretName: kanidm-ingress-tls
+  routes:
+    - match: "HostSNI(`idm.thephysicsflat.xyz`)"
+      services:
+        - name: kanidm
+          namespace: kanidm
+          port: https
+
 ---
 apiVersion: apps/v1
 kind: Deployment
