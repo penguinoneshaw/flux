@@ -136,6 +136,13 @@ machine-learning:
           image:
             repository: ghcr.io/immich-app/immich-machine-learning
             pullPolicy: IfNotPresent
+          resources:
+            limits:
+              cpu: 2
+              memory: 2Gi
+            requests:
+              cpu: 100m
+              memory: 512Mi
           env:
             TRANSFORMERS_CACHE: /cache
             HF_XET_CACHE: /cache/huggingface-xet
