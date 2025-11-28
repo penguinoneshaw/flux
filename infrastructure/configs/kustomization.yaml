@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - cloudflare-data.yaml
   - cluster-issuers.yaml
+  - cloudnative-pg-catalogs.yaml
 configurations:
   - kustomizeconfig.yaml
