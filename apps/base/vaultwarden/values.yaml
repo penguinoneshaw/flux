@@ -24,6 +24,13 @@ env:
   #    If not set, the admin panel is disabled.
   #    [[ref]](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page#secure-the-admin_token)
   TZ: Europe/London
+  DATABASE_URL:
+    valueFrom:
+      secretKeyRef:
+        name: vaultwarden-database-app
+        key: fqdn-uri
+  WEBSOCKET_ENABLED: "true"
+  ENABLE_DB_WAL: "false"
 securityContext:
   runAsUser: 1000
   runAsGroup: 9003
