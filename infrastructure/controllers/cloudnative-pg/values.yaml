@@ -152,16 +152,15 @@ service:
   ipFamilies: []
 
 resources:
-  {}
   # If you want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   #
-  # limits:
-  #   cpu: 100m
-  #   memory: 200Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 100Mi
+  limits:
+    cpu: 100m
+    memory: 200Mi
+  requests:
+    cpu: 100m
+    memory: 100Mi
 
 # -- Nodeselector for the operator to be installed.
 nodeSelector: {}
@@ -177,7 +176,7 @@ affinity: {}
 
 monitoring:
   # -- Specifies whether the monitoring should be enabled. Requires Prometheus Operator CRDs.
-  podMonitorEnabled: false
+  podMonitorEnabled: true
   # -- Metrics relabel configurations to apply to samples before ingestion.
   podMonitorMetricRelabelings: []
   # -- Relabel configurations to apply to samples before scraping.
@@ -186,7 +185,7 @@ monitoring:
   podMonitorAdditionalLabels: {}
 
   grafanaDashboard:
-    create: false
+    create: true
     # -- Allows overriding the namespace where the ConfigMap will be created, defaulting to the same one as the Release.
     namespace: ""
     # -- The name of the ConfigMap containing the dashboard.

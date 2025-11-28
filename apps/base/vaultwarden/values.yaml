@@ -23,7 +23,6 @@ env:
   # -- Token for the admin interface, preferably use a long random string.
   #    If not set, the admin panel is disabled.
   #    [[ref]](https://github.com/dani-garcia/vaultwarden/wiki/Enabling-admin-page#secure-the-admin_token)
-  ADMIN_TOKEN: ""
   TZ: Europe/London
 securityContext:
   runAsUser: 1000
