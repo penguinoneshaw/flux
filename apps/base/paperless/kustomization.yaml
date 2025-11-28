@@ -1,21 +1,35 @@
-configMapGenerator:
-  - files:
-      - values.yaml
-    name: paperless-values
-    namespace: paperless
-  - files:
-      - values.yaml=redis-values.yaml
-    name: redis-values
-    namespace: paperless
-  - files:
-      - values.yaml=gotenberg-values.yaml
-    name: gotenberg-values
-    namespace: paperless
-  - files:
-      - values.yaml=tika-values.yaml
-    name: tika-values
-    namespace: paperless
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: paperless
+
 resources:
   - paperless-auth-config.yaml
   - regcred.yaml
   - release.yaml
+
+configMapGenerator:
+  - name: paperless-values
+    namespace: paperless
+    files:
+      - values.yaml
+    options:
+      disableNameSuffixHash: true
+  - name: redis-values
+    namespace: paperless
+    files:
+      - values.yaml=redis-values.yaml
+    options:
+      disableNameSuffixHash: true
+  - name: gotenberg-values
+    namespace: paperless
+    files:
+      - values.yaml=gotenberg-values.yaml
+    options:
+      disableNameSuffixHash: true
+  - name: tika-values
+    namespace: paperless
+    files:
+      - values.yaml=tika-values.yaml
+    options:
+      disableNameSuffixHash: true

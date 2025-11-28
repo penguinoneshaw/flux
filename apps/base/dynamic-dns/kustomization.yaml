@@ -1,9 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: dynamic-dns
+
 resources:
-  - "namespace.yaml"
-  - "cloudflare-details.yaml"
-  - "deployment.yaml"
+  - namespace.yaml
+  - cloudflare-details.yaml
+  - deployment.yaml
+
 configMapGenerator:
   - name: dynamic-dns
     namespace: dynamic-dns
     files:
       - values.yaml
+    options:
+      disableNameSuffixHash: true

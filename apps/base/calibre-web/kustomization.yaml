@@ -1,10 +1,16 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
+namespace: calibre-web
+
 resources:
   - namespace.yaml
   - release.yaml
+
 configMapGenerator:
   - name: calibre-web-values
     namespace: calibre-web
     files:
       - values.yaml
+    options:
+      disableNameSuffixHash: true

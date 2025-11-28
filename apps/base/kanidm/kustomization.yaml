@@ -1,11 +1,18 @@
-configMapGenerator:
-  - name: kanidm
-    namespace: kanidm
-    files:
-      - server.toml=config.toml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
 namespace: kanidm
+
 resources:
   - namespace.yaml
   - release.yaml
   - radiusd-certificates.yaml
   - radius-config.yaml
+
+configMapGenerator:
+  - name: kanidm
+    namespace: kanidm
+    files:
+      - server.toml=config.toml
+    options:
+      disableNameSuffixHash: true

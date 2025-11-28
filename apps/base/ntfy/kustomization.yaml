@@ -1,15 +1,20 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
+
+namespace: ntfy
+
 resources:
   - namespace.yaml
   - secret.yaml
   - release.yaml
+
 configMapGenerator:
   - name: ntfy-values
     namespace: ntfy
     files:
       - values.yaml
-
+    options:
+      disableNameSuffixHash: true
   - name: ntfy-server
     namespace: ntfy
     files:

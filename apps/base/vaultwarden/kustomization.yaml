@@ -1,9 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: vaultwarden
+
 resources:
-  - admin-password.yaml
   - namespace.yaml
+  - admin-password.yaml
   - release.yaml
+
 configMapGenerator:
   - name: vaultwarden-values
     namespace: vaultwarden
     files:
       - values.yaml
+    options:
+      disableNameSuffixHash: true
