@@ -6,6 +6,7 @@ namespace: vaultwarden
 resources:
   - namespace.yaml
   - admin-password.yaml
+  - database.yaml
   - release.yaml
 
 configMapGenerator:

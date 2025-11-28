@@ -1,0 +1,28 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: vaultwarden-database
+  namespace: vaultwarden
+spec:
+  instances: 1
+  storage:
+    size: 1Gi
+    storageClass: nfs-client
+  resources:
+    requests:
+      cpu: 100m
+      memory: 200Mi
+    limits:
+      cpu: 200m
+      memory: 400Mi
+
+  imageCatalogRef:
+    apiGroup: postgresql.cnpg.io
+    # Change the following to `ClusterImageCatalog` if needed
+    kind: ClusterImageCatalog
+    name: postgresql-minimal-trixie
+    major: 16
+  bootstrap:
+    initdb:
+      database: vaultwarden
+  enableSuperuserAccess: true
