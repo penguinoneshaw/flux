@@ -23,9 +23,10 @@ spec:
   managed:
     roles:
       - name: immich
-        superuser: true
         login: true
-
+  monitoring:
+    disableDefaultQueries: false
+    enablePodMonitor: true
   bootstrap:
     initdb:
       database: immich
@@ -36,6 +37,7 @@ spec:
         - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
         - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
         - CREATE EXTENSION IF NOT EXISTS "vchord" CASCADE;
+
   storage:
     size: 4Gi
     storageClass: nfs-client

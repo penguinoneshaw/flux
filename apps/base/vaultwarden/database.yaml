@@ -15,6 +15,9 @@ spec:
     limits:
       cpu: 200m
       memory: 400Mi
+  monitoring:
+    disableDefaultQueries: false
+    enablePodMonitor: true
 
   imageCatalogRef:
     apiGroup: postgresql.cnpg.io
