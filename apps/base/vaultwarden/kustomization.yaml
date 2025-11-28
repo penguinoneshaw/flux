@@ -14,5 +14,3 @@ configMapGenerator:
     namespace: vaultwarden
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true

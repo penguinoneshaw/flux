@@ -29,8 +29,13 @@ env:
       secretKeyRef:
         name: vaultwarden-database-app
         key: fqdn-uri
+  ADMIN_TOKEN:
+    valueFrom:
+      secretKeyRef:
+        name: admin-password
+        key: admin_password
   WEBSOCKET_ENABLED: "true"
-  ENABLE_DB_WAL: "false"
+  ENABLE_DB_WAL: "true"
 securityContext:
   runAsUser: 1000
   runAsGroup: 9003
