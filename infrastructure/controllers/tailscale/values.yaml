@@ -4,8 +4,7 @@
 # Operator oauth credentials. If set a Kubernetes Secret with the provided
 # values will be created in the operator namespace. If unset a Secret named
 # operator-oauth must be precreated.
-oauth:
-  {}
+oauth: {}
   # clientId: ""
   # clientSecret: ""
 
@@ -35,7 +34,13 @@ operatorConfig:
   nodeSelector:
     kubernetes.io/os: linux
 
-  resources: {}
+  resources:
+    limits:
+      cpu: 100m
+      memory: 128Mi
+    requests:
+      cpu: 25m
+      memory: 64Mi
 
   podAnnotations: {}
   podLabels: {}

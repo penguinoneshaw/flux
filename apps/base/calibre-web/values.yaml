@@ -52,6 +52,15 @@ ingress:
         hosts:
           - "calibre-web.thephysicsflat.xyz"
 
+# -- Compute resources used by the container
+resources:
+  limits:
+    cpu: 300m
+    memory: 512Mi
+  requests:
+    cpu: 50m
+    memory: 256Mi
+
 # -- Configure persistence settings for the chart under this key.
 # @default -- See values.yaml
 persistence:

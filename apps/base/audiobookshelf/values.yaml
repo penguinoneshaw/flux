@@ -38,6 +38,16 @@ service:
         port: 8080
 
 podAnnotations: {}
+
+# -- Compute resources used by the container
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
   # @default -- See values.yaml

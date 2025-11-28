@@ -72,3 +72,12 @@ persistence:
     type: nfs
     server: nfs.home.thephysicsflat.xyz
     path: /srv/config/vaultwarden/data
+
+# -- Compute resources used by the container
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi
