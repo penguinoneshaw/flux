@@ -1035,10 +1035,10 @@ autoscaling: # @schema additionalProperties: false
   metrics:
     - type: Resource
       resource:
-        name: cpu
+        name: memory
         target:
           type: Utilization
-          averageUtilization: 80
+          averageUtilization: 80 # @schema type:[integer, null]; minimum:1; maximum:100
   # -- behavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).
   behavior:
     scaleDown:
@@ -1114,7 +1114,7 @@ resources:
     cpu: "100m"
     memory: "50Mi"
   limits:
-    cpu: "300m"
+    cpu: "100m"
     memory: "150Mi"
 
 # -- This example pod anti-affinity forces the scheduler to put traefik pods
