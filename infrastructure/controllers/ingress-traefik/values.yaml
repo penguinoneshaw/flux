@@ -647,7 +647,7 @@ metrics:
   #    # addServicesLabels: false
   otlp:
     # -- Set to true in order to enable the OpenTelemetry metrics
-    enabled: true
+    enabled: false
     # -- Enable metrics on entry points. Default: true
     addEntryPointsLabels: # @schema type:[boolean, null]
     # -- Enable metrics on routers. Default: false
