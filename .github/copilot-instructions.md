@@ -11,13 +11,11 @@ This is a **Kubernetes GitOps repository** using **Flux CD v2** to declaratively
 ### Three-Tier Structure
 
 1. **`/apps/base`** - Application definitions (Helm releases + Kustomize)
-
    - Each app folder: `namespace.yaml`, `release.yaml`, `kustomization.yaml`, `values.yaml`
    - Some complex apps: `pvc.yaml`, database configs, secrets, ingress rules
    - Values are stored as ConfigMaps (see `configMapGenerator` in kustomization.yaml)
 
 2. **`/apps/x86`** - Cluster-specific overlays (hardware-specific patches)
-
    - Pulls from `/apps/base` resources
    - Applies `patchesStrategicMerge` for environment customization
    - Entry point for what actually runs on the x86 cluster

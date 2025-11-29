@@ -55,8 +55,7 @@ spec:
         readOnlyRootFilesystem: false # true if -logtostderr flag set in labeller
       # If you do want to specify resources, uncomment the following lines,
       # adjust them as necessary, and remove the curly braces after 'resources:'.
-      resources:
-        {}
+      resources: {}
         # limits:
         #   memory: 20Mi
         #   cpu: 100m

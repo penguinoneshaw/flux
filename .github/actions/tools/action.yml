@@ -1,9 +1,9 @@
-name: 'kustomize'
-description: 'A GitHub Action with Kubernetes tools'
-author: 'Stefan Prodan'
+name: "kustomize"
+description: "A GitHub Action with Kubernetes tools"
+author: "Stefan Prodan"
 branding:
-  icon: 'command'
-  color: 'blue'
+  icon: "command"
+  color: "blue"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"

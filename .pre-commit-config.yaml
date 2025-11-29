@@ -1,0 +1,63 @@
+# Pre-commit hooks configuration
+# Install: pipx install pre-commit && pre-commit install
+# Run manually: pre-commit run --all-files
+# Update: pre-commit autoupdate
+
+repos:
+  # Prettier - Code formatting
+  - repo: https://github.com/JoC0de/pre-commit-prettier
+    rev: "v3.7.1" # Use the sha / tag you want to point at
+    hooks:
+      - id: prettier
+  # YAML validation
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+        args:
+          [
+            --config-data,
+            "{extends: relaxed, rules: {line-length: {max: 300}}}",
+          ]
+        types: [yaml]
+
+  # Kubernetes manifest validation (kubeconform)
+  - repo: local
+    hooks:
+      - id: kubeconform
+        name: Kubeconform - Validate Kubernetes manifests
+        entry: python scripts/kubeconform-hook.py
+        language: system
+        types: [yaml]
+        stages: [pre-commit]
+        pass_filenames: true
+
+  # Trailing whitespace
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: trailing-whitespace
+        types: [yaml, json, markdown, shell]
+      - id: end-of-file-fixer
+        types: [yaml, json, markdown, shell]
+      - id: check-yaml
+        args:
+          - --allow-multiple-documents
+      - id: check-json
+      - id: check-merge-conflict
+      - id: check-ast
+
+  # Shell script validation
+  - repo: https://github.com/shellcheck-py/shellcheck-py
+    rev: v0.9.0.5
+    hooks:
+      - id: shellcheck
+        types: [shell]
+
+  # Markdown linting
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.37.0
+    hooks:
+      - id: markdownlint
+        types: [markdown]
+        args: [--config, .markdownlint.json]

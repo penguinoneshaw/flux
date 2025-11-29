@@ -1,23 +1,23 @@
 apiVersion: v1
 kind: Secret
 metadata:
-    name: paperless-auth-config
-    namespace: paperless
+  name: paperless-auth-config
+  namespace: paperless
 type: Opaque
 stringData:
-    social_providers: ENC[AES256_GCM,data:mDxaoQU9kBouTBBzSMLhZ69M+3mn18QMHaL1HgNQotVSJA+jB7cbALteRTwUHVoAKJsHpYKf3EpS7Z5a3W18BcfGMVNvGDzz1Y3gvgXVQZHLnBh1bXgpHcUDBW07qyR0ChkD7KHeEsRCKFjgamRTxMflqHuT/jWe48mnBGMv+j25LjmUX/xJgDClLzZO7i0htnLtiHQdoZhVRtPvZxnmkVv1orM+rjFSpWJ4XpyWXfkenl5mOlq7VB45cOIOu0CErc12YkTp3LYBqkVkD3UChubPUi215X7jt28RmNRE6seT2g5YCWG5XIXCzhXN4x0X40WVaBtqNxFD3kEbrxaSyqUuVoHFOOdnaZ3tXmw9b4QLu1/NIme5/rN/tPgP66lP7iNNyJNsMHyQgDBiV18n8tZOKwBhLSPHC7dKQqPbuEWN2r/AO0wReTrtOCaAaOBQXM49jdDwZup2hv2v1fr1aedObvFfAYG9tVyak7LGZL1HSA==,iv:XfKzTFt/MCsbDDBbATtvjrd+NGFU0bHsKBS2D1eXIEE=,tag:8GatWME3gyLpf98Qywqp4g==,type:str]
+  social_providers: ENC[AES256_GCM,data:mDxaoQU9kBouTBBzSMLhZ69M+3mn18QMHaL1HgNQotVSJA+jB7cbALteRTwUHVoAKJsHpYKf3EpS7Z5a3W18BcfGMVNvGDzz1Y3gvgXVQZHLnBh1bXgpHcUDBW07qyR0ChkD7KHeEsRCKFjgamRTxMflqHuT/jWe48mnBGMv+j25LjmUX/xJgDClLzZO7i0htnLtiHQdoZhVRtPvZxnmkVv1orM+rjFSpWJ4XpyWXfkenl5mOlq7VB45cOIOu0CErc12YkTp3LYBqkVkD3UChubPUi215X7jt28RmNRE6seT2g5YCWG5XIXCzhXN4x0X40WVaBtqNxFD3kEbrxaSyqUuVoHFOOdnaZ3tXmw9b4QLu1/NIme5/rN/tPgP66lP7iNNyJNsMHyQgDBiV18n8tZOKwBhLSPHC7dKQqPbuEWN2r/AO0wReTrtOCaAaOBQXM49jdDwZup2hv2v1fr1aedObvFfAYG9tVyak7LGZL1HSA==,iv:XfKzTFt/MCsbDDBbATtvjrd+NGFU0bHsKBS2D1eXIEE=,tag:8GatWME3gyLpf98Qywqp4g==,type:str]
 sops:
-    age:
-        - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwVEtFeHFzM0JReUZVU3NN
-            OHhJQkkyTjVJbjlXTGlkczBtb0JXai9oYVFvCmw1N3EvRW5sS2FlcXcxYUdTSDho
-            NmRNR3RSWHQ5eUduUVVVdnQxSEUya3cKLS0tIERpTDIyRFFxUUpMcm9hYUY4TFFk
-            TjlkOWpDWjBwc2ljNTYrcllxdjJBWGsKilCJhM647t5+ZVU0tfG7fP2Nw+ZAjuor
-            0ZZar8PHst9RikopgCDZXZ9PyAfyZVdbnd9a0rESItsmlu6rAR9i8w==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-09-12T22:26:06Z"
-    mac: ENC[AES256_GCM,data:oxnn97FKIjcwz8cUJ1/m0wLV4eHm7aqByGo8BPOEsFmDJKgLHVGqxoBtW2P1zQrArMZeqANhBtsZL/GjIZ+7zPs5j4nFbuZaRxdQlxQ6oJWfsvxChAOsi6oUISZPydypzn4RBiPbRpa+s+SVZgl63tSqUY66p+X9QxIM9HxmTvY=,iv:EL9Hje1ntUwjB2bqTglqKkkNAI8gIq2FAynl5sv5BRo=,tag:urFC7VnuhEjX7s2cAIbWGQ==,type:str]
-    encrypted_regex: ^(data|stringData)$
-    version: 3.10.2
+  age:
+    - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSAwVEtFeHFzM0JReUZVU3NN
+        OHhJQkkyTjVJbjlXTGlkczBtb0JXai9oYVFvCmw1N3EvRW5sS2FlcXcxYUdTSDho
+        NmRNR3RSWHQ5eUduUVVVdnQxSEUya3cKLS0tIERpTDIyRFFxUUpMcm9hYUY4TFFk
+        TjlkOWpDWjBwc2ljNTYrcllxdjJBWGsKilCJhM647t5+ZVU0tfG7fP2Nw+ZAjuor
+        0ZZar8PHst9RikopgCDZXZ9PyAfyZVdbnd9a0rESItsmlu6rAR9i8w==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-09-12T22:26:06Z"
+  mac: ENC[AES256_GCM,data:oxnn97FKIjcwz8cUJ1/m0wLV4eHm7aqByGo8BPOEsFmDJKgLHVGqxoBtW2P1zQrArMZeqANhBtsZL/GjIZ+7zPs5j4nFbuZaRxdQlxQ6oJWfsvxChAOsi6oUISZPydypzn4RBiPbRpa+s+SVZgl63tSqUY66p+X9QxIM9HxmTvY=,iv:EL9Hje1ntUwjB2bqTglqKkkNAI8gIq2FAynl5sv5BRo=,tag:urFC7VnuhEjX7s2cAIbWGQ==,type:str]
+  encrypted_regex: ^(data|stringData)$
+  version: 3.10.2

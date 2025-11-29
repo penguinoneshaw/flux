@@ -31,8 +31,7 @@ testPodAnnotations: {}
 # -- List of additional pod labels
 podLabels: {}
 
-podSecurityContext:
-  {}
+podSecurityContext: {}
   # fsGroup: 2000
 
 securityContext:
@@ -107,13 +106,11 @@ ingress:
   # -- Set the class name of the ingress
   className: ""
   # -- Set the annotations of the ingress
-  annotations:
-    {}
+  annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   # -- Set the hostnames of the ingress, see values.yaml for an example.
-  hosts:
-    []
+  hosts: []
     # - host: chart-example.local
     #   paths:
     #     - path: /

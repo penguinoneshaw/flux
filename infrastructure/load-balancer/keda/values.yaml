@@ -43,8 +43,7 @@ crds:
   install: true
 
   # -- Custom annotations specifically for CRDs
-  additionalAnnotations:
-    {}
+  additionalAnnotations: {}
     # foo: bar
 
 # -- Defines Kubernetes namespaces to watch to scale their workloads. Default watches all namespaces
@@ -77,8 +76,7 @@ operator:
   # Disabling compression simply means that turns off the process of making data smaller for K8s restAPI in client-go for faster transmission.
   disableCompression: true
   # -- [Affinity] for pod scheduling for KEDA operator. Takes precedence over the `affinity` field
-  affinity:
-    {}
+  affinity: {}
     # podAntiAffinity:
     #   requiredDuringSchedulingIgnoredDuringExecution:
     #   - labelSelector:
@@ -120,8 +118,7 @@ metricsServer:
   # -- Enable metric server to use host network
   useHostNetwork: false
   # -- [Affinity] for pod scheduling for Metrics API Server. Takes precedence over the `affinity` field
-  affinity:
-    {}
+  affinity: {}
     # podAntiAffinity:
     #   requiredDuringSchedulingIgnoredDuringExecution:
     #   - labelSelector:
@@ -176,8 +173,7 @@ webhooks:
   # -- Capability to configure the number of replicas for KEDA admission webhooks
   replicaCount: 1
   # -- [Affinity] for pod scheduling for KEDA admission webhooks. Takes precedence over the `affinity` field
-  affinity:
-    {}
+  affinity: {}
     # podAntiAffinity:
     #   requiredDuringSchedulingIgnoredDuringExecution:
     #   - labelSelector:
@@ -193,24 +189,21 @@ webhooks:
 
 upgradeStrategy:
   # -- Capability to configure [Deployment upgrade strategy] for operator
-  operator:
-    {}
+  operator: {}
     # type: RollingUpdate
     # rollingUpdate:
     #   maxUnavailable: 1
     #   maxSurge: 1
 
   # -- Capability to configure [Deployment upgrade strategy] for Metrics Api Server
-  metricsApiServer:
-    {}
+  metricsApiServer: {}
     # type: RollingUpdate
     # rollingUpdate:
     #   maxUnavailable: 1
     #   maxSurge: 1
 
   # -- Capability to configure [Deployment upgrade strategy] for Admission webhooks
-  webhooks:
-    {}
+  webhooks: {}
     # type: RollingUpdate
     # rollingUpdate:
     #   maxUnavailable: 1
@@ -218,31 +211,26 @@ upgradeStrategy:
 
 podDisruptionBudget:
   # -- Capability to configure [Pod Disruption Budget]
-  operator:
-    {}
+  operator: {}
     #  minAvailable: 1
     #  maxUnavailable: 1
 
   # -- Capability to configure [Pod Disruption Budget]
-  metricServer:
-    {}
+  metricServer: {}
     #  minAvailable: 1
     #  maxUnavailable: 1
 
   # -- Capability to configure [Pod Disruption Budget]
-  webhooks:
-    {}
+  webhooks: {}
     #  minAvailable: 1
     #  maxUnavailable: 1
 
 # -- Custom labels to add into metadata
-additionalLabels:
-  {}
+additionalLabels: {}
   # foo: bar
 
 # -- Custom annotations to add into metadata
-additionalAnnotations:
-  {}
+additionalAnnotations: {}
   # foo: bar
 
 podAnnotations:
@@ -478,8 +466,7 @@ topologySpreadConstraints:
   webhooks: []
 
 # -- [Affinity] for pod scheduling for both KEDA operator and Metrics API Server
-affinity:
-  {}
+affinity: {}
   # podAntiAffinity:
   #   requiredDuringSchedulingIgnoredDuringExecution:
   #   - labelSelector:
@@ -594,8 +581,7 @@ prometheus:
       # -- HTTP scheme used for scraping. Defaults to `http`
       scheme: http
       # -- TLS configuration for scraping metrics
-      tlsConfig:
-        {}
+      tlsConfig: {}
         # caFile: /etc/prom-certs/root-cert.pem
         # certFile: /etc/prom-certs/cert-chain.pem
         # insecureSkipVerify: true
@@ -649,8 +635,7 @@ prometheus:
       # -- HTTP scheme used for scraping. Defaults to `http`
       scheme: http
       # -- TLS configuration for scraping metrics
-      tlsConfig:
-        {}
+      tlsConfig: {}
         # caFile: /etc/prom-certs/root-cert.pem
         # certFile: /etc/prom-certs/cert-chain.pem
         # insecureSkipVerify: true
@@ -678,8 +663,7 @@ prometheus:
       # -- Additional labels to add for KEDA Operator using prometheusRules crd (prometheus operator)
       additionalLabels: {}
       # -- Additional alerts to add for KEDA Operator using prometheusRules crd (prometheus operator)
-      alerts:
-        []
+      alerts: []
         # - alert: KedaScalerErrors
         #   annotations:
         #     description: Keda scaledObject {{ $labels.scaledObject }} is experiencing errors with {{ $labels.scaler }} scaler
@@ -720,8 +704,7 @@ prometheus:
       # -- HTTP scheme used for scraping. Defaults to `http`
       scheme: http
       # -- TLS configuration for scraping metrics
-      tlsConfig:
-        {}
+      tlsConfig: {}
         # caFile: /etc/prom-certs/root-cert.pem
         # certFile: /etc/prom-certs/cert-chain.pem
         # insecureSkipVerify: true
@@ -766,8 +749,7 @@ certificates:
     caSecretName: "kedaorg-ca"
     # -- Add labels/annotations to secrets created by Certificate resources
     # [docs](https://cert-manager.io/docs/usage/certificate/#creating-certificate-resources)
-    secretTemplate:
-      {}
+    secretTemplate: {}
       # annotations:
       #   my-secret-annotation-1: "foo"
       #   my-secret-annotation-2: "bar"
@@ -789,8 +771,7 @@ permissions:
       secret: false
 
 # -- Array of extra K8s manifests to deploy
-extraObjects:
-  []
+extraObjects: []
   # - apiVersion: keda.sh/v1alpha1
   #   kind: ClusterTriggerAuthentication
   #   metadata:

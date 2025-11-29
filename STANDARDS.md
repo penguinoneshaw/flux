@@ -39,7 +39,7 @@ configurations:
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-namespace: {app-name}
+namespace: "{app-name}"
 
 resources:
   - namespace.yaml
@@ -93,7 +93,6 @@ configMapGenerator:
 
 - Always include `apiVersion` and `kind` headers
 - Place `namespace:` field at top level
-- Use `disableNameSuffixHash: true` for all ConfigMaps
 - Group resources logically (namespace first, then other resources)
 - Use consistent spacing and indentation
 - List resources in logical order: namespace → configuration files → operational resources
@@ -102,32 +101,9 @@ configMapGenerator:
 
 - Omit apiVersion/kind headers
 - Use inconsistent namespace declarations
-- Forget `disableNameSuffixHash: true` on ConfigMaps (breaks HelmRelease references)
 - Use quotes around resource filenames unless necessary
 - Mix ordering styles across different files
 - Inline Helm values (use ConfigMap instead)
-
----
-
-## Apps Using This Standard
-
-All 15 applications now follow this standard:
-
-1. ✅ `audiobookshelf` - Helm-based with ConfigMap
-2. ✅ `calibre-web` - Helm-based with ConfigMap
-3. ✅ `castsponsorskip` - Raw Kubernetes deployment
-4. ✅ `dynamic-dns` - Raw Kubernetes with ConfigMap
-5. ✅ `external-dns` - Helm-based with ConfigMap
-6. ✅ `home-assistant` - Raw Kubernetes deployment
-7. ✅ `immich` - Helm-based with ConfigMap, database, secrets
-8. ✅ `jellyfin` - Helm-based with ConfigMap
-9. ✅ `kanidm` - Helm-based with ConfigMap
-10. ✅ `ntfy` - Helm-based with multiple ConfigMaps
-11. ✅ `paperless` - Helm-based with multiple ConfigMaps
-12. ✅ `pihole` - Helm-based with ConfigMap
-13. ✅ `vaultwarden` - Helm-based with ConfigMap
-14. ✅ `woodpecker-ci` - Helm-based with ConfigMap
-15. ✅ `shared-repositories` - Already compliant
 
 ---
 
@@ -166,9 +142,6 @@ Copy the appropriate format from above into your `kustomization.yaml`.
 # Test kustomize build
 cd apps/x86
 kustomize build . | grep -A 5 {app-name}
-
-# Run full validation
-../../scripts/validate.sh
 ```
 
 ### Step 6: Reference in Overlay
@@ -185,25 +158,7 @@ resources:
 
 ## Common Mistakes to Avoid
 
-### ❌ Mistake 1: Missing disableNameSuffixHash
-
-```yaml
-# WRONG - will break HelmRelease:
-configMapGenerator:
-  - name: myapp-values
-    files:
-      - values.yaml
-
-# RIGHT - stable ConfigMap name:
-configMapGenerator:
-  - name: myapp-values
-    files:
-      - values.yaml
-    options:
-      disableNameSuffixHash: true
-```
-
-### ❌ Mistake 2: Inconsistent Namespace
+### ❌ Mistake 1: Inconsistent Namespace
 
 ```yaml
 # WRONG - conflicting namespaces:
@@ -223,7 +178,7 @@ configMapGenerator:
     namespace: myapp  # Matches top-level
 ```
 
-### ❌ Mistake 3: Missing apiVersion/kind
+### ❌ Mistake 2: Missing apiVersion/kind
 
 ```yaml
 # WRONG - will confuse tooling:
@@ -238,7 +193,7 @@ resources:
   - namespace.yaml
 ```
 
-### ❌ Mistake 4: Inline Helm Values
+### ❌ Mistake 3: Inline Helm Values
 
 ```yaml
 # WRONG - values in HelmRelease:
@@ -271,18 +226,4 @@ grep -E "apiVersion|kind|namespace|resources|configMapGenerator" \
 cd apps/x86
 kustomize build . 2>&1 | grep -i error
 
-# 4. Run full validation suite
-../../scripts/validate.sh
 ```
-
----
-
-## Questions?
-
-Refer to:
-
-- `README.md` - Comprehensive guide with examples
-- `REFACTORING_NOTES.md` - Detailed analysis of changes
-- `REFACTORING_SUMMARY.md` - High-level overview of refactoring
-
-For issues with specific apps, check the corresponding directory and compare with the standard format above.

@@ -49,11 +49,11 @@ base-url: https://ntfy.thephysicsflat.xyz
 # e.g. to enable WAL mode (see https://phiresky.github.io/blog/2020/sqlite-performance-tuning/)).
 # Example:
 cache-startup-queries: |
-   pragma journal_mode = WAL;
-   pragma synchronous = normal;
-   pragma temp_store = memory;
-   pragma busy_timeout = 15000;
-   vacuum;
+  pragma journal_mode = WAL;
+  pragma synchronous = normal;
+  pragma temp_store = memory;
+  pragma busy_timeout = 15000;
+  vacuum;
 #
 # The "cache-batch-size" and "cache-batch-timeout" parameter allow enabling async batch writing
 # of messages. If set, messages will be queued and written to the database in batches of the given
@@ -91,11 +91,11 @@ cache-batch-timeout: "0ms"
 auth-file: /var/lib/ntfy/user.db
 auth-default-access: "read-only"
 auth-startup-queries: |
-   pragma journal_mode = WAL;
-   pragma synchronous = normal;
-   pragma temp_store = memory;
-   pragma busy_timeout = 15000;
-   vacuum;
+  pragma journal_mode = WAL;
+  pragma synchronous = normal;
+  pragma temp_store = memory;
+  pragma busy_timeout = 15000;
+  vacuum;
 
 # If set, the X-Forwarded-For header is used to determine the visitor IP address
 # instead of the remote address of the connection.
