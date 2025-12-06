@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: copyparty-config
+type: Opaque
+stringData:
+  config.conf: ENC[AES256_GCM,data:yhn0rIfmxBNkZMI8lhfLI5RpDIqY6FY7bXhLbMbKkn+z0Oj2EehVyRRxlpoRcq20peDLgHevsE6ab1zJt5S7bRj890SjEU+bDsAWYcpU6XqeCD8Yyb28AYbpQJxEzI9ABpbuOLjOJWx0x2oneS6cAzw7MDM3mz9OxkRknGAIeZwjvkKyGUc5Zx0PG0uP6hVF/+IaFnd+ilPlnzx5l7ZhQrajd55mK5a4aP7mcmfeMDdke3c7q06feAtvnbWyFL5DN6eO9kIEsk15MJwlINsnxegbaOxSEnhaR219KPEw6n3kP1/KynPtmvplCtgLji2FztAfDhcVUZqPtQA4pEDeB8jHxXHxcjEagNJ6tgZzTZFOeCsTt951orGMHtgluaM4/Hd/,iv:oywn9DKPydWhSI1WqK7AlYHYFlgVdV6J1e9WArT43xY=,tag:OcfGaAl2+B9oopy1OuGaaA==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTRmhRcVhpN0piWE5rS3dC
+        TDJxVjJMSGhDVi91TkFVTkw5UHdRenNFdXlRCjNOYVpiQW5WYmgyaXBYa2V6V1RM
+        WGlUb2crMjYxby9JbEo3dmNrWVBTWmcKLS0tIFRmRVhWT1d4OXhtTzE0elV0RHQw
+        eHdMcGhRb0VQZnJRakFMdkdBOE9iTmsK3+1ntO6T7f5ypuI1L2UkHREZtBN2yiz2
+        2LM69CRO26of59QLgSJ+Nu+tQU3QgbBFQjwR/V7017ap3M+lq2pcIw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-12-06T18:44:52Z"
+  mac: ENC[AES256_GCM,data:HN0GBZblU9k0t3ZM3GUYfEQ2lLCsqKPTeBJIwBtjSjJml/3sFiw+wNKLg1F7QuyR208vNQFpqdMGecKJ1jh4IVWgA8UDIicGhLl1YNKP3J5gOeMeJd25R0go0ZtiJ8Q0g6w6nDrmgnyMvHGs5TW34ixwfVbar6yemjCKOPvhoyU=,iv:ZGL5jFpyeh5RXauTkMfhuw2m12Kxr2xPjND2fH/QiU4=,tag:6JeR9BQ37KIi2J/6ir8Lsw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.3
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: copyparty-metrics-admin-credentials
+type: kubernetes.io/basic-auth
+data:
+  username: ENC[AES256_GCM,data:+JJFU0ALJ33ElDV7mQ==,iv:jlL/Kej1mWtIVdTjvwpqgaBJkIx1PEojg/oVXFl4cLw=,tag:gz1WCJF6Y+TcZIerTlcWuQ==,type:str]
+  password: ENC[AES256_GCM,data:mNcWc9NM/BI58SVvGfF7NnFQ,iv:TtQTwHg108oZ3VELkrp/WPSLnf1ELfb6DMupCq54qGc=,tag:aZbvCytCMle8MmJlHQqzxA==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBTRmhRcVhpN0piWE5rS3dC
+        TDJxVjJMSGhDVi91TkFVTkw5UHdRenNFdXlRCjNOYVpiQW5WYmgyaXBYa2V6V1RM
+        WGlUb2crMjYxby9JbEo3dmNrWVBTWmcKLS0tIFRmRVhWT1d4OXhtTzE0elV0RHQw
+        eHdMcGhRb0VQZnJRakFMdkdBOE9iTmsK3+1ntO6T7f5ypuI1L2UkHREZtBN2yiz2
+        2LM69CRO26of59QLgSJ+Nu+tQU3QgbBFQjwR/V7017ap3M+lq2pcIw==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-12-06T18:44:52Z"
+  mac: ENC[AES256_GCM,data:HN0GBZblU9k0t3ZM3GUYfEQ2lLCsqKPTeBJIwBtjSjJml/3sFiw+wNKLg1F7QuyR208vNQFpqdMGecKJ1jh4IVWgA8UDIicGhLl1YNKP3J5gOeMeJd25R0go0ZtiJ8Q0g6w6nDrmgnyMvHGs5TW34ixwfVbar6yemjCKOPvhoyU=,iv:ZGL5jFpyeh5RXauTkMfhuw2m12Kxr2xPjND2fH/QiU4=,tag:6JeR9BQ37KIi2J/6ir8Lsw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.3

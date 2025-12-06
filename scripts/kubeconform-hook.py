@@ -9,16 +9,15 @@ Install: brew install kubeconform (macOS) or see https://github.com/yannh/kubeco
 
 import subprocess
 import sys
-from pathlib import Path
 
 
 def run_kubeconform(files: list[str]) -> int:
     """
     Run kubeconform on Kubernetes manifest files.
-    
+
     Args:
         files: List of file paths to validate
-        
+
     Returns:
         Exit code (0 = success, 1 = validation failed)
     """
@@ -29,12 +28,18 @@ def run_kubeconform(files: list[str]) -> int:
     k8s_files = []
     for file in files:
         # Skip kustomization.yaml files and values.yaml (handled separately)
-        if file.endswith(('kustomization.yaml', 'values.yaml')):
+        if file.endswith(("kustomization.yaml", "values.yaml")):
             continue
         # Skip files outside Kubernetes directories
         if any(
             part in file.lower()
-            for part in ['apps/base', 'apps/x86', 'infrastructure', 'clusters', 'secrets']
+            for part in [
+                "apps/base",
+                "apps/x86",
+                "infrastructure",
+                "clusters",
+                "secrets",
+            ]
         ):
             k8s_files.append(file)
 
@@ -44,10 +49,15 @@ def run_kubeconform(files: list[str]) -> int:
     print(f"Validating {len(k8s_files)} Kubernetes manifest(s) with kubeconform...")
 
     cmd = [
-        'kubeconform',
-        '-summary',
-        '-output', 'json',
-        '-schema-location', 'default',
+        "kubeconform",
+        "-summary",
+        "-output",
+        "json",
+        "-schema-location",
+        "default",
+        "-schema-location",
+        "https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/{{.Group}}/{{.ResourceKind}}_{{.ResourceAPIVersion}}.json",
+        "-ignore-missing-schemas",
     ]
 
     try:
@@ -78,5 +88,5 @@ def run_kubeconform(files: list[str]) -> int:
         return 0  # Don't fail if kubeconform isn't installed
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     sys.exit(run_kubeconform(sys.argv[1:]))
