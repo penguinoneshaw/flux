@@ -3,8 +3,10 @@ kind: Kustomization
 resources:
   - ./oidc-roles
   - ./binfmt.yaml
+  - prometheus
   - ./cert-manager.yaml
   - ./secret-reflector.yaml
+  - ./tailscale
   - ./metallb
 configurations:
   - kustomizeconfig.yaml
