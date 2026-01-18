@@ -3,6 +3,8 @@ kind: Kustomization
 resources:
   - ./oidc-roles
   - ./binfmt.yaml
+  - ./cert-manager.yaml
+  - ./secret-reflector.yaml
   - ./metallb
 configurations:
   - kustomizeconfig.yaml
