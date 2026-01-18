@@ -4,5 +4,6 @@ resources:
   - cloudflare-data.yaml
   - cluster-issuers.yaml
   - cloudnative-pg-catalogs.yaml
+  - notifications-ingress.yaml
 configurations:
   - kustomizeconfig.yaml
