@@ -4,6 +4,5 @@ resources:
   - ./oidc-roles
   - ./binfmt.yaml
   - ./metallb
-  - ./keda
 configurations:
   - kustomizeconfig.yaml
