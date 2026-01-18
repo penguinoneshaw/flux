@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
   - ./oidc-roles
   - ./binfmt.yaml
+  - nfs-provisioner
   - prometheus
   - ./cert-manager.yaml
   - ./secret-reflector.yaml

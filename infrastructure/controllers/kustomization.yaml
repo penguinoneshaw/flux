@@ -5,7 +5,6 @@ resources:
   - metallb.yaml
   - cloudnative-pg
   - emqx
-  - nfs-provisioner
   - flux-notifications
   - amdgpu-labeller.yaml
   - generic-device-plugin
