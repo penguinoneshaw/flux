@@ -8,5 +8,6 @@ configMapGenerator:
 resources:
   - namespace.yaml
   - repository.yaml
+  - proxyclass.yaml
   - release.yaml
   - oauth-secret.yaml
