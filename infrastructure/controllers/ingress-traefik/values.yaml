@@ -1,3 +1,4 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/traefik/traefik-helm-chart/refs/heads/master/traefik/values.schema.json
 # Default values for Traefik
 # This is a YAML-formatted file.
 # Declare variables to be passed into templates
@@ -827,12 +828,7 @@ ports:
     protocol: TCP
     # -- See [upstream documentation](https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport)
     nodePort: # @schema type:[integer, null]; minimum:0
-    redirections:
-      # -- Port Redirections
-      # Added in 2.2, one can make permanent redirects via entrypoints.
-      # Same sets of parameters: to, scheme, permanent and priority.
-      # https://docs.traefik.io/routing/entrypoints/#redirection
-      entryPoint: {}
+
     forwardedHeaders:
       # -- Trust forwarded headers information (X-Forwarded-*).
       trustedIPs: []
@@ -909,20 +905,16 @@ ports:
         graceTimeOut: # @schema type:[string, integer, null]
       keepAliveMaxRequests: # @schema type:[integer, null]; minimum:0
       keepAliveMaxTime: # @schema type:[string, integer, null]
-    # --  See [upstream documentation](https://doc.traefik.io/traefik/routing/entrypoints/#tls)
-    tls:
-      enabled: true
-      options: ""
-      certResolver: ""
-      domains: []
-    # -- One can apply Middlewares on an entrypoint
-    # https://doc.traefik.io/traefik/middlewares/overview/
-    # https://doc.traefik.io/traefik/routing/entrypoints/#middlewares
-    # -- /!\ It introduces here a link between your static configuration and your dynamic configuration /!\
-    # It follows the provider naming convention: https://doc.traefik.io/traefik/providers/overview/#provider-namespace
-    #   - namespace-name1@kubernetescrd
-    #   - namespace-name2@kubernetescrd
-    middlewares: []
+    http:
+      middlewares: []
+
+      # --  See [upstream documentation](https://doc.traefik.io/traefik/routing/entrypoints/#tls)
+      tls:
+        enabled: true
+        options: ""
+        certResolver: ""
+        domains: []
+
     observability: # @schema additionalProperties: false
       # -- Enables metrics for this entryPoint.
       metrics: # @schema type:[boolean, null]; default: true
