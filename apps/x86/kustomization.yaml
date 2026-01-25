@@ -8,6 +8,7 @@ resources:
   - ../base/pihole
   - ../base/paperless
   - ../base/jellyfin
+  - ../base/mumble
   - ./paperless.yaml
   - ../base/home-assistant
   - ../base/audiobookshelf

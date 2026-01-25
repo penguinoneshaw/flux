@@ -1,0 +1,18 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: mumble
+  namespace: mumble
+spec:
+  chart:
+    spec:
+      chart: mumble
+      reconcileStrategy: ChartVersion
+      sourceRef:
+        kind: HelmRepository
+        name: syntaxerror404
+  interval: 60m0s
+  valuesFrom:
+    - kind: ConfigMap
+      name: mumble-values

@@ -1,0 +1,8 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: syntaxerror404
+  namespace: mumble
+spec:
+  interval: 60m
+  url: https://syntax3rror404.github.io/helm-charts/charts

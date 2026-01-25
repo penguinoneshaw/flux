@@ -1,0 +1,22 @@
+persistence:
+  enabled: true
+  size: 5Gi
+  storageClass: nfs-client
+
+config:
+  welcometext: "Welcome to our Mumble server!"
+  registerName: "Gaming with the Borg"
+  bandwidth: "130000"
+  users: "10"
+  certrequired: "true" # Require client certificates
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    memory: 128Mi
+    cpu: "1"
+
+service:
+  type: LoadBalancer

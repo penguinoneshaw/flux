@@ -1,0 +1,31 @@
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: mumble-tcp
+  namespace: mumble
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    domains:
+      - main: "mumble.thephysicsflat.xyz"
+  routes:
+    - match: HostSNI(`mumble.thephysicsflat.xyz`)
+      services:
+        - name: mumble
+          port: 64738
+
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRouteUDP
+metadata:
+  name: mumble-udp
+  namespace: mumble
+spec:
+  entryPoints:
+    - websecure
+  routes:
+    - services:
+        - name: mumble
+          port: 64738
