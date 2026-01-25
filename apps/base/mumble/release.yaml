@@ -29,6 +29,12 @@ spec:
                   spec:
                     containers:
                       - name: mumble
+                        env:
+                          - name: MUMBLE_CONFIG_SERVER_PASSWORD
+                            valueFrom:
+                              secretKeyRef:
+                                key: password
+                                name: mumble-server-password
                         volumeMounts:
                           - name: tls
                             mountPath: /var/run/secrets/mumble-tls
@@ -37,4 +43,4 @@ spec:
                       - name: tls
                         secret:
                           secretName: mumble-tls
-                          defaultMode: 0400
+                          defaultMode: 0544

@@ -20,6 +20,8 @@ spec:
     name: letsencrypt
     kind: ClusterIssuer
   commonName: idm.thephysicsflat.xyz
+  dnsNames:
+    - idm.thephysicsflat.xyz
 ---
 apiVersion: apps/v1
 kind: Deployment

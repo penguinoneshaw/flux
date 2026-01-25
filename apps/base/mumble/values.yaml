@@ -11,6 +11,7 @@ config:
   certrequired: "true" # Require client certificates
   sslCert: "/var/run/secrets/mumble-tls/tls.crt"
   sslKey: "/var/run/secrets/mumble-tls/tls.key"
+  sqliteWal: 2
 
 resources:
   requests:
