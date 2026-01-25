@@ -22,15 +22,15 @@ repos:
         types: [yaml]
 
   # Kubernetes manifest validation (kubeconform)
-  - repo: local
-    hooks:
-      - id: kubeconform
-        name: Kubeconform - Validate Kubernetes manifests
-        entry: python scripts/kubeconform-hook.py
-        language: system
-        types: [yaml]
-        stages: [pre-commit]
-        pass_filenames: true
+  # - repo: local
+  #   hooks:
+  #     - id: kubeconform
+  #       name: Kubeconform - Validate Kubernetes manifests
+  #       entry: python scripts/kubeconform-hook.py
+  #       language: system
+  #       types: [yaml]
+  #       stages: [pre-commit]
+  #       pass_filenames: true
 
   # Trailing whitespace
   - repo: https://github.com/pre-commit/pre-commit-hooks

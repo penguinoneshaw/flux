@@ -6,8 +6,8 @@ namespace: mumble
 resources:
   - namespace.yaml
   - repository.yaml
+  - certificate.yaml
   - release.yaml
-  - ingressroute.yaml
 
 configMapGenerator:
   - name: mumble-values

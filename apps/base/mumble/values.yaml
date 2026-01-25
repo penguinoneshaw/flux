@@ -9,6 +9,8 @@ config:
   bandwidth: "130000"
   users: "10"
   certrequired: "true" # Require client certificates
+  sslCert: "/var/run/secrets/mumble-tls/tls.crt"
+  sslKey: "/var/run/secrets/mumble-tls/tls.key"
 
 resources:
   requests:

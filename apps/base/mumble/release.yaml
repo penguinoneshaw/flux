@@ -16,3 +16,25 @@ spec:
   valuesFrom:
     - kind: ConfigMap
       name: mumble-values
+  postRenderers:
+    - kustomize:
+        patches:
+          - patch: |
+              apiVersion: apps/v1
+              kind: StatefulSet
+              metadata:
+                name: mumble-server
+              spec:
+                template:
+                  spec:
+                    containers:
+                      - name: mumble
+                        volumeMounts:
+                          - name: tls
+                            mountPath: /var/run/secrets/mumble-tls
+                            readOnly: true
+                    volumes:
+                      - name: tls
+                        secret:
+                          secretName: mumble-tls
+                          defaultMode: 0400
