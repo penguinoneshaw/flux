@@ -9,6 +9,7 @@ resources:
   - ./secret-reflector.yaml
   - ./tailscale
   - ./metallb
+  - ./garage
   - ./velero
 configurations:
   - kustomizeconfig.yaml

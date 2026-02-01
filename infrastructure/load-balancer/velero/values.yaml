@@ -409,8 +409,8 @@ configuration:
       config:
         #  region:
         s3ForcePathStyle: true
-        region: filen
-        s3Url: http://nfs.home.thephysicsflat.xyz:8082
+        region: garage
+        s3Url: http://garage.garage.svc.cluster.local:3900
         #  kmsKeyId:
         #  resourceGroup:
         #  The ID of the subscription containing the storage account, if different from the cluster’s subscription. (Azure only)

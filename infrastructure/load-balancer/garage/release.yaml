@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: garage
+
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: garage
+  namespace: garage
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: garage
+      sourceRef:
+        kind: HelmRepository
+        name: charts-derwitt
+        namespace: garage
+      interval: 12h
+  valuesFrom:
+    - kind: ConfigMap
+      name: garage-values
+      valuesKey: values.yaml

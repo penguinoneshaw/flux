@@ -1,0 +1,9 @@
+configMapGenerator:
+  - name: garage-values
+    namespace: garage
+    files:
+      - values.yaml
+namespace: garage
+resources:
+  - repository.yaml
+  - release.yaml
