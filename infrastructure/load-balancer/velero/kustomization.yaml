@@ -1,0 +1,10 @@
+configMapGenerator:
+  - name: velero-values
+    namespace: velero
+    files:
+      - values.yaml
+namespace: velero
+resources:
+  - repository.yaml
+  - release.yaml
+  - secret.yaml
