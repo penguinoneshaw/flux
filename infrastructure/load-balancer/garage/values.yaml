@@ -196,7 +196,9 @@ ingress:
       tls:
         - secretName: my-garage-cluster-tls
           hosts:
-            - kubernetes.docker.internal
+            - s3.garage.thephysicsflat.xyz
+            - "*.s3.garage.thephysicsflat.xyz"
+
     web:
       enabled: false
       # -- Rely _either_ on the className or the annotation below but not both!
