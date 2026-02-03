@@ -59,7 +59,11 @@ deployment:
   additionalContainers: []
   # https://docs.datadoghq.com/developers/dogstatsd/unix_socket/?tab=host
   # -- Additional volumes available for use with initContainers and additionalContainers
-  additionalVolumes: []
+  additionalVolumes:
+    - name: plugins
+      nfs:
+        server: nfs.home.thephysicsflat.xyz
+        path: /srv/traefik-plugins
   # - name: dsdsocket
   #   hostPath:
   #     path: /var/run/statsd-exporter
@@ -403,7 +407,9 @@ volumes: []
 #   type: configMap
 
 # -- Additional volumeMounts to add to the Traefik container
-additionalVolumeMounts: []
+additionalVolumeMounts:
+  - name: plugins
+    mountPath: "/plugins-storage"
 # -- For instance when using a logshipper for access logs
 # - name: traefik-logs
 #   mountPath: /var/log/traefik
