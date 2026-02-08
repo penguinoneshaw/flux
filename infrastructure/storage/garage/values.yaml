@@ -93,13 +93,13 @@ persistence:
   enabled: true
   meta:
     # -- Use a storage class with a preferably fast storage type
-    storageClass: nfs-client
-    size: 100Mi
+    storageClass: longhorn
+    size: 300Mi
     # used only for daemon sets
     hostPath: /var/lib/garage/meta
   data:
     # -- This would classically be a "slow" storage type like HDDs
-    storageClass: nfs-client
+    storageClass: longhorn
     size: 10Gi
     # used only for daemon sets
     hostPath: /var/lib/garage/data

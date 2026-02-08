@@ -4,15 +4,15 @@
 
 # Labels settings in namespace
 namespace:
-  labels: {}
+  labels:
     # Enforce Pod Security Standards with Namespace Labels
     # https://kubernetes.io/docs/tasks/configure-pod-container/enforce-standards-namespace-labels/
-    # pod-security.kubernetes.io/enforce: privileged
-    # pod-security.kubernetes.io/enforce-version: latest
-    # pod-security.kubernetes.io/audit: privileged
-    # pod-security.kubernetes.io/audit-version: latest
-    # pod-security.kubernetes.io/warn: privileged
-    # pod-security.kubernetes.io/warn-version: latest
+    pod-security.kubernetes.io/enforce: privileged
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/audit: privileged
+    pod-security.kubernetes.io/audit-version: latest
+    pod-security.kubernetes.io/warn: privileged
+    pod-security.kubernetes.io/warn-version: latest
 
 ##
 ## End of namespace-related settings.
@@ -76,11 +76,11 @@ resources:
 
 # Container resize policy for the Velero deployment.
 # See: https://kubernetes.io/docs/tasks/configure-pod-container/resize-container-resources/
-resizePolicy: []
-  # - resourceName: cpu
-  #   restartPolicy: NotRequired
-  # - resourceName: memory
-  #   restartPolicy: RestartContainer
+resizePolicy:
+  - resourceName: cpu
+    restartPolicy: NotRequired
+  - resourceName: memory
+    restartPolicy: RestartContainer
 
 # Configure hostAliases for Velero deployment. Optional
 # For more information, check: https://kubernetes.io/docs/tasks/network/customize-hosts-file-for-pods/

@@ -1,0 +1,10 @@
+configMapGenerator:
+  - name: longhorn-values
+    namespace: longhorn-system
+    files:
+      - values.yaml
+namespace: longhorn-system
+resources:
+  - namespace.yaml
+  - repository.yaml
+  - release.yaml
