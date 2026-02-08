@@ -61,7 +61,7 @@ spec:
   capacity:
     storage: 512Gi
   accessModes:
-    - ReadWriteMany
+    - ReadWriteOnce
   nfs:
     server: nfs.home.thephysicsflat.xyz
     path: "/srv/media"
@@ -78,7 +78,6 @@ spec:
   capacity:
     storage: 64Gi
   accessModes:
-    - ReadWriteMany
     - ReadOnlyMany
   nfs:
     server: nfs.home.thephysicsflat.xyz
