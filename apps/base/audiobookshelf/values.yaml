@@ -43,10 +43,10 @@ podAnnotations: {}
 resources:
   limits:
     cpu: 500m
-    memory: 512Mi
+    memory: "1G"
   requests:
     cpu: 100m
-    memory: 256Mi
+    memory: "1G"
 
 ingress:
   # -- Enable and configure ingress settings for the chart under this key.
