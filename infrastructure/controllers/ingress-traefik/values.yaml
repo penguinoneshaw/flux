@@ -23,7 +23,7 @@ deployment:
   # -- Deployment or DaemonSet
   kind: Deployment
   # -- Number of pods of the deployment (only applies when kind == Deployment)
-  replicas: 3
+  replicas: 1
   # -- Number of old history to retain to allow rollback (If not set, default Kubernetes value is set to 10)
   revisionHistoryLimit: # @schema type:[integer, null];minimum:0
   # -- Amount of time (in seconds) before Kubernetes will send the SIGKILL signal if Traefik does not shut down
@@ -59,11 +59,7 @@ deployment:
   additionalContainers: []
   # https://docs.datadoghq.com/developers/dogstatsd/unix_socket/?tab=host
   # -- Additional volumes available for use with initContainers and additionalContainers
-  additionalVolumes:
-    - name: plugins
-      nfs:
-        server: nfs.home.thephysicsflat.xyz
-        path: /srv/traefik-plugins
+  additionalVolumes: []
   # - name: dsdsocket
   #   hostPath:
   #     path: /var/run/statsd-exporter
@@ -407,9 +403,7 @@ volumes: []
 #   type: configMap
 
 # -- Additional volumeMounts to add to the Traefik container
-additionalVolumeMounts:
-  - name: plugins
-    mountPath: "/plugins-storage"
+additionalVolumeMounts: []
 # -- For instance when using a logshipper for access logs
 # - name: traefik-logs
 #   mountPath: /var/log/traefik
