@@ -64,7 +64,7 @@ persistence:
     mountPath: /var/cache/ntfy
     type: pvc
     retain: true
-    storageClass: nfs-ephemeral
+    storageClass: longhorn
     accessMode: ReadWriteOnce
     size: 1G
   config:

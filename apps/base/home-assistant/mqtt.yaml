@@ -8,7 +8,7 @@ spec:
   coreTemplate:
     spec:
       volumeClaimTemplates:
-        storageClassName: nfs-ephemeral
+        storageClassName: longhorn
         resources:
           requests:
             storage: 20Mi

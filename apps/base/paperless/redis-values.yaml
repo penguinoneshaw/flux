@@ -90,7 +90,7 @@ persistence:
   data:
     enabled: false
     retain: false
-    storageClass: "nfs-ephemeral"
+    storageClass: "longhorn"
     accessMode: ReadWriteOnce
     size: 1Gi
   health:

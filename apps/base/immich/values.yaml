@@ -86,7 +86,7 @@ valkey:
       # Optional: Set this to persistentVolumeClaim to keep job queues persistent
       type: persistentVolumeClaim
       accessMode: ReadWriteMany
-      storageClass: nfs-ephemeral
+      storageClass: longhorn
 
 # Immich components
 

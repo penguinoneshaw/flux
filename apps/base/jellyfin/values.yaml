@@ -147,7 +147,7 @@ persistence:
     #    https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#persistentvolumeclaim-v1-core
     #    for structural reference)
     volumeClaimSpec:
-      storageClassName: nfs-ephemeral
+      storageClassName: longhorn
       accessModes:
         - ReadWriteOnce
       resources:
