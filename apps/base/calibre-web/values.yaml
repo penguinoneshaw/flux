@@ -72,10 +72,10 @@ persistence:
     storageClass: nfs-client
   books:
     enabled: true
-    type: nfs
+    type: pvc
     mountPath: /calibre-library
-    server: nfs.home.thephysicsflat.xyz
-    path: /srv/books/Books
+    existingClaim: calibre-web-books
+    readonly: true
   ingest:
     enabled: true
     type: nfs

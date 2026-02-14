@@ -5,6 +5,7 @@ namespace: calibre-web
 
 resources:
   - namespace.yaml
+  - pvc.yaml
   - release.yaml
 
 configMapGenerator:

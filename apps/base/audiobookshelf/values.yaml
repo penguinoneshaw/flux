@@ -93,10 +93,9 @@ persistence:
     path: /srv/books/Audiobooks
   books:
     enabled: true
-    type: nfs
+    type: pvc
     mountPath: /books
-    server: nfs.home.thephysicsflat.xyz
-    path: /srv/books/Books
+    existingClaim: audiobookshelf-books
     readonly: true
   podcasts:
     enabled: true

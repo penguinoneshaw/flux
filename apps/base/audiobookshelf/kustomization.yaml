@@ -5,6 +5,7 @@ namespace: audiobookshelf
 
 resources:
   - namespace.yaml
+  - pvc.yaml
   - release.yaml
 
 configMapGenerator:

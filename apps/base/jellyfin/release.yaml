@@ -84,7 +84,12 @@ spec:
     path: "/srv/books/Books"
     readOnly: false
   mountOptions:
-    - nfsvers=4.2
+    - nfsvers=3
+    - nolock
+    - soft
+    - timeo=600
+    - retrans=3
+    - noatime
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
