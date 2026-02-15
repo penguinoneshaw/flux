@@ -59,13 +59,13 @@ spec:
               value: "aa"
             - name: "SKIPIFINTERNALSUBLANG"
               value: "eng"
-            - name: "JELLYFINTOKEN"
+            - name: "JELLYFIN_TOKEN"
               valueFrom:
                 secretKeyRef:
                   key: token
                   name: jellyfin-token
                   optional: true
-            - name: "JELLYFINSERVER"
+            - name: "JELLYFIN_SERVER"
               value: "http://jellyfin-jellyfin.jellyfin:8096"
             - name: "WEBHOOKPORT"
               value: "9000"
