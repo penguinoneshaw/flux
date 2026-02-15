@@ -110,7 +110,7 @@ podSecurityContext:
   runAsNonRoot: true
   runAsUser: 1000
   fsGroup: 1000
-  supplementalGroups: [44, 993]
+  supplementalGroups: [44, 992]
   seccompProfile:
     type: RuntimeDefault
 
