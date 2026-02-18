@@ -464,7 +464,9 @@ longhornManager:
   #   value: "value"
   #   effect: "NoSchedule"
   # -- Resource requests and limits for Longhorn Manager pods.
-  resources: ~
+  resources:
+    requests: { memory: "256Mi", cpu: "1000m" }
+    limits: { memory: "256Mi", cpu: "1000m" }
   # -- Node selector for Longhorn Manager. Specify the nodes allowed to run Longhorn Manager.
   nodeSelector: {}
   ## If you want to set node selector for Longhorn Manager DaemonSet, delete the `{}` in the line above
