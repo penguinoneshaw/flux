@@ -7,11 +7,20 @@ spec:
   image: emqx:5
   coreTemplate:
     spec:
+      resources:
+        requests:
+          memory: "64Mi"
+          cpu: "125m"
+        limits:
+          memory: "1024Mi"
+          cpu: "500m"
       volumeClaimTemplates:
         storageClassName: longhorn
         resources:
+          limits:
+            storage: 300Mi
           requests:
-            storage: 20Mi
+            storage: 300Mi
         accessModes:
           - ReadWriteOnce
       replicas: 3
