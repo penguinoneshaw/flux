@@ -175,7 +175,7 @@ persistence:
   # -- Replica count of the default Longhorn StorageClass.
   defaultClassReplicaCount: 1
   # -- Data locality of the default Longhorn StorageClass. (Options: "disabled", "best-effort")
-  defaultDataLocality: best-effort
+  defaultDataLocality: disabled
   # -- Reclaim policy that provides instructions for handling of a volume after its claim is released. (Options: "Retain", "Delete")
   reclaimPolicy: Delete
   # -- VolumeBindingMode controls when volume binding and dynamic provisioning should occur. (Options: "Immediate", "WaitForFirstConsumer") (Defaults to "Immediate")
@@ -339,7 +339,9 @@ defaultSettings:
   # -- Number of seconds that Longhorn waits before downloading a backing image file again when the status of all image disk files changes to "failed" or "unknown".
   backingImageRecoveryWaitInterval: ~
   # -- Percentage of the total allocatable CPU resources on each node to be reserved for each instance manager pod. The default value is {"v1":"12","v2":"12"}.
-  guaranteedInstanceManagerCPU: ~
+  guaranteedInstanceManagerCPU:
+    v1: "15"
+    v2: "15"
   # -- Setting that notifies Longhorn that the cluster is using the Kubernetes Cluster Autoscaler.
   kubernetesClusterAutoscalerEnabled: ~
   # -- Enables Longhorn to automatically delete orphaned resources and their associated data or processes (e.g., stale replicas). Orphaned resources on failed or unknown nodes are not automatically cleaned up.
