@@ -22,7 +22,7 @@ metadata:
 addressType: IPv4
 endpoints:
   - addresses:
-      - 10.1.10.20 # Insert your home-assistant IP here
+      - 10.1.10.55 # Insert your home-assistant IP here
     conditions:
       ready: true
 ports:
