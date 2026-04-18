@@ -25,7 +25,7 @@ spec:
   chart:
     spec:
       chart: cert-manager
-      version: "1.18.1"
+      version: "1.20.2"
       sourceRef:
         kind: HelmRepository
         name: cert-manager
@@ -49,7 +49,7 @@ spec:
   chart:
     spec:
       chart: trust-manager
-      version: "0.18.0"
+      version: "0.22.0"
       sourceRef:
         kind: HelmRepository
         name: cert-manager
@@ -114,7 +114,7 @@ spec:
 
       # Kubernetes imagePullPolicy on Deployment.
       pullPolicy: IfNotPresent
-      tag: v0.18.0
+      tag: v0.22.0
     defaultPackage:
       # Whether to load the default trust package during pod initialization, and include it in main container args. This container enables the 'useDefaultCAs' source on Bundles.
       enabled: true
@@ -138,11 +138,11 @@ spec:
       # registry: quay.io
 
       # The repository for the default package image. This image enables the 'useDefaultCAs' source on Bundles.
-      repository: quay.io/jetstack/trust-pkg-debian-bookworm
+      # repository: quay.io/jetstack/trust-pkg-debian-bookworm
       # Override the image tag of the default package image.
       # If no value is set, the chart's appVersion is used.
       # +docs:property
-      tag: "20230311.0"
+      # tag: "20230311.0"
       # Target image digest. Override any tag, if set.
       # For example:
       #   digest: sha256:0e072dddd1f7f8fc8909a2ca6f65e76c5f0d2fcfb8be47935ae3457e8bbceb20
