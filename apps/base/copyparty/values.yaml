@@ -263,10 +263,6 @@ containerPorts:
   - name: "http"
     port: 3923
     protocol: "TCP"
-  - name: "metrics"
-    port: 3923
-    protocol: "TCP"
-
 # -- Service configuration.
 # A service for metrics is created separately. Check `.Values.metrics` for more information.
 #
@@ -314,7 +310,7 @@ metrics:
       - name: "metrics"
         port: 3000
         protocol: "TCP"
-        targetPort: "metrics"
+        targetPort: "http"
   # -- ServiceMonitor configuration.
   #
   # Ref: https://github.com/prometheus-operator/prometheus-operator?tab=readme-ov-file#customresourcedefinitions
