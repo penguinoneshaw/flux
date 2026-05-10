@@ -512,7 +512,7 @@ longhornDriver:
   #  label-key2: "label-value2"
 longhornUI:
   # -- Replica count for Longhorn UI.
-  replicas: 2
+  replicas: 1
   # -- PriorityClass for Longhorn UI.
   priorityClass: *defaultPriorityClassNameRef
   # -- Affinity for Longhorn UI pods. Specify the affinity you want to use for Longhorn UI.
@@ -574,24 +574,24 @@ ingress:
   ##
   ## If tls is set to true, annotation ingress.kubernetes.io/secure-backends: "true" will automatically be set
   # -- Ingress annotations in the form of key-value pairs.
-  annotations:
-  #  kubernetes.io/ingress.class: nginx
+  annotations: #  kubernetes.io/ingress.class: nginx
+
   #  kubernetes.io/tls-acme: true
 
   # -- Secret that contains a TLS private key and certificate. Use secrets if you want to use your own certificates to secure ingresses.
   secrets:
-  ## If you're providing your own certificates, please use this to add the certificates as secrets
-  ## key and certificate should start with -----BEGIN CERTIFICATE----- or
-  ## -----BEGIN RSA PRIVATE KEY-----
-  ##
-  ## name should line up with a tlsSecret set further up
-  ## If you're using kube-lego, this is unneeded, as it will create the secret for you if it is not set
-  ##
-  ## It is also possible to create and manage the certificates outside of this helm chart
-  ## Please see README.md for more information
-  # - name: longhorn.local-tls
-  #   key:
-  #   certificate:
+    ## If you're providing your own certificates, please use this to add the certificates as secrets
+    ## key and certificate should start with -----BEGIN CERTIFICATE----- or
+    ## -----BEGIN RSA PRIVATE KEY-----
+    ##
+    ## name should line up with a tlsSecret set further up
+    ## If you're using kube-lego, this is unneeded, as it will create the secret for you if it is not set
+    ##
+    ## It is also possible to create and manage the certificates outside of this helm chart
+    ## Please see README.md for more information
+    # - name: longhorn.local-tls
+    #   key:
+    #   certificate:
 httproute:
   # -- Setting that allows Longhorn to generate HTTPRoute records for the Longhorn UI service using Gateway API.
   enabled: false
@@ -617,7 +617,7 @@ httproute:
   annotations: {}
   ## Example:
   #  annotation-key1: "annotation-value1"
-# -- Setting that allows you to enable pod security policies (PSPs) that allow privileged Longhorn pods to start. This setting applies only to clusters running Kubernetes 1.25 and earlier, and with the built-in Pod Security admission controller enabled.
+  # -- Setting that allows you to enable pod security policies (PSPs) that allow privileged Longhorn pods to start. This setting applies only to clusters running Kubernetes 1.25 and earlier, and with the built-in Pod Security admission controller enabled.
 enablePSP: false
 # -- Specify override namespace, specifically this is useful for using longhorn as sub-chart and its release namespace is not the `longhorn-system`.
 namespaceOverride: ""
