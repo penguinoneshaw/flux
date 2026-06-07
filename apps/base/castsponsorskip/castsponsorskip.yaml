@@ -64,8 +64,5 @@ spec:
               mountPath: /app/data
       volumes:
         - name: isponsorblocktv
-          configMap:
-            name: isponsorblocktv
-            items:
-              - key: isponsorblocktv.json
-                path: config.json
+          secret:
+            secretName: isponsorblocktv

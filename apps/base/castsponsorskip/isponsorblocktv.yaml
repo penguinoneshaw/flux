@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: isponsorblocktv
+  namespace: castsponsorskip
+type: Opaque
+stringData:
+  config.json: ENC[AES256_GCM,data:Mky50Jq/BrGHZpsIsZIO/CBDv2ZQHJi9LCulh1kVM/oXzurcjjj4cEnlEdF4md+uQnIJO4n1ypjRCKJILooIC2bbKyvwxR8+wMr3e8HOmDNJqvpQUE/kKFoyuFOft48D7uJBv5itGFggzbr72FwTj0zq0tRtTuiuYlLpkit7GVoV/bLRge3Ntq8y1p+aHP9kifnzK007vomfJRMCuzwVmcptToEA/flVVchsDjfXFBpYDL9kc31U20B6jd2a9wlEMoNOXpgkCRH4MCLEALEVmD33CA9AND7d3XHAv7kqoypd9EJ9EQoNF+iTWyAaKWMbvx7ncQ07/INf8lYCMra/8J2szjskbd905MI5e9XvYT2MitdnkynWxoB+o8oacBHfK/J40aMesxqGmci1JFReahQ0lp6ozscflzzHjESXJULrz/dlDPurZnUyj01GP8S5Wbiof2l+c/rl9YU2p8O8Z0Ux9mcOW6ZvWC/rSneIR/yB7nc9dpf2TV/LZYZQu08VHorFPNI8R34vmoFpOk5Hur4fW4A+WyG5Qr++uDi5FC8n5SngcVeqJllCdGwN/k8TPvhoCpSaEncrZ3yLcdLXwsPTyC/X8IFHzQfWq8ABlNHL+W8CWVOIRF+n52TpTBruF1vwKwTLUqqp7Tg84ZT8JfRfqGa738tg8aUaZ8Q+iLoSEDrS4aSKJcJexWFNIR+B78XiaDqM+Iu/fyzUga3eUp8BD9Lncq92aUPqe6+9nwcxBlu5a8NehnN2JIQwLuEXxVVF3uenUIZMcuUojziN9wiWhm0OkUU6SQ88Hj7dV7PJLZMNv11MLAKe1OC+q9s43W2vk+hMH7s1cxeAaltJFcTNtPSG7LJaiPBflBhoctf6mT6abd/a0UljTYu1AgWjW7/zIIg=,iv:LdWzannZh1Q1ZfcD04OITUP0BGtk7BI7JJ5szAoeBSw=,tag:IUFYvYgGx6xeg7G37hhbXg==,type:str]
+sops:
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age1hu3ypqyxgvdsjkt2cts6lrn8p0n0gvr4j0xxm5sq22d8ktscg5ysn23mzv
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBIRk56US9mNzEwYVE0R3pX
+        QnJCUDYxY0JWbG1VVXRDNXBHVkIzRXdGUUFBCkg4M2cvZXVTWHY1MU9CdkZFMWhs
+        N0FDQXV5cERUMmFEWHZTR1lyaWU5eFkKLS0tIER0L0JERkJwdCsvS1k3WUhtbVNl
+        V1pJWXVZSTI5N0JBWXVWVERsVmlHTHcKtq/DgkRSJe3UJ2s3JRRHyTE+YQ9ib9jD
+        uiZqNrti+pEZgbi3Yh5HxP28eMV6ZuyF42OhaZj7r2KjQdHBJdWVwA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2026-06-07T19:01:34Z"
+  mac: ENC[AES256_GCM,data:dL6gQV6h42K3t3FJ7VL90Q0HTaDhvC6TmZqCPcTTs9Dqsg7Ozp9tXQSr9Nsdo3+tEEaGIDOUlvhRoAgSW60gxrzqfAjlOCtxgTuRhL7WuCRnEwvkFz1h06bRcuQj7IHgJLNHw1KTEuBpTVf3VKv/WjEeB0/4Yw0WfmQqYhnqGbI=,iv:XaCU7PXtIPqvtkSDJg5FPO3at6khTXNqkozWH6j2HTQ=,tag:T8br2Ms8/R2NswkMqKgghw==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.7.3
