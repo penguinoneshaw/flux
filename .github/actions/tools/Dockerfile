@@ -1,4 +1,4 @@
-FROM stefanprodan/alpine-base:latest
+FROM docker.io/alpine:latest
 
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh

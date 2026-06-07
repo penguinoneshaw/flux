@@ -1,0 +1,13 @@
+{
+  "devices": [],
+  "apikey": "",
+  "skip_categories": ["sponsor"],
+  "channel_whitelist": [],
+  "skip_count_tracking": true,
+  "mute_ads": false,
+  "skip_ads": true,
+  "minimum_skip_length": 1,
+  "auto_play": true,
+  "join_name": "iSponsorBlockTV",
+  "use_proxy": false
+}
