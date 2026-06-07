@@ -31,6 +31,11 @@ spec:
           env:
             - name: TZ
               value: "Europe/London"
+            - name: CSS_YOUTUBE_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: isponsorblocktv
+                  key: youtube_api_key
           imagePullPolicy: Always
           resources:
             requests:
@@ -41,27 +46,27 @@ spec:
               cpu: "500m"
           securityContext:
             readOnlyRootFilesystem: true
-        - name: isponsorblocktv
-          image: ghcr.io/dmunozv04/isponsorblocktv:latest
-          env:
-            - name: TZ
-              value: "Europe/London"
-          imagePullPolicy: Always
-          resources:
-            requests:
-              memory: "128Mi"
-              cpu: "500m"
-            limits:
-              memory: "128Mi"
-              cpu: "500m"
-          securityContext:
-            readOnlyRootFilesystem: true
-            allowPrivilegeEscalation: false
-            runAsNonRoot: true
-            runAsUser: 1000
-          volumeMounts:
-            - name: isponsorblocktv
-              mountPath: /app/data
+      #  - name: isponsorblocktv
+      #    image: ghcr.io/dmunozv04/isponsorblocktv:latest
+      #    env:
+      #      - name: TZ
+      #        value: "Europe/London"
+      #    imagePullPolicy: Always
+      #    resources:
+      #      requests:
+      #        memory: "128Mi"
+      #        cpu: "500m"
+      #      limits:
+      #        memory: "128Mi"
+      #        cpu: "500m"
+      #    securityContext:
+      #      readOnlyRootFilesystem: true
+      #      allowPrivilegeEscalation: false
+      #      runAsNonRoot: true
+      #      runAsUser: 1000
+      #    volumeMounts:
+      #      - name: isponsorblocktv
+      #        mountPath: /app/data
       volumes:
         - name: isponsorblocktv
           secret:
