@@ -57,7 +57,7 @@ resources:
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
   limits:
     cpu: 100m
-    memory: 128Mi
+    memory: 512Mi
   # requests:
   #   cpu: 100m
   #   memory: 128Mi
@@ -129,7 +129,7 @@ api:
   # -- Enables TLS on the API server: K8S TLS secret name containing the TLS certificate and key (tls.crt, tls.key)
   tlsSecretName: ""
   # -- Set the time limit for requests (default 30s)
-  timeout: ""
+  timeout: "60s"
   # -- Set the root path of the API - for service discovery via URL paths (default "/")
   rootPath: ""
   # -- Set the header name to use for identifying requests (default "Gotenberg-Trace")
@@ -157,15 +157,15 @@ chromium:
   # -- Number of conversions after which Chromium will automatically restart. Set to 0 to disable this feature
   restartAfter: ""
   # -- Automatically launch Chromium upon initialization if set to true; otherwise, Chromium will start at the time of the first conversion
-  autoStart: false
+  autoStart: true
   # -- Maximum duration to wait for Chromium to start or restart
-  startTimeout: ""
+  startTimeout: "120s"
   # -- Allow file:// URIs to read other file:// URIs
   allowFileAccessFromFiles: false
   # -- Ignore TLS/SSL errors on localhost
   allowInsecureLocalhost: false
   # -- Set the allowed URLs for Chromium using a regular expression
-  allowList: ""
+  allowList: "file:///tmp/.*"
   # -- Set the denied URLs for Chromium using a regular expression (default "^file:///[^tmp].*")
   denyList: ""
   # -- Ignore the certificate errors
@@ -179,13 +179,13 @@ chromium:
   # -- Set the outbound proxy server; this switch only affects HTTP and HTTPS requests
   proxyServer: ""
   # -- Disable JavaScript
-  disableJavaScript: false
+  disableJavaScript: true
   # -- Disable the routes
   disableRoutes: false
   # -- Clear Chromium cache between each conversion.
-  clearCache: false
+  clearCache: true
   # -- Clear Chromium cookies between each conversion.
-  clearCookies: false
+  clearCookies: true
   # -- Maximum request queue size for Chromium. Set to 0 to disable this feature.
   maxQueueSize: 0
 
