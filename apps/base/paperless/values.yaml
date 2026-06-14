@@ -1,9 +1,9 @@
 image:
   # -- The repository to pull the image from.
-  repository: ghcr.io/paperless-ngx/paperless-ngx
+  repository: paperless-ngx/paperless-ngx
   # -- The docker tag, if left empty chart's appVersion will be used.
   # @default -- `.Chart.AppVersion`
-  tag: ""
+  tag: "2.20.15"
   # -- The pull policy for the controller.
   pullPolicy: IfNotPresent
 
@@ -55,14 +55,16 @@ env:
   - name: PAPERLESS_TIKA_ENABLED
     value: "true"
   - name: PAPERLESS_TIKA_GOTENBERG_ENDPOINT
-    value: http://gotenberg:3000
+    value: http://gotenberg.paperless.svc.cluster.local:3000
   - name: PAPERLESS_TIKA_ENDPOINT
-    value: http://tika:9998
+    value: http://tika.paperless.svc.cluster.local:9998
   - name: PAPERLESS_CONSUMER_POLLING
     value: "60"
   - name: PAPERLESS_CONSUMER_ENABLE_BARCODES
     value: "true"
   - name: PAPERLESS_CONSUMER_ENABLE_ASN_BARCODE
+    value: "true"
+  - name: PAPERLESS_ENABLE_FLOWER
     value: "true"
   - name: PAPERLESS_TASK_WORKERS
     value: "4"
