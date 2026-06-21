@@ -9,7 +9,7 @@ resources:
   - pihole-password.yaml
   - cors-middleware.yaml
   - release.yaml
-
+  - tailscale-service.yaml
 configMapGenerator:
   - name: pihole-values
     namespace: pihole
