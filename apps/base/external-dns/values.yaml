@@ -220,10 +220,10 @@ namespaced: false
 
 # -- _Kubernetes_ resources to monitor for DNS entries.
 sources:
-  - service
-  - ingress
+  # - service
+  # - ingress
   - crd
-  - gateway-httproute
+  # - gateway-httproute
   # - gateway-tlsroute
   # - gateway-tcproute
 
