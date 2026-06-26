@@ -611,6 +611,8 @@ extraVolumes:
     configMap:
       name: unbound-conf
       namespace: pihole
+  root-hints:
+    emptyDir: {}
   # external-conf:
   #   configMap:
   #     name: pi-hole-lighttpd-external-conf
@@ -634,7 +636,13 @@ extraContainers:
         memory: 128Mi
     volumeMounts:
       - name: unbound-conf
-        mountPath: /etc/unbound
+        mountPath: /etc/unbound/unbound.conf
+        subPath: unbound.conf
+      - name: root-hints
+        mountPath: /etc/unbound/root.hints
+        subPath: root.hints
+    # ports:
+    #   dns:
 
   # - name: pihole-logwatcher
   #   image: your-registry/pihole-logwatcher
@@ -671,7 +679,7 @@ extraObjects:
           do-tcp: yes
 
           # May be set to no if you don't have IPv6 connectivity
-          do-ip6: yes
+          do-ip6: no
 
           # You want to leave this to no unless you have *native* IPv6. With 6to4 and
           # Terredo tunnels your web browser should favor IPv4 for the same reasons
@@ -679,7 +687,7 @@ extraObjects:
 
           # Use this only when you downloaded the list of primary root servers!
           # If you use the default dns-root-data package, unbound will find it automatically
-          #root-hints: "/var/lib/unbound/root.hints"
+          root-hints: "/etc/unbound/root.hints"
 
           # Trust glue only if it is within the server's authority
           harden-glue: yes
@@ -744,20 +752,19 @@ podAnnotations: {}
   # prometheus.io/scrape: 'true'
 
 # -- any initContainers you might want to run before starting pihole
-extraInitContainers: []
-  # - name: copy-config
-  #   image: busybox
-  #   args:
-  #     - sh
-  #     - -c
-  #     - |
-  #       cp /etc/lighttpd-cm/external.conf /etc/lighttpd/
-  #       ls -l /etc/lighttpd/
-  #   volumeMounts:
-  #     - name: external-conf-cm
-  #       mountPath: /etc/lighttpd-cm/
-  #     - name: external-conf
-  #       mountPath: /etc/lighttpd/
+extraInitContainers:
+  - name: download-root-hints
+    image: docker.io/alpinelinux/unbound:latest
+    command:
+      - sh
+      - -c
+    args:
+      - |
+        wget -S https://www.internic.net/domain/named.cache -O /etc/unbound/root.hints
+        cat /etc/unbound/root.hints
+    volumeMounts:
+      - name: root-hints
+        mountPath: /etc/unbound
 
 monitoring:
   # -- Preferably adding prometheus scrape annotations rather than enabling podMonitor.
