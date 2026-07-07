@@ -35,6 +35,7 @@ spec:
   usages:
     - digital signature
     - key encipherment
+    - server auth
   dnsNames:
     - "*.thephysicsflat.xyz"
     - "*.x86.thephysicsflat.xyz"
@@ -43,5 +44,4 @@ spec:
     annotations:
       reflector.v1.k8s.emberstack.com/reflection-allowed: "true"
       reflector.v1.k8s.emberstack.com/reflection-auto-enabled: "true" # Auto create reflection for matching namespaces
-
 ---
