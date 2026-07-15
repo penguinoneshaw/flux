@@ -1,0 +1,31 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: technitium
+spec:
+  interval: 24h
+  url: https://charts.obeone.cloud
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: technitium
+  namespace: technitium
+spec:
+  releaseName: technitium
+  chart:
+    spec:
+      chart: technitium-dnsserver
+      reconcileStrategy: ChartVersion
+      version: 1.13.0
+      sourceRef:
+        kind: HelmRepository
+        name: technitium
+        namespace: technitium
+  interval: 30m
+  valuesFrom:
+    - kind: ConfigMap
+      name: technitium-values
+  upgrade:
+    force: true
+    crds: CreateReplace

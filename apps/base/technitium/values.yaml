@@ -1,0 +1,131 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/obeone/charts/9fe04e93e6c9251339d85fab0d70526575565f58/charts/technitium-dnsserver/values.schema.json
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from our common library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: technitium/dns-server
+  # -- image tag
+  # @default -- chart.appVersion
+  tag:
+  # -- image pull policy
+  pullPolicy: Always
+
+# -- Environment variables for the container. Refer to Technitium DNS Server documentation for available variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: Europe/London
+  DNS_SERVER_DOMAIN: technitium.x86.thephysicsflat.xyz
+  DNS_SERVER_ADMIN_PASSWORD_FILE: /secrets/admin_password
+  DNS_SERVER_WEB_SERVICE_LOCAL_ADDRESSES: 0.0.0.0,[::]
+  DNS_SERVER_ENABLE_BLOCKING: "true"
+  DNS_SERVER_BLOCK_LIST_URLS: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+probes:
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+# -- Configures service settings for the chart.
+# Depending on your Kubernetes version, you may or may not be able to mix UDP and TCP services.
+# @default -- See values.yaml
+service:
+  main:
+    annotations:
+      metallb.universe.tf/loadBalancerIPs: "10.1.11.5"
+      metallb.universe.tf/allow-shared-ip: technitium-dns
+
+    enabled: true
+    primary: true
+    type: LoadBalancer
+    externalTrafficPolicy: Local
+
+    ports:
+      # -- HTTP port for the web interface
+      http:
+        enabled: false
+        port: 80
+        targetPort: 5380
+        protocol: TCP
+      # -- HTTPS port for the web interface
+      https:
+        enabled: false
+        port: 443
+        targetPort: 53443
+      # -- UDP port for standard DNS queries
+      dns-udp:
+        enabled: true
+        port: 53
+        protocol: UDP
+      # -- TCP port for standard DNS queries and zone transfers
+      dns-tcp:
+        enabled: true
+        port: 53
+        protocol: TCP
+      # -- UDP port for DHCP services
+      dhcp:
+        enabled: true
+        port: 67
+        protocol: UDP
+      # -- TCP port for DNS-over-TLS (DoT)
+      dot:
+        enabled: true
+        port: 853
+        protocol: TCP
+      # -- TCP port for DNS-over-HTTPS (DoH) reverse proxy
+      doh-reverse:
+        enabled: true
+        port: 8053
+        protocol: TCP
+  http:
+    enabled: true
+    type: ClusterIP
+    ports:
+      # -- HTTP port for the web interface
+      http:
+        enabled: true
+        port: 80
+        targetPort: 5380
+        protocol: TCP
+      # -- HTTPS port for the web interface
+      https:
+        enabled: false
+        port: 443
+        targetPort: 53443
+ingress:
+  # -- Enable and configure ingress settings for the chart.
+  # For more details, see the [common library chart documentation](https://github.com/k8s-at-home/library-charts/blob/main/charts/stable/common/README.md).
+  main:
+    enabled: true
+    annotations: {}
+    hosts:
+      - host: technitium
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              name: http
+              port: 80
+    ingressClassName: "tailscale"
+    tls:
+      - hosts:
+          - technitium
+
+# -- Configure persistence settings for the chart.
+# @default -- See values.yaml
+persistence:
+  config:
+    enabled: true
+    type: pvc
+    storageClass: longhorn
+    size: 10Gi
+    mountPath: /etc/dns
+  secrets:
+    enabled: true
+    name: technitium-secrets
+    type: secret
+    mountPath: /secrets/

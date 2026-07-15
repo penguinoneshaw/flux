@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: technitium
+
+resources:
+  - namespace.yaml
+  - release.yaml
+  - secrets.yaml
+
+configMapGenerator:
+  - name: technitium-values
+    files:
+      - values.yaml
