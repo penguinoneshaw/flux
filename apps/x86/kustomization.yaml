@@ -5,7 +5,7 @@ resources:
   - ../base/copyparty
   - ../base/dynamic-dns
   - ../base/external-dns
-  - ../base/pihole
+  #   - ../base/pihole
   - ../base/paperless
   - ../base/jellyfin
   - ../base/mumble
@@ -23,5 +23,5 @@ resources:
 
 configurations:
   - kustomizeconfig.yaml
-patches:
-  - path: pihole-values.yaml
+#patches:
+#  - path: pihole-values.yaml
