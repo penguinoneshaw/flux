@@ -254,7 +254,7 @@ txtSuffix: # @schema type:[string, null]; default: null
 
 # -- Limit possible target zones by domain suffixes.
 domainFilters:
-  - x86.thephysicsflat.xyz
+  - thephysicsflat.xyz
 
 # -- Intentionally exclude domains from being managed.
 excludeDomains: []
