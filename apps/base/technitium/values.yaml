@@ -24,11 +24,13 @@ env:
   DNS_SERVER_ADMIN_PASSWORD_FILE: /secrets/admin_password
   DNS_SERVER_WEB_SERVICE_LOCAL_ADDRESSES: 0.0.0.0,[::]
   DNS_SERVER_ENABLE_BLOCKING: "true"
-  DNS_SERVER_BLOCK_LIST_URLS: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+  DNS_SERVER_BLOCK_LIST_URLS: https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts,!https://raw.githubusercontent.com/GoodnessJSON/PiHole-Whitelist/refs/heads/master/lists/whitelist.txt
 probes:
   readiness:
     enabled: false
   startup:
+    enabled: false
+  liveness:
     enabled: false
 # -- Configures service settings for the chart.
 # Depending on your Kubernetes version, you may or may not be able to mix UDP and TCP services.
