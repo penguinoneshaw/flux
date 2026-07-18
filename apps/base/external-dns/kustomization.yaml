@@ -6,7 +6,7 @@ namespace: external-dns-system
 resources:
   - namespace.yaml
   - repository.yaml
-  - pihole-password.yaml
+  - tsig.yaml
   - release.yaml
 
 configMapGenerator:
@@ -14,5 +14,3 @@ configMapGenerator:
     namespace: external-dns-system
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true
