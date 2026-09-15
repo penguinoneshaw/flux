@@ -3,7 +3,7 @@ image:
   repository: paperless-ngx/paperless-ngx
   # -- The docker tag, if left empty chart's appVersion will be used.
   # @default -- `.Chart.AppVersion`
-  tag: "2.20.15"
+  tag: "3.1.0"
   # -- The pull policy for the controller.
   pullPolicy: IfNotPresent
 
