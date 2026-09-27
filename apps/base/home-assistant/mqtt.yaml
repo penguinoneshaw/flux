@@ -1,10 +1,10 @@
-apiVersion: apps.emqx.io/v2beta1
+apiVersion: apps.emqx.io/v2
 kind: EMQX
 metadata:
   name: emqx
   namespace: home-assistant
 spec:
-  image: emqx:5
+  image: emqx/emqx:6.3.1
   coreTemplate:
     spec:
       resources:
