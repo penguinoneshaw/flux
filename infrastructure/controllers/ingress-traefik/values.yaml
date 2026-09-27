@@ -134,7 +134,7 @@ experimental:
   plugins:
     plugin-blockpath:
       moduleName: "github.com/traefik/plugin-blockpath"
-      version: "v0.2.1"
+      version: "v0.3.0"
   # -- Enable experimental local plugins
   localPlugins: {}
   # -- Enable OTLP logging experimental feature.
