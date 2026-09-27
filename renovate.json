@@ -1,4 +1,16 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:recommended", "group:allNonMajor", ":automergeMinor"]
+  "extends": ["config:best-practices", "group:allNonMajor", ":automergeMinor"],
+  "flux": {
+    "managerFilePatterns": ["/\\.ya?ml$/"]
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "managerFilePatterns": ["/(^|/)values\\.ya?ml$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)\\s+tag:\\s*(?<currentValue>[^\\s#]+)"
+      ]
+    }
+  ]
 }
