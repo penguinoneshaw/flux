@@ -2,6 +2,7 @@ image:
   # -- The repository to pull the image from.
   repository: paperless-ngx/paperless-ngx
   # -- The docker tag, if left empty chart's appVersion will be used.
+  registry: ghcr.io
   # @default -- `.Chart.AppVersion`
   tag: "3.2.1"
   # -- The pull policy for the controller.
