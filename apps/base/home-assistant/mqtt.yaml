@@ -13,7 +13,7 @@ spec:
           cpu: "125m"
         limits:
           memory: "1024Mi"
-          cpu: "500m"
+          cpu: "125m"
       volumeClaimTemplates:
         storageClassName: longhorn
         resources:
