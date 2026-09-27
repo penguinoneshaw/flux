@@ -46,6 +46,7 @@ spec:
       serviceAccount:
         annotations: {}
       securityContext:
+        allowPrivilegeEscalation: true
         privileged: true # Needed for /dev
         capabilities:
           drop:
@@ -55,18 +56,18 @@ spec:
         readOnlyRootFilesystem: false # true if -logtostderr flag set in labeller
       # If you do want to specify resources, uncomment the following lines,
       # adjust them as necessary, and remove the curly braces after 'resources:'.
-      resources: {}
-        # limits:
-        #   memory: 20Mi
-        #   cpu: 100m
-        # requests:
-        #   memory: 30Mi
-        #   cpu: 150m
+      resources:
+        requests:
+          memory: 20Mi
+          cpu: 100m
+        limits:
+          memory: 30Mi
+          cpu: 150m
 
     imagePullSecrets: []
 
     securityContext:
-      allowPrivilegeEscalation: false
+      allowPrivilegeEscalation: true
       capabilities:
         drop:
           - ALL
