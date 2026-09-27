@@ -13,5 +13,3 @@ configMapGenerator:
     namespace: audiobookshelf
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true

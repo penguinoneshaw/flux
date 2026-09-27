@@ -13,5 +13,3 @@ configMapGenerator:
     namespace: calibre-web
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true

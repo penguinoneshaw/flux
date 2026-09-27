@@ -15,5 +15,3 @@ configMapGenerator:
     namespace: pihole
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true

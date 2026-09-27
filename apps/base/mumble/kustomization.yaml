@@ -15,5 +15,3 @@ configMapGenerator:
     namespace: mumble
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true

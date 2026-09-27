@@ -14,5 +14,3 @@ configMapGenerator:
     namespace: woodpecker
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true

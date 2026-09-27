@@ -14,5 +14,3 @@ configMapGenerator:
     namespace: kanidm
     files:
       - server.toml=config.toml
-    options:
-      disableNameSuffixHash: true

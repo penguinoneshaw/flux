@@ -13,11 +13,7 @@ configMapGenerator:
     namespace: ntfy
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true
   - name: ntfy-server
     namespace: ntfy
     files:
       - server.yml
-    options:
-      disableNameSuffixHash: true

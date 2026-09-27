@@ -13,23 +13,15 @@ configMapGenerator:
     namespace: paperless
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true
   - name: redis-values
     namespace: paperless
     files:
       - values.yaml=redis-values.yaml
-    options:
-      disableNameSuffixHash: true
   - name: gotenberg-values
     namespace: paperless
     files:
       - values.yaml=gotenberg-values.yaml
-    options:
-      disableNameSuffixHash: true
   - name: tika-values
     namespace: paperless
     files:
       - values.yaml=tika-values.yaml
-    options:
-      disableNameSuffixHash: true

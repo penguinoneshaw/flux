@@ -13,5 +13,3 @@ configMapGenerator:
     namespace: dynamic-dns
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true

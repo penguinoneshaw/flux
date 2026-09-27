@@ -23,8 +23,6 @@ configMapGenerator:
     namespace: {app-name}
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true
 
 # Optional: configurations for custom kustomize config
 configurations:
@@ -69,20 +67,14 @@ configMapGenerator:
     namespace: {app-name}
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true
   - name: {app-name}-secondary
     namespace: {app-name}
     files:
       - values.yaml=secondary-values.yaml
-    options:
-      disableNameSuffixHash: true
   - name: {app-name}-config
     namespace: {app-name}
     files:
       - config.yml
-    options:
-      disableNameSuffixHash: true
 ```
 
 ---

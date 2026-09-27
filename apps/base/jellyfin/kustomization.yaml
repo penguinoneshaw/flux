@@ -14,5 +14,3 @@ configMapGenerator:
     namespace: jellyfin
     files:
       - values.yaml
-    options:
-      disableNameSuffixHash: true
