@@ -11,7 +11,7 @@ image:
   repository: technitium/dns-server
   # -- image tag
   # @default -- chart.appVersion
-  tag: 15.5.1
+  tag: 15.6.0@sha256:1045db38fd2f2e4d9578f9168b7eb4862575469ed0ffc79e03f36bdc772a93b5
   # -- image pull policy
   pullPolicy: Always
 
