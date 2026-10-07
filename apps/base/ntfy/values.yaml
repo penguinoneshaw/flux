@@ -9,7 +9,7 @@ image:
   repository: binwiederhier/ntfy
   # -- image tag
   # @default -- chart.appVersion
-  tag: v2.28.0
+  tag: v2.29.0@sha256:4c599cf0818965782f93f652bd843e92714992e84d6b88ad17713dc0951cda1f
   # -- image pull policy
   pullPolicy: IfNotPresent
 
