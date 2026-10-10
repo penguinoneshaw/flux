@@ -17,3 +17,5 @@ configMapGenerator:
     namespace: ntfy
     files:
       - server.yml
+    options:
+      disableNameSuffixHash: true
